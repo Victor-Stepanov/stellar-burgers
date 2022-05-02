@@ -1,0 +1,34 @@
+.header {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #1C1C21;
+
+}
+
+.menuItems{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+}
+
+.navigation {
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+
+}
+
+
+
+
+.link {
+    text-decoration: none;
+    color: #F2F2F3;
+    display: flex;
+    align-items: center;
+}
