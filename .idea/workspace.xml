@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8aae5f4f-4412-4e5b-8b5d-56f8cb2e9a07" name="Changes" comment="feat:Сделал шапку сайта">
-      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/app.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/app.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +42,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,7 +68,8 @@
       <workItem from="1651858212456" duration="12366000" />
       <workItem from="1651944677123" duration="5566000" />
       <workItem from="1652021389698" duration="10176000" />
-      <workItem from="1652100404642" duration="6952000" />
+      <workItem from="1652100404642" duration="7565000" />
+      <workItem from="1652116756900" duration="2217000" />
     </task>
     <task id="LOCAL-00001" summary="feat:Сделал шапку сайта">
       <created>1651511381083</created>

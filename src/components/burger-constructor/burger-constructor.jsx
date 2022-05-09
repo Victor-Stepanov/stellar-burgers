@@ -1,5 +1,6 @@
 import burgerConstructorStyles from './burger-constructor.module.css'
-import {DragIcon, ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import IngridientsItem from './components/ingridients-item.jsx';
 
 const BurgerConstructor = ({ingredients}) => {
     return (
@@ -15,21 +16,7 @@ const BurgerConstructor = ({ingredients}) => {
 
                     />
                 </div>
-                <ul className={burgerConstructorStyles.list}>
-                    {
-                        ingredients.filter((item) => item.type !== 'bun')
-                            .map((element, index) => (
-                                <li className={burgerConstructorStyles.item} key={index}>
-                                    <DragIcon/>
-                                    <ConstructorElement
-                                        text={element.name}
-                                        price={element.price}
-                                        thumbnail={element.image}
-                                    />
-                                </li>
-                            ))
-                    }
-                </ul>
+                <IngridientsItem ingredients={ingredients}/>
                 <div>
                     <ConstructorElement
                         type="bottom"
