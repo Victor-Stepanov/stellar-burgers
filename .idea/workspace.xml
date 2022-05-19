@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8aae5f4f-4412-4e5b-8b5d-56f8cb2e9a07" name="Changes" comment="feat:Сделал шапку сайта">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/app.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/app.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -42,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
@@ -51,6 +51,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item" />
+      <recent name="$PROJECT_DIR$/src/images" />
       <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu" />
     </key>
   </component>
@@ -69,7 +71,18 @@
       <workItem from="1651944677123" duration="5566000" />
       <workItem from="1652021389698" duration="10176000" />
       <workItem from="1652100404642" duration="7565000" />
-      <workItem from="1652116756900" duration="2217000" />
+      <workItem from="1652116756900" duration="4874000" />
+      <workItem from="1652167019445" duration="1945000" />
+      <workItem from="1652171389349" duration="1703000" />
+      <workItem from="1652202181154" duration="697000" />
+      <workItem from="1652269756587" duration="1268000" />
+      <workItem from="1652626618738" duration="313000" />
+      <workItem from="1652777402334" duration="7118000" />
+      <workItem from="1652792812842" duration="2728000" />
+      <workItem from="1652797957272" duration="58000" />
+      <workItem from="1652865484544" duration="20697000" />
+      <workItem from="1652957117500" duration="7101000" />
+      <workItem from="1652977524789" duration="4156000" />
     </task>
     <task id="LOCAL-00001" summary="feat:Сделал шапку сайта">
       <created>1651511381083</created>

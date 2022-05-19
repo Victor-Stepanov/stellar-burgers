@@ -1,9 +1,12 @@
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './tabs-menu.module.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
-const TabsMenu =  () => {
+const TabsMenu = () => {
     const [current, setCurrent] = useState('bun')
+    //TODO:Можно лучше, когда будет время(
+    //const scrollCategory = () => document.getElementsByName(current).scrollIntoView({ behavior: "smooth" });
+    //useEffect(scrollCategory, [current]);
     return (
         <nav className={styles.nav}>
             <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>
