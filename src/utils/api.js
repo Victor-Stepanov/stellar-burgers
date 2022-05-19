@@ -1,8 +1,8 @@
 const URL = 'https://norma.nomoreparties.space/api';
 
-const checkStatus = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+const checkStatus = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`); //проверка статуса ответа сервера
 
-function getIngredientsDataFromServer () {
+const getIngredientsDataFromServer = () => { // запрос на сервер
     return fetch(`${URL}/ingredients`)
         .then(res => checkStatus(res))
 }

@@ -4,9 +4,10 @@ import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import getIngredientsDataFromServer from '../../utils/api.js';
-import Modal from '../modal/modal.jsx'
 import {useState, useEffect} from 'react';
-
+import OrderDetails from '../order-details/order-details.jsx';
+import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
+import Modal from '../modal/modal.jsx'
 
 function App() {
     //States
@@ -16,8 +17,10 @@ function App() {
         hasError: false,
         errorMessage: ''
     })
-    const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для modal1
-    const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для modal2
+    const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
+    const [cardIngredient, setCardIngredient] = useState({}); //state для выбранной карточки
+    const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
+
     //Block api - data
     const getIngredientsData = () => {
         setIngredients({
@@ -25,7 +28,7 @@ function App() {
             isLoading: true,
             hasError: false,
         })
-        getIngredientsDataFromServer()
+        getIngredientsDataFromServer() // запрос на сервер
             .then(res => setIngredients({
                 ...ingredients,
                 data: res.data,
@@ -46,21 +49,28 @@ function App() {
         getIngredientsData();
     }, [])
 
-
     //Block modal
-    const openDetailsModal = () => setIsOrderDetailsOpened(true); //открыли модальное окно
-    //const openIngredientsModal = (data) =>setIsIngredientsOpened(data);
+    const openOrderDetailsModal = () => setIsOrderDetailsOpened(true); //открыли модальное окно
+    /*Открыли модальное окно с выбранным элементом(item), который передали в
+    onClick={() => onClick(elem)} - файл ingridients-item.jsx-(burger-ingridients)*/
+    const openIngredientsModal = (item) => {
+        setCardIngredient(item);
+        setIsIngredientsOpened(true);
+    };
 
     //Закрыли все модальные окна
     const closeAllModals = () => {
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
 
-
     }
     //Закрыть модальных окон на Esc
-    const handleEscKey = (evt) => {
+    const handleEscKeydown = (evt) => {
         evt.key === "Escape" && closeAllModals()
+    }
+    //Закрыли модальное окно на крестик
+    const closeModalWithTheButton = (evt) => {
+        evt.target && closeAllModals()
     }
 
     return (
@@ -70,11 +80,30 @@ function App() {
                 {/* Отрисовка будет происходит только после получения данных*/}
                 {ingredients.data.length > 0 &&
                 <main className={styles.main}>
-                    <BurgerIngredients ingredients={ingredients.data}/>
-                    <BurgerConstructor ingredients={ingredients.data}/>
+                    <BurgerIngredients ingredients={ingredients.data} onClick={openIngredientsModal}/>
+                    <BurgerConstructor ingredients={ingredients.data} onClick={openOrderDetailsModal}/>
                 </main>
                 }
-                {
+                {isOrderDetailsOpened &&
+                <Modal
+                    title=''
+                    onOverlayClick={closeAllModals}
+                    onEscKeydown={handleEscKeydown}
+                    closeModal={closeModalWithTheButton}
+                >
+                    <OrderDetails/>
+                </Modal>
+
+                }
+                {isIngredientsOpened &&
+                <Modal
+                    title="Детали ингредиента"
+                    onOverlayClick={closeAllModals}
+                    onEscKeydown={handleEscKeydown}
+                    closeModal={closeModalWithTheButton}
+                >
+                    <IngredientDetails data={cardIngredient}/>
+                </Modal>
 
                 }
 

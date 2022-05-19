@@ -25,3 +25,8 @@
     max-width: 272px;
     max-height: 208px;
 }
+
+.item:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}

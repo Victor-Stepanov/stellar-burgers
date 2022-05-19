@@ -2,7 +2,7 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './tabs-menu.module.css';
 import {useState} from 'react';
 
-const TabsMenu =  () => {
+const TabsMenu = () => {
     const [current, setCurrent] = useState('bun')
     return (
         <nav className={styles.nav}>
