@@ -1,0 +1,43 @@
+.header {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #1C1C21;
+}
+.navigation {
+    max-width: 1280px;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.box {
+    width: 784px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.menuItems {
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+}
+.menuItem {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    box-sizing: border-box;
+
+}
+
+.link {
+    text-decoration: none;
+    color: #F2F2F3;
+    display: flex;
+    align-items: center;
+}

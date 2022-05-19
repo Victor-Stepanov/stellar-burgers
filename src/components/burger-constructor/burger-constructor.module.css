@@ -1,0 +1,35 @@
+.section {
+    max-width: 600px;
+    max-height: 912px;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 568px;
+    max-height: 656px;
+    overflow-y: scroll;
+
+}
+.box::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2F2F37;
+}
+.box::-webkit-scrollbar-thumb{
+    box-sizing: border-box;
+    background-color: #8585AD;
+    border: 3px solid #8585AD;
+}
+
+
+.order {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 36px;
+}

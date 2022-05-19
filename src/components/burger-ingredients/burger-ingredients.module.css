@@ -1,0 +1,22 @@
+.section {
+    max-width: 600px;
+    max-height: 912px;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.scroll {
+    max-height: 756px;
+    overflow-y: scroll;
+
+
+}
+.scroll::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2F2F37;
+}
+.scroll::-webkit-scrollbar-thumb{
+    background-color: #8585AD;
+    border: 3px solid #8585AD;
+}
