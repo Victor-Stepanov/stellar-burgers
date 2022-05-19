@@ -45,9 +45,7 @@ function App() {
 
     }
 
-    useEffect(() => {
-        getIngredientsData();
-    }, [])
+    useEffect(getIngredientsData, [])
 
     //Block modal
     const openOrderDetailsModal = () => setIsOrderDetailsOpened(true); //открыли модальное окно
@@ -64,14 +62,6 @@ function App() {
         setIsOrderDetailsOpened(false);
 
     }
-    //Закрыть модальных окон на Esc
-    const handleEscKeydown = (evt) => {
-        evt.key === "Escape" && closeAllModals()
-    }
-    //Закрыли модальное окно на крестик
-    const closeModalWithTheButton = (evt) => {
-        evt.target && closeAllModals()
-    }
 
     return (
         <>
@@ -87,9 +77,7 @@ function App() {
                 {isOrderDetailsOpened &&
                 <Modal
                     title=''
-                    onOverlayClick={closeAllModals}
-                    onEscKeydown={handleEscKeydown}
-                    closeModal={closeModalWithTheButton}
+                    onClose={closeAllModals}
                 >
                     <OrderDetails/>
                 </Modal>
@@ -98,9 +86,7 @@ function App() {
                 {isIngredientsOpened &&
                 <Modal
                     title="Детали ингредиента"
-                    onOverlayClick={closeAllModals}
-                    onEscKeydown={handleEscKeydown}
-                    closeModal={closeModalWithTheButton}
+                    onClose={closeAllModals}
                 >
                     <IngredientDetails data={cardIngredient}/>
                 </Modal>

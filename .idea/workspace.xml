@@ -2,22 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8aae5f4f-4412-4e5b-8b5d-56f8cb2e9a07" name="Changes" comment="feat:Сделал шапку сайта">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal-overlay/modal-overlay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal-overlay/modal-overlay.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal-overlay/modal-overlay.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal-overlay/modal-overlay.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order-details/order-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order-details/order-details.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order-details/order-details.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order-details/order-details.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +81,8 @@
       <workItem from="1652792812842" duration="2728000" />
       <workItem from="1652797957272" duration="58000" />
       <workItem from="1652865484544" duration="20697000" />
-      <workItem from="1652957117500" duration="6169000" />
+      <workItem from="1652957117500" duration="7101000" />
+      <workItem from="1652977524789" duration="4156000" />
     </task>
     <task id="LOCAL-00001" summary="feat:Сделал шапку сайта">
       <created>1651511381083</created>
