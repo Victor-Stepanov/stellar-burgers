@@ -3,19 +3,29 @@ import styles from './tabs-menu.module.css';
 import {useState, useEffect} from 'react';
 
 const TabsMenu = () => {
-    const [current, setCurrent] = useState('bun')
-    //TODO:Можно лучше, когда будет время(
-    //const scrollCategory = () => document.getElementsByName(current).scrollIntoView({ behavior: "smooth" });
-    //useEffect(scrollCategory, [current]);
+
+    const [current, setCurrent] = useState('bun');
+
+    const scrollCategory = (element) => document.querySelector(`#${element}`).scrollIntoView({behavior: "smooth"});
+
     return (
         <nav className={styles.nav}>
-            <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>
+            <Tab value="bun" active={current === 'bun'} onClick={() => {
+                setCurrent('bun');
+                scrollCategory('bun')
+            }}>
                 Булки
             </Tab>
-            <Tab value="sauce" active={current === 'sauce'} onClick={setCurrent}>
+            <Tab value="sauce" active={current === 'sauce'} onClick={() => {
+                setCurrent('sauce');
+                scrollCategory('sauce')
+            }}>
                 Соусы
             </Tab>
-            <Tab value="main" active={current === 'main'} onClick={setCurrent}>
+            <Tab value="main" active={current === 'main'} onClick={() => {
+                setCurrent('main');
+                scrollCategory('main')
+            }}>
                 Начинки
             </Tab>
         </nav>

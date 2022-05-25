@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 const IngridientsItem = ({element, type, onClick}) => {
 
+
     const obj = {
         'bun': 'Булки',
         'sauce': 'Соусы',
@@ -12,7 +13,7 @@ const IngridientsItem = ({element, type, onClick}) => {
     }
     return (
         <article className={`${styles.box}`}>
-            <h2 className="text text_type_main-large pt-10">{obj[type]}</h2>
+            <h2 className="text text_type_main-large pt-10" id={type}>{obj[type]}</h2>
             <ul className={`${styles.list}`}>
                 {element.filter((item) => item.type === type)
                     .map((elem) => (

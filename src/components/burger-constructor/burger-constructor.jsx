@@ -1,19 +1,22 @@
 import burgerConstructorStyles from './burger-constructor.module.css'
 import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import IngridientsItem from '../burger-constructor/components/ingridients-item/ingridients-item.jsx';
-import {ingredientPropType} from '../../utils/prop-types.js'
+
 import PropTypes from 'prop-types';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext, useMemo} from 'react';
+import BurgerIngredientsContext from '../../context/burger-ingredients-context.jsx';
 
 
-const BurgerConstructor = ({ingredients, onClick}) => {
+const BurgerConstructor = ({onClick}) => {
+    const ingredients = useContext(BurgerIngredientsContext); //Context
+    const bun = useMemo(()=> ingredients.find((element) => element.type === 'bun'), [ingredients]) // нахожу первую булку в массиве
     const [total, setTotal] = useState(0);
     const res = [];
     ingredients.map((item) => {
         if (item.type !== 'bun') res.push(item)
     })
     useEffect(() => {
-        const price = res.reduce((sum, item) => sum + item.price, ingredients[0].price)
+        const price = res.reduce((sum, item) => sum + item.price, bun.price)
         setTotal(price)
     }, [ingredients])
     return (
@@ -23,9 +26,9 @@ const BurgerConstructor = ({ingredients, onClick}) => {
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text={`${ingredients[0].name} (верх)`}
-                        price={ingredients[0].price}
-                        thumbnail={ingredients[0].image}
+                        text={`${bun.name} (верх)`}
+                        price={bun.price}
+                        thumbnail={bun.image}
 
                     />
                 </div>
@@ -34,9 +37,9 @@ const BurgerConstructor = ({ingredients, onClick}) => {
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text={`${ingredients[0].name} (низ)`}
-                        price={ingredients[0].price}
-                        thumbnail={ingredients[0].image}
+                        text={`${bun.name} (низ)`}
+                        price={bun.price}
+                        thumbnail={bun.image}
 
                     />
                 </div>
@@ -54,7 +57,6 @@ const BurgerConstructor = ({ingredients, onClick}) => {
 }
 
 BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientPropType),
     onclick: PropTypes.func
 }
 

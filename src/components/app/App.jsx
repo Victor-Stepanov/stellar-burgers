@@ -3,11 +3,12 @@ import styles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
-import getIngredientsDataFromServer from '../../utils/api.js';
+import {getIngredientsDataFromServer, getOrderDataFromServer} from '../../utils/api.js';
 import {useState, useEffect} from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
-import Modal from '../modal/modal.jsx'
+import Modal from '../modal/modal.jsx';
+import BurgerIngredientsContext from '../../context/burger-ingredients-context.jsx';
 
 function App() {
     //States
@@ -20,6 +21,13 @@ function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
     const [cardIngredient, setCardIngredient] = useState({}); //state для выбранной карточки
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
+    const [orderData, setOrderData] = useState({
+        name:'',
+        order:{
+            number:''
+        },
+        success:false
+    });
 
     //Block api - data
     const getIngredientsData = () => {
@@ -42,10 +50,18 @@ function App() {
 
             }))
 
-
     }
 
     useEffect(getIngredientsData, [])
+
+
+    const getOrderData = () => {
+        getOrderDataFromServer()
+            .then((res) => setOrderData(res))
+            .catch(err => console.log(`Ошибка: ${err}`))
+    }
+    useEffect(getOrderData, [])
+
 
     //Block modal
     const openOrderDetailsModal = () => setIsOrderDetailsOpened(true); //открыли модальное окно
@@ -70,16 +86,18 @@ function App() {
                 {/* Отрисовка будет происходит только после получения данных*/}
                 {ingredients.data.length > 0 &&
                 <main className={styles.main}>
-                    <BurgerIngredients ingredients={ingredients.data} onClick={openIngredientsModal}/>
-                    <BurgerConstructor ingredients={ingredients.data} onClick={openOrderDetailsModal}/>
+                    <BurgerIngredientsContext.Provider value={ingredients.data}>
+                        <BurgerIngredients onClick={openIngredientsModal}/>
+                        <BurgerConstructor onClick={openOrderDetailsModal}/>
+                    </BurgerIngredientsContext.Provider>
                 </main>
                 }
-                {isOrderDetailsOpened &&
+                {isOrderDetailsOpened && orderData.success !== false &&
                 <Modal
                     title=''
                     onClose={closeAllModals}
                 >
-                    <OrderDetails/>
+                    <OrderDetails props={orderData}/>
                 </Modal>
 
                 }
