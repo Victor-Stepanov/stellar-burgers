@@ -7,12 +7,12 @@ const getIngredientsDataFromServer = () => {
         .then(res => checkStatus(res))
 }
 
-const getOrderDataFromServer = () => {
+const getOrderDataFromServer = (id) => {
     return fetch(`${config.baseUrl}/orders`, {
         method:'POST',
         headers: config.headers,
         body:JSON.stringify({
-            ingredients:['60d3b41abdacab0026a733c6'] //просто id булки, "гениальное" решение
+            ingredients:id //просто id булки, "гениальное" решение
         })
     })
         .then(res => checkStatus(res))

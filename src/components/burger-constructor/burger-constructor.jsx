@@ -4,17 +4,15 @@ import IngridientsItem from '../burger-constructor/components/ingridients-item/i
 
 import PropTypes from 'prop-types';
 import {useEffect, useState, useContext, useMemo} from 'react';
-import BurgerIngredientsContext from '../../context/burger-ingredients-context.jsx';
+import BurgerIngredientsContext from '../../services/burger-ingredients-context.jsx';
 
 
-const BurgerConstructor = ({onClick}) => {
+const BurgerConstructor = ({onClick, getOrderData}) => {
     const ingredients = useContext(BurgerIngredientsContext); //Context
-    const bun = useMemo(()=> ingredients.find((element) => element.type === 'bun'), [ingredients]) // нахожу первую булку в массиве
+    let id = useMemo(() => ingredients.map((item) => item._id))
+    const bun = useMemo(()=> ingredients.find((element) => element.type === 'bun'), [ingredients])// нахожу первую булку в массиве
     const [total, setTotal] = useState(0);
-    const res = [];
-    ingredients.map((item) => {
-        if (item.type !== 'bun') res.push(item)
-    })
+    const res = useMemo(() => ingredients.filter((item) => item.type !== 'bun'), [ingredients])
     useEffect(() => {
         const price = res.reduce((sum, item) => sum + item.price, bun.price)
         setTotal(price)
@@ -49,7 +47,10 @@ const BurgerConstructor = ({onClick}) => {
                     <p><span className="text text_type_digits-medium pr-2">{total}</span></p>
                     <CurrencyIcon type="primary"/>
                 </div>
-                <Button type="primary" onClick={onClick}>Оформить заказ</Button>
+                <Button type="primary" onClick={()=> {
+                    onClick();
+                    getOrderData(id)
+                }}>Оформить заказ</Button>
             </div>
         </section>
 

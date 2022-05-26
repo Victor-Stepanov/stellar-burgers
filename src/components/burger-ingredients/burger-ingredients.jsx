@@ -4,7 +4,7 @@ import TabsMenu from '../burger-ingredients/components/tabs-menu/tabs-menu.jsx';
 import IngridientsItem from '../burger-ingredients/components/ingridients-item/ingridients-item.jsx';
 import {ingredientPropType} from '../../utils/prop-types.js'
 import PropTypes from 'prop-types';
-import BurgerIngredientsContext from '../../context/burger-ingredients-context.jsx';
+import BurgerIngredientsContext from '../../services/burger-ingredients-context.jsx';
 
 
 const BurgerIngredients = ({ onClick}) => {

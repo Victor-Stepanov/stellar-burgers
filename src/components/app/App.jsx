@@ -8,7 +8,7 @@ import {useState, useEffect} from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
-import BurgerIngredientsContext from '../../context/burger-ingredients-context.jsx';
+import BurgerIngredientsContext from '../../services/burger-ingredients-context.jsx';
 
 function App() {
     //States
@@ -22,11 +22,11 @@ function App() {
     const [cardIngredient, setCardIngredient] = useState({}); //state для выбранной карточки
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const [orderData, setOrderData] = useState({
-        name:'',
-        order:{
-            number:''
+        name: '',
+        order: {
+            number: ''
         },
-        success:false
+        success: false
     });
 
     //Block api - data
@@ -55,16 +55,17 @@ function App() {
     useEffect(getIngredientsData, [])
 
 
-    const getOrderData = () => {
-        getOrderDataFromServer()
+    const getOrderData = (ingredientsID) => {
+        getOrderDataFromServer(ingredientsID)
             .then((res) => setOrderData(res))
-            .catch(err => console.log(`Ошибка: ${err}`))
+            .catch(err => alert(`Ошибка: ${err}`))
     }
-    useEffect(getOrderData, [])
 
 
-    //Block modal
-    const openOrderDetailsModal = () => setIsOrderDetailsOpened(true); //открыли модальное окно
+    //Block modal //PS - получился какой-то костыль
+    const openOrderDetailsModal = (id) => {
+        setIsOrderDetailsOpened(true);
+    } //открыли модальное окно
     /*Открыли модальное окно с выбранным элементом(item), который передали в
     onClick={() => onClick(elem)} - файл ingridients-item.jsx-(burger-ingridients)*/
     const openIngredientsModal = (item) => {
@@ -88,7 +89,7 @@ function App() {
                 <main className={styles.main}>
                     <BurgerIngredientsContext.Provider value={ingredients.data}>
                         <BurgerIngredients onClick={openIngredientsModal}/>
-                        <BurgerConstructor onClick={openOrderDetailsModal}/>
+                        <BurgerConstructor onClick={openOrderDetailsModal} getOrderData={getOrderData}/>
                     </BurgerIngredientsContext.Provider>
                 </main>
                 }
