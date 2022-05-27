@@ -10,14 +10,46 @@ import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
 import BurgerIngredientsContext from '../../services/burger-ingredients-context.jsx';
 
+const initialState = {
+    data: [],
+    isLoading: false,
+    hasError: false,
+    errorMessage: ''
+}
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'pending':
+            return {
+                ...initialState,
+                isLoading: true
+            };
+        case 'succes':
+            return {
+                ...initialState,
+                isLoading: false,
+                hasError: false,
+                errorMessage: '',
+                data: action.payload
+
+            }
+        case 'error':
+            return {
+                ...initialState,
+                isLoading: false,
+                hasError: true,
+                errorMessage: action.payload,
+                data: null
+            }
+        default:
+            throw new Error('Что-то пошло не так')
+
+
+    }
+}
+
 function App() {
-    //States
-    const [ingredients, setIngredients] = useState({
-        data: [],
-        isLoading: false,
-        hasError: false,
-        errorMessage: ''
-    })
+    const [state, dispatch] = React.useReducer(reducer, initialState)
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
     const [cardIngredient, setCardIngredient] = useState({}); //state для выбранной карточки
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
@@ -31,23 +63,21 @@ function App() {
 
     //Block api - data
     const getIngredientsData = () => {
-        setIngredients({
-            ...ingredients,
-            isLoading: true,
-            hasError: false,
-        })
+        dispatch({
+            type: 'pending'
+        });
         getIngredientsDataFromServer() // запрос на сервер
-            .then(res => setIngredients({
-                ...ingredients,
-                data: res.data,
-                isLoading: false
-            }))
-            .catch(err => setIngredients({
-                ...ingredients,
-                isLoading: false,
-                hasError: true,
-                errorMessage: err.message
+            .then((responce) => {
+                console.log(responce)
+                dispatch({
+                    type: 'succes',
+                    payload: responce.data
 
+                })
+            })
+            .catch(err => dispatch({
+                type: 'error',
+                payload: err.message
             }))
 
     }
@@ -85,9 +115,9 @@ function App() {
             <div className={styles.app}>
                 <AppHeader/>
                 {/* Отрисовка будет происходит только после получения данных*/}
-                {ingredients.data.length > 0 &&
+                {state.data.length > 0 &&
                 <main className={styles.main}>
-                    <BurgerIngredientsContext.Provider value={ingredients.data}>
+                    <BurgerIngredientsContext.Provider value={state.data}>
                         <BurgerIngredients onClick={openIngredientsModal}/>
                         <BurgerConstructor onClick={openOrderDetailsModal} getOrderData={getOrderData}/>
                     </BurgerIngredientsContext.Provider>
