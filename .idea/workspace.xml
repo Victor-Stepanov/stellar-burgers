@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/services/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ingredient-details/ingredient-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ingredient-details/ingredient-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal-overlay/modal-overlay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal-overlay/modal-overlay.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order-details/order-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order-details/order-details.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/burger-ingredients-context.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +62,12 @@
       <workItem from="1653492417967" duration="6218000" />
       <workItem from="1653579921041" duration="4557000" />
       <workItem from="1653667796739" duration="69000" />
-      <workItem from="1653670219573" duration="1315000" />
+      <workItem from="1653670219573" duration="1946000" />
+      <workItem from="1653754650657" duration="656000" />
+      <workItem from="1653760446836" duration="107000" />
+      <workItem from="1653831087074" duration="4647000" />
+      <workItem from="1655126829447" duration="350000" />
+      <workItem from="1655199802593" duration="15212000" />
     </task>
     <servers />
   </component>

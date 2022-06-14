@@ -1,3 +1,4 @@
+import React from 'react';
 import IngridientsItemStyles from './ingridients-item.module.css';
 import {DragIcon,ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../utils/prop-types.js'

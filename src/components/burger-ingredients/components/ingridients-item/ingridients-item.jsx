@@ -1,10 +1,10 @@
+import React, {forwardRef} from 'react';
 import styles from './ingridients-item.module.css';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../utils/prop-types.js'
 import PropTypes from 'prop-types';
 
-const IngridientsItem = ({element, type, onClick}) => {
-
+const IngridientsItem = forwardRef(({element, type, onClick},ref) => {
 
     const obj = {
         'bun': 'Булки',
@@ -12,8 +12,8 @@ const IngridientsItem = ({element, type, onClick}) => {
         'main': 'Начинки'
     }
     return (
-        <article className={`${styles.box}`}>
-            <h2 className="text text_type_main-large pt-10" id={type}>{obj[type]}</h2>
+        <article className={`${styles.box}`} ref={ref}>
+            <h2 className="text text_type_main-large pt-10"  id={type}>{obj[type]}</h2>
             <ul className={`${styles.list}`}>
                 {element.filter((item) => item.type === type)
                     .map((elem) => (
@@ -31,7 +31,7 @@ const IngridientsItem = ({element, type, onClick}) => {
             </ul>
         </article>
     )
-}
+})
 
 IngridientsItem.propTypes = {
     ingredients: PropTypes.arrayOf(ingredientPropType),
