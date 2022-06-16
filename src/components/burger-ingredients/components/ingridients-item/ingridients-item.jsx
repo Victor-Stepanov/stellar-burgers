@@ -3,8 +3,7 @@ import styles from './ingridients-item.module.css';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../utils/prop-types.js'
 import PropTypes from 'prop-types';
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { useDrag } from "react-dnd";
 
 const IngridientsItem = forwardRef(({element, type, onClick},ref) => {
 

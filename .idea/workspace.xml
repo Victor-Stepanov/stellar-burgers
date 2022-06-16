@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/actions/ingredients.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/actions/ingredients.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/reducers/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/reducers/ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/ingredients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/reducers/ingredients.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/ingredients.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +62,7 @@
       <workItem from="1655234706675" duration="3000" />
       <workItem from="1655308558834" duration="2073000" />
       <workItem from="1655317809377" duration="1800000" />
-      <workItem from="1655392390674" duration="4989000" />
+      <workItem from="1655392390674" duration="5431000" />
     </task>
     <servers />
   </component>
