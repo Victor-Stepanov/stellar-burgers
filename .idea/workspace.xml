@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/services/reducers/ingredients.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/ingredients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +62,7 @@
       <workItem from="1655234706675" duration="3000" />
       <workItem from="1655308558834" duration="2073000" />
       <workItem from="1655317809377" duration="1800000" />
-      <workItem from="1655392390674" duration="5431000" />
+      <workItem from="1655392390674" duration="5763000" />
     </task>
     <servers />
   </component>

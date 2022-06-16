@@ -6,6 +6,14 @@ import PropTypes from 'prop-types';
 import { useDrag } from "react-dnd";
 
 const IngridientsItem = forwardRef(({element, type, onClick},ref) => {
+    const [{isDrag}, dragRef] = useDrag({
+        type: "element",
+        item: element,
+        collect: monitor => ({
+            isDrag: monitor.isDragging()
+        })
+    });
+
 
     const obj = {
         'bun': 'Булки',
@@ -18,7 +26,7 @@ const IngridientsItem = forwardRef(({element, type, onClick},ref) => {
             <ul className={`${styles.list}`}>
                 {element.filter((item) => item.type === type)
                     .map((elem) => (
-                        <li className={`${styles.item} mt-6 ml-4 mr-6`} key={elem._id} onClick={() => onClick(elem)}>
+                        <li ref={dragRef} className={`${styles.item} mt-6 ml-4 mr-6`} key={elem._id} onClick={() => onClick(elem)}>
                             <img src={elem.image} alt={elem.name}/>
                             <div className={`${styles.price} pt-1 pb-1`}>
                                 <p className="text text_type_digits-default mr-2">{elem.price}</p>
