@@ -1,14 +1,13 @@
 import { getIngredientsDataFromServer } from '../../utils/api'
 //Ingredients
 //Actions для загрузки ингридиентов
-export const GET_INGREDIENTS_REQUEST = 'LOADING_INGREDIENTS';
-export const GET_INGREDIENTS_SUCCESS = 'ADD_INGRIDIENTS';
-export const GET_INGREDIENTS_FAILED = 'ERORR_LOADING_INGREDIENTS';
+export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
+export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
+export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED';
 
 
 //
-export function getIngredients() {
-    return function (dispatch) {
+export const getIngredients = () => (dispatch) => {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
         })
@@ -29,8 +28,8 @@ export function getIngredients() {
             .catch(err => {
                 dispatch({
                     type: GET_INGREDIENTS_FAILED
+
                 })
             })
 
     }
-}

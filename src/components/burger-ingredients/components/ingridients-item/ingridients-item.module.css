@@ -27,6 +27,6 @@
 }
 
 .item:hover{
-    cursor: pointer;
+    cursor: grab;
     opacity: 0.6;
 }

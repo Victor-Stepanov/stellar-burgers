@@ -4,11 +4,12 @@ import {
     GET_INGREDIENTS_FAILED
 } from '../actions/ingredients'
 
-//начальное состаяние для загрузки ингридиентов
+//
 const initialState = {
     ingredients:[],
     ingredientsRequest: false,
     ingredientsFailed: false,
+
 }
 //
 export const ingredientsReducer = (state = initialState, action) => {

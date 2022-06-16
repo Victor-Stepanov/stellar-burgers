@@ -8,7 +8,8 @@ import {useState, useEffect} from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
-
+import {HTML5Backend} from 'react-dnd-html5-backend';
+import {DndProvider} from 'react-dnd';
 
 function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
@@ -55,7 +56,10 @@ function App() {
                 {/* Отрисовка будет происходит только после получения данных*/}
 
                 <main className={styles.main}>
-                    <BurgerIngredients onClick={openIngredientsModal}/>
+                    <DndProvider backend={HTML5Backend}>
+                        <BurgerIngredients onClick={openIngredientsModal}/>
+                        <BurgerConstructor/>
+                    </DndProvider>
                 </main>
 
                 {isOrderDetailsOpened && orderData.success !== false &&
@@ -79,7 +83,7 @@ function App() {
 
             </div>
         </>
-    );
+);
 }
 
 export default App;
