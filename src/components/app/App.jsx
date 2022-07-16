@@ -3,71 +3,63 @@ import styles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
-import {getIngredientsDataFromServer, getOrderDataFromServer} from '../../utils/api.js';
-import {useState, useEffect} from 'react';
+import {useState } from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 import {DndProvider} from 'react-dnd';
+import { useSelector, useDispatch } from 'react-redux';
+import {addIngridientDeatails, RESET_DETAILS_INGRIDIENT} from '../../services/actions/details';
+import {RESET_ITEM} from '../../services/actions/constructor'
+
 
 function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
-    const [cardIngredient, setCardIngredient] = useState({}); //state для выбранной карточки
+
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
-    const [orderData, setOrderData] = useState({
-        name: '',
-        order: {
-            number: ''
-        },
-        success: false
-    });
-
-
-    const getOrderData = (ingredientsID) => {
-        getOrderDataFromServer(ingredientsID)
-            .then((res) => setOrderData(res))
-            .catch(err => alert(`Ошибка: ${err}`))
-    }
-
+    const {ingridientDetails} = useSelector(store => store.ingrideientData)
+    const {order, orderRequest} = useSelector(store => store.orderNumber)
+    const dispatch = useDispatch();
 
     //Block modal //PS - получился какой-то костыль
-    const openOrderDetailsModal = (id) => {
-        setIsOrderDetailsOpened(true);
+    const openOrderDetailsModal = () => {
+        setIsOrderDetailsOpened(true)
     } //открыли модальное окно
     /*Открыли модальное окно с выбранным элементом(item), который передали в
     onClick={() => onClick(elem)} - файл ingridients-item.jsx-(burger-ingridients)*/
     const openIngredientsModal = (item) => {
-        setCardIngredient(item);
+        dispatch(addIngridientDeatails(item))
         setIsIngredientsOpened(true);
     };
 
     //Закрыли все модальные окна
     const closeAllModals = () => {
+        dispatch({type:RESET_DETAILS_INGRIDIENT})
+        dispatch({type:RESET_ITEM})
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
 
     }
 
+
     return (
         <>
             <div className={styles.app}>
                 <AppHeader/>
-                {/* Отрисовка будет происходит только после получения данных*/}
-
                 <main className={styles.main}>
                     <DndProvider backend={HTML5Backend}>
                         <BurgerIngredients onClick={openIngredientsModal}/>
-                        <BurgerConstructor/>
+                        <BurgerConstructor openOrderModal={openOrderDetailsModal}/>
                     </DndProvider>
                 </main>
 
-                {isOrderDetailsOpened && orderData.success !== false &&
+                {!orderRequest && isOrderDetailsOpened &&
                 <Modal
                     title=''
                     onClose={closeAllModals}
                 >
-                    <OrderDetails props={orderData}/>
+                    <OrderDetails number={order.number}/>
                 </Modal>
 
                 }
@@ -76,14 +68,14 @@ function App() {
                     title="Детали ингредиента"
                     onClose={closeAllModals}
                 >
-                    <IngredientDetails data={cardIngredient}/>
+                    <IngredientDetails data={ingridientDetails} />
                 </Modal>
 
                 }
 
             </div>
         </>
-);
+    );
 }
 
 export default App;

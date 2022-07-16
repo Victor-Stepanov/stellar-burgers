@@ -5,4 +5,11 @@ const config = {
     }
 }
 
+export const obj = {
+    'bun': 'Булки',
+    'sauce': 'Соусы',
+    'main': 'Начинки'
+}
+
+
 export default config;

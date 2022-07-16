@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item/ingridients-item.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order-details/order-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order-details/order-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/actions/constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/actions/constructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/actions/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/actions/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/reducers/constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/constructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/reducers/index.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/reducers/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/const.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/const.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +45,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/services/reducers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/images" />
+      <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item" />
+      <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components" />
       <recent name="$PROJECT_DIR$/src/services/reducers" />
     </key>
   </component>
@@ -62,7 +82,35 @@
       <workItem from="1655234706675" duration="3000" />
       <workItem from="1655308558834" duration="2073000" />
       <workItem from="1655317809377" duration="1800000" />
-      <workItem from="1655392390674" duration="5763000" />
+      <workItem from="1655392390674" duration="5956000" />
+      <workItem from="1655476286602" duration="5868000" />
+      <workItem from="1655546963915" duration="6692000" />
+      <workItem from="1655657052261" duration="3000" />
+      <workItem from="1655736408259" duration="1398000" />
+      <workItem from="1656241468774" duration="70000" />
+      <workItem from="1656270457059" duration="923000" />
+      <workItem from="1656301592517" duration="408000" />
+      <workItem from="1656438136755" duration="22000" />
+      <workItem from="1656438195645" duration="2000" />
+      <workItem from="1656438707715" duration="1933000" />
+      <workItem from="1656441468104" duration="582000" />
+      <workItem from="1656560976717" duration="2000" />
+      <workItem from="1656771690366" duration="10521000" />
+      <workItem from="1656845408056" duration="13687000" />
+      <workItem from="1656904813691" duration="2134000" />
+      <workItem from="1656956755581" duration="1769000" />
+      <workItem from="1656963195179" duration="1006000" />
+      <workItem from="1656990809999" duration="1654000" />
+      <workItem from="1657354363372" duration="1272000" />
+      <workItem from="1657356779783" duration="2188000" />
+      <workItem from="1657559510102" duration="116000" />
+      <workItem from="1657640022796" duration="1485000" />
+      <workItem from="1657641937848" duration="177000" />
+      <workItem from="1657682079604" duration="141000" />
+      <workItem from="1657726021317" duration="5641000" />
+      <workItem from="1657819380858" duration="1999000" />
+      <workItem from="1657904459033" duration="3033000" />
+      <workItem from="1657970827126" duration="1573000" />
     </task>
     <servers />
   </component>

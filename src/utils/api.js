@@ -12,7 +12,7 @@ const getOrderDataFromServer = (id) => {
         method:'POST',
         headers: config.headers,
         body:JSON.stringify({
-            ingredients:id //просто id булки, "гениальное" решение
+            ingredients:id
         })
     })
         .then(res => checkStatus(res))
