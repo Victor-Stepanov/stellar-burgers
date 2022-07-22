@@ -12,7 +12,7 @@ const IngridientsItem = forwardRef(({ element, type, onClick }, ref) => {
         <article className={`${styles.box}`} ref={ref}>
             <h2 className="text text_type_main-large pt-10" id={type}>{obj[type]}</h2>
             <ul className={`${styles.list}`}>
-                {element.map(item => <DraggableItem ingredient={item} key={item._id} onClick={onClick} count={1} />)}
+                {element.map(item => <DraggableItem key={item._id} ingredient={item} onClick={onClick}/>)}
             </ul>
         </article>
     )
