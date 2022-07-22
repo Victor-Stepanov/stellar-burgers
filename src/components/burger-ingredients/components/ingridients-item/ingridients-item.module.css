@@ -14,7 +14,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-
+    
 }
 
 .item {
@@ -24,6 +24,7 @@
     justify-content: center;
     max-width: 272px;
     max-height: 208px;
+    position: relative;
 }
 
 .item:hover{

@@ -6,8 +6,6 @@ export const addIngridientDeatails = (item) => {
 	return {
 		type: GET_DETAILS_INGRIDIENT,
 		item
-
-		
 	}
 
 }

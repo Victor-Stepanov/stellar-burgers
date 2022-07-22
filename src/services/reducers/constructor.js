@@ -1,20 +1,20 @@
-import { ADD_ITEM, REMOVE_ITEM, RESET_ITEM, MOVE_ITEM} from '../actions/constructor';
+import { ADD_ITEM, REMOVE_ITEM, RESET_ITEM, MOVE_ITEM } from '../actions/constructor';
 import update from 'immutability-helper';
 
 const initialConstructorState = {
-    bun:[],
+    bun: [],
     element: []
 }
 
 
 export const constructorReducer = (state = initialConstructorState, action) => {
-    switch (action.type){
-        case ADD_ITEM:{
-            if(action.payload.type === "bun"){
-                if(state.bun){
+    switch (action.type) {
+        case ADD_ITEM: {
+            if (action.payload.type === "bun") {
+                if (state.bun) {
                     return {
                         ...state,
-                        bun:action.payload
+                        bun: action.payload
                     };
                 }
             }
@@ -23,28 +23,28 @@ export const constructorReducer = (state = initialConstructorState, action) => {
                 element: [...state.element, action.payload]
             }
         }
-        case REMOVE_ITEM:{
+        case REMOVE_ITEM: {
             return {
                 ...state,
                 element: [...state.element].filter((item) => item.id !== action.id)
 
             }
         }
-        case MOVE_ITEM:{
+        case MOVE_ITEM: {
             return {
                 ...state,
                 element: update(state.element, {
-                    $splice:[
+                    $splice: [
                         [action.dragIndex, 1],
                         [action.hoverIndex, 0, state.element[action.dragIndex]]
                     ]
                 })
             }
         }
-        case RESET_ITEM:{
+        case RESET_ITEM: {
             return {
                 ...state,
-                bun:[],
+                bun: [],
                 element: []
             }
         }

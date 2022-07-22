@@ -1,7 +1,7 @@
 import { GET_DETAILS_INGRIDIENT, RESET_DETAILS_INGRIDIENT } from '../actions/details';
 
 const initialState = {
-	ingridientDetails:{}
+	ingridientDetails: {}
 }
 
 export const detailsIngrideientReducer = (state = initialState, action) => {
@@ -9,13 +9,14 @@ export const detailsIngrideientReducer = (state = initialState, action) => {
 		case GET_DETAILS_INGRIDIENT: {
 			return {
 				...state,
-				ingridientDetails:action.item
+				ingridientDetails: action.item
 
 			}
 		}
-		case RESET_DETAILS_INGRIDIENT:{
+		case RESET_DETAILS_INGRIDIENT: {
 			return {
 				...state,
+				ingridientDetails:{}
 			}
 		}
 		default:

@@ -1,9 +1,9 @@
 import React from 'react';
 import IngredientDetailsStyle from './ingredient-details.module.css';
-import {ingredientPropType} from '../../utils/prop-types.js'
+import { ingredientPropType } from '../../utils/prop-types.js'
 import PropTypes from 'prop-types';
 
-const IngredientDetails = ({data}) => {
+const IngredientDetails = ({ data }) => {
     const categories = ['calories', 'proteins', 'fat', 'carbohydrates'];
     const obj = {
         'calories': 'Калории,ккал',
@@ -35,7 +35,7 @@ const IngredientDetails = ({data}) => {
 }
 
 IngredientDetails.propTypes = {
-    data:ingredientPropType,
+    data: ingredientPropType,
 }
 
 export default IngredientDetails;
