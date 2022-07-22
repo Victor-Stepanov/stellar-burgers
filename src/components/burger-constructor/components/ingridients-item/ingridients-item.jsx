@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import IngridientsItemStyles from './ingridients-item.module.css';
-import {DragIcon, ConstructorElement, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
+import {DragIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../../utils/prop-types.js'
 import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd'
 import {moveItem} from '../../../../services/actions/constructor';
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 
 const IngridientsItem = ({item, removeItem, index}) => {
@@ -21,17 +21,13 @@ const IngridientsItem = ({item, removeItem, index}) => {
         }),
     })
 
-    const [{ handlerId }, drop] = useDrop({
+    const [, drop] = useDrop({
         accept: 'element',
-        collect(monitor) {
-            return {
-                handlerId: monitor.getHandlerId(),
-            }
-        },
         hover: (item, monitor) => {
             if(!ref.current) return;
             const dragIndex = item.index
             const hoverIndex = index
+            if (dragIndex === hoverIndex) return;
             const hoverBoundingRect = ref.current?.getBoundingClientRect()
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
             const hoverActualY = monitor.getClientOffset().y - hoverBoundingRect.top
@@ -45,11 +41,12 @@ const IngridientsItem = ({item, removeItem, index}) => {
             item.index = hoverIndex
         },
     })
+    const opacity = isDragging ? 0 : 1
 
     const dragDropRef = dragRef(drop(ref))
     return (
         <ul className={IngridientsItemStyles.list}>
-            <li className={IngridientsItemStyles.item} ref={dragDropRef}>
+            <li className={IngridientsItemStyles.item} ref={dragDropRef} style={{opacity}}>
                 <DragIcon/>
                 <ConstructorElement
                     text={item.name}
