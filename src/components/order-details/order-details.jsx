@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import OrderDetailsStyle from './order-details.module.css';
 import done from '../../images/done.png';
 import { useSelector } from 'react-redux';
@@ -21,10 +20,6 @@ const OrderDetails = () => {
 
     )
 
-}
-
-OrderDetails.propTypes = {
-    props: PropTypes.object
 }
 
 export default OrderDetails;

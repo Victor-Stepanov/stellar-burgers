@@ -2,7 +2,6 @@ import React, { useEffect, useMemo } from 'react';
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import TabsMenu from '../burger-ingredients/components/tabs-menu/tabs-menu.jsx';
 import IngridientsItem from '../burger-ingredients/components/ingridients-item/ingridients-item.jsx';
-import { ingredientPropType } from '../../utils/prop-types.js'
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getIngredients } from '../../services/actions/ingredients';
@@ -49,8 +48,7 @@ const BurgerIngredients = ({ onClick }) => {
 
 
 BurgerIngredients.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientPropType),
-    onclick: PropTypes.func
+    onClick: PropTypes.func.isRequired
 }
 
 

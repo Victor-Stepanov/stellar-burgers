@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import React, { useMemo } from "react";
 import styles from "../ingridients-item.module.css";
+import { ingredientPropType } from '../../../../../utils/prop-types.js';
+import PropTypes from 'prop-types';
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag } from "react-dnd";
 
@@ -48,5 +50,11 @@ const DraggableItem = ({ ingredient, onClick }) => {
         </li>
     );
 };
+
+DraggableItem.propTypes = {
+    ingredient:ingredientPropType.isRequired,
+    onClick: PropTypes.func.isRequired,
+
+}
 
 export default DraggableItem;

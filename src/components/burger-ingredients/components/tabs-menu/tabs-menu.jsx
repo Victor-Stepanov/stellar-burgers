@@ -2,9 +2,10 @@ import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './tabs-menu.module.css';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const TabsMenu = ({ inViewBuns, inViewSauces, inViewFilling }) => {
-
+   
     const [current, setCurrent] = useState('bun');
 
     useEffect(() => {
@@ -38,5 +39,11 @@ const TabsMenu = ({ inViewBuns, inViewSauces, inViewFilling }) => {
         </nav>
     )
 }
+
+TabsMenu.propTypes = {
+    inViewBuns: PropTypes.bool.isRequired,
+    inViewSauces: PropTypes.bool.isRequired,
+    inViewFilling: PropTypes.bool.isRequired
+  };
 
 export default TabsMenu;

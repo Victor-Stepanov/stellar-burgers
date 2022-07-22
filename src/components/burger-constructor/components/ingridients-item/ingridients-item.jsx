@@ -1,14 +1,13 @@
 import React, { useRef } from 'react';
 import IngridientsItemStyles from './ingridients-item.module.css';
 import {DragIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
-import {ingredientPropType} from '../../../../utils/prop-types.js'
 import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd'
 import {moveItem} from '../../../../services/actions/constructor';
 import { useDispatch} from 'react-redux';
 
 
-const IngridientsItem = ({item, removeItem, index}) => {
+const IngridientsItem = ({ item, removeItem, index }) => {
     const { id } = item;
     const dispatch = useDispatch();
     const ref = useRef(null)
@@ -61,7 +60,10 @@ const IngridientsItem = ({item, removeItem, index}) => {
 }
 
 IngridientsItem.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientPropType)
+    item: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
+    removeItem:PropTypes.func.isRequired
+
 }
 
 export default IngridientsItem;

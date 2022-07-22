@@ -98,7 +98,7 @@ const BurgerConstructor = ({ openOrderModal }) => {
 }
 
 BurgerConstructor.propTypes = {
-    onclick: PropTypes.func
+    openOrderModal: PropTypes.func.isRequired
 }
 
 

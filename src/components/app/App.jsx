@@ -42,6 +42,8 @@ function App() {
 
     }
 
+   
+
 
     return (
         <>
@@ -63,7 +65,7 @@ function App() {
                     </Modal>
 
                 }
-                {isIngredientsOpened &&
+                {isIngredientsOpened && ingridientDetails !== 'undefined' &&
                     <Modal
                         title="Детали ингредиента"
                         onClose={closeAllModals}
