@@ -9,13 +9,13 @@ const getIngredientsDataFromServer = () => {
 
 const getOrderDataFromServer = (id) => {
     return fetch(`${config.baseUrl}/orders`, {
-        method:'POST',
+        method: 'POST',
         headers: config.headers,
-        body:JSON.stringify({
-            ingredients:id //просто id булки, "гениальное" решение
+        body: JSON.stringify({
+            ingredients: id
         })
     })
         .then(res => checkStatus(res))
 }
 
-export {getIngredientsDataFromServer, getOrderDataFromServer};
+export { getIngredientsDataFromServer, getOrderDataFromServer };
