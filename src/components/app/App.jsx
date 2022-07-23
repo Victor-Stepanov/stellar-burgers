@@ -42,9 +42,6 @@ function App() {
 
     }
 
-   
-
-
     return (
         <>
             <div className={styles.app}>
@@ -65,7 +62,7 @@ function App() {
                     </Modal>
 
                 }
-                {isIngredientsOpened && ingridientDetails !== 'undefined' &&
+                {isIngredientsOpened && Object.keys(ingridientDetails).length > 0  &&
                     <Modal
                         title="Детали ингредиента"
                         onClose={closeAllModals}
