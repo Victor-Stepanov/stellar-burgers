@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8aae5f4f-4412-4e5b-8b5d-56f8cb2e9a07" name="Changes" comment="feat:Сделал шапку сайта">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-constructor/burger-constructor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu/tabs-menu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +12,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -25,15 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="ProjectId" id="28bvltSeAP4j39ay7o5HKpgiVsL" />
+  <component name="ProjectId" id="29cZzJY8dY4pcFFoBRxrNU4OgBZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,56 +28,75 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/burger-constructor/components/ingridients-item" />
       <recent name="$PROJECT_DIR$/src/images" />
-      <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components/tabs-menu" />
+      <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item" />
+      <recent name="$PROJECT_DIR$/src/components/burger-ingredients/components" />
+      <recent name="$PROJECT_DIR$/src/services/reducers" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8aae5f4f-4412-4e5b-8b5d-56f8cb2e9a07" name="Changes" comment="" />
-      <created>1651498255425</created>
+      <changelist id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="" />
+      <created>1653414594806</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1651498255425</updated>
-      <workItem from="1651498257052" duration="943000" />
-      <workItem from="1651501538576" duration="12414000" />
-      <workItem from="1651589495264" duration="9454000" />
-      <workItem from="1651858212456" duration="12366000" />
-      <workItem from="1651944677123" duration="5566000" />
-      <workItem from="1652021389698" duration="10176000" />
-      <workItem from="1652100404642" duration="7565000" />
-      <workItem from="1652116756900" duration="4874000" />
-      <workItem from="1652167019445" duration="1945000" />
-      <workItem from="1652171389349" duration="1703000" />
-      <workItem from="1652202181154" duration="697000" />
-      <workItem from="1652269756587" duration="1268000" />
-      <workItem from="1652626618738" duration="313000" />
-      <workItem from="1652777402334" duration="7118000" />
-      <workItem from="1652792812842" duration="2728000" />
-      <workItem from="1652797957272" duration="58000" />
-      <workItem from="1652865484544" duration="20697000" />
-      <workItem from="1652957117500" duration="7101000" />
-      <workItem from="1652977524789" duration="4156000" />
+      <updated>1653414594806</updated>
+      <workItem from="1653414596481" duration="10000" />
+      <workItem from="1653414621600" duration="5351000" />
+      <workItem from="1653492417967" duration="6218000" />
+      <workItem from="1653579921041" duration="4557000" />
+      <workItem from="1653667796739" duration="69000" />
+      <workItem from="1653670219573" duration="1946000" />
+      <workItem from="1653754650657" duration="656000" />
+      <workItem from="1653760446836" duration="107000" />
+      <workItem from="1653831087074" duration="4647000" />
+      <workItem from="1655126829447" duration="350000" />
+      <workItem from="1655199802593" duration="15789000" />
+      <workItem from="1655232922495" duration="19000" />
+      <workItem from="1655233205212" duration="10000" />
+      <workItem from="1655234706675" duration="3000" />
+      <workItem from="1655308558834" duration="2073000" />
+      <workItem from="1655317809377" duration="1800000" />
+      <workItem from="1655392390674" duration="5956000" />
+      <workItem from="1655476286602" duration="5868000" />
+      <workItem from="1655546963915" duration="6692000" />
+      <workItem from="1655657052261" duration="3000" />
+      <workItem from="1655736408259" duration="1398000" />
+      <workItem from="1656241468774" duration="70000" />
+      <workItem from="1656270457059" duration="923000" />
+      <workItem from="1656301592517" duration="408000" />
+      <workItem from="1656438136755" duration="22000" />
+      <workItem from="1656438195645" duration="2000" />
+      <workItem from="1656438707715" duration="1933000" />
+      <workItem from="1656441468104" duration="582000" />
+      <workItem from="1656560976717" duration="2000" />
+      <workItem from="1656771690366" duration="10521000" />
+      <workItem from="1656845408056" duration="13687000" />
+      <workItem from="1656904813691" duration="2134000" />
+      <workItem from="1656956755581" duration="1769000" />
+      <workItem from="1656963195179" duration="1006000" />
+      <workItem from="1656990809999" duration="1654000" />
+      <workItem from="1657354363372" duration="1272000" />
+      <workItem from="1657356779783" duration="2188000" />
+      <workItem from="1657559510102" duration="116000" />
+      <workItem from="1657640022796" duration="1485000" />
+      <workItem from="1657641937848" duration="177000" />
+      <workItem from="1657682079604" duration="141000" />
+      <workItem from="1657726021317" duration="5641000" />
+      <workItem from="1657819380858" duration="1999000" />
+      <workItem from="1657904459033" duration="3033000" />
+      <workItem from="1657970827126" duration="1573000" />
+      <workItem from="1657997642173" duration="477000" />
+      <workItem from="1658040413541" duration="2000" />
     </task>
-    <task id="LOCAL-00001" summary="feat:Сделал шапку сайта">
-      <created>1651511381083</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1651511381083</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,13 +113,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat:Сделал шапку сайта" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:Сделал шапку сайта" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
