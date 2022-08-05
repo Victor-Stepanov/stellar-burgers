@@ -1,26 +1,50 @@
 import burgerConstructorStyles from './burger-constructor.module.css'
-import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngridientsItem from '../burger-constructor/components/ingridients-item/ingridients-item.jsx';
-
+import React from 'react';
 import PropTypes from 'prop-types';
-import {useEffect, useState, useContext, useMemo} from 'react';
-import BurgerIngredientsContext from '../../services/burger-ingredients-context.jsx';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from "react-dnd";
+import { addItem, removeItem } from '../../services/actions/constructor';
+import { getOrder } from '../../services/actions/order'
 
 
-const BurgerConstructor = ({onClick, getOrderData}) => {
-    const ingredients = useContext(BurgerIngredientsContext); //Context
-    let id = useMemo(() => ingredients.map((item) => item._id))
-    const bun = useMemo(()=> ingredients.find((element) => element.type === 'bun'), [ingredients])// нахожу первую булку в массиве
+
+const BurgerConstructor = ({ openOrderModal }) => {
+    const dispatch = useDispatch()
+    const { element, bun } = useSelector((state) => state.constructorData) // получаем элементы из хранилища
+
     const [total, setTotal] = useState(0);
-    const res = useMemo(() => ingredients.filter((item) => item.type !== 'bun'), [ingredients])
     useEffect(() => {
-        const price = res.reduce((sum, item) => sum + item.price, bun.price)
+        const price = element.reduce((sum, item) => sum + item.price, bun.price)
         setTotal(price)
-    }, [ingredients])
+    }, [element, bun])
+
+    const [, dropTarget] = useDrop({
+        accept: "ingredient",
+        drop: (item) => {
+            dispatch(addItem(item));
+        }
+
+    });
+
+    const handlerDeleteItem = (id) => {
+        dispatch(removeItem(id))
+    }
+
+
+    const handlerSendOrder = () => {
+        openOrderModal();
+        const id = [bun._id, ...element.map((item) => item._id)];
+        dispatch(getOrder(id))
+
+    }
+
     return (
         <section className={`${burgerConstructorStyles.section} mt-25 `}>
-            <div className={`${burgerConstructorStyles.box} ml-4`}>
-                <div>
+            <div className={`${burgerConstructorStyles.box} ml-4`} ref={dropTarget}>
+                {Object.keys(bun).length > 0 ? (<div>
                     <ConstructorElement
                         type="top"
                         isLocked={true}
@@ -29,9 +53,23 @@ const BurgerConstructor = ({onClick, getOrderData}) => {
                         thumbnail={bun.image}
 
                     />
-                </div>
-                <IngridientsItem ingredients={ingredients}/>
-                <div>
+                </div>) : (
+                    <div className={burgerConstructorStyles.empty_top}>
+                        <p className='text text_type_main-default'>Добавьте булку</p>
+                    </div>
+
+                )}
+                {/*Блок массив-элементов*/}
+                {bun.length !== 0 && element.length !== 0 ? (
+                    element.map((item, index) => <IngridientsItem item={item} key={item.id} index={index}
+                        removeItem={() => handlerDeleteItem(item.id)} />)
+                ) : (
+                    <div className={burgerConstructorStyles.empty_ing}>
+                        <p className='text text_type_main-default'>Добавьте начинку</p>
+                    </div>
+                )}
+
+                {Object.keys(bun).length > 0 ? (<div>
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
@@ -40,25 +78,27 @@ const BurgerConstructor = ({onClick, getOrderData}) => {
                         thumbnail={bun.image}
 
                     />
-                </div>
+                </div>) : (
+                    <div className={burgerConstructorStyles.empty_bottom}>
+                        <p className='text text_type_main-default'>Добавьте булку</p>
+                    </div>
+
+                )}
             </div>
-            <div className={`${burgerConstructorStyles.order} pt-10`}>
+            {bun.length !== 0 && element.length !== 0 && <div className={`${burgerConstructorStyles.order} pt-10`}>
                 <div className={`${burgerConstructorStyles.order} `}>
                     <p><span className="text text_type_digits-medium pr-2">{total}</span></p>
-                    <CurrencyIcon type="primary"/>
+                    <CurrencyIcon type="primary" />
                 </div>
-                <Button type="primary" onClick={()=> {
-                    onClick();
-                    getOrderData(id)
-                }}>Оформить заказ</Button>
-            </div>
+                <Button type="primary" onClick={handlerSendOrder}>Оформить заказ</Button>
+            </div>}
         </section>
 
     )
 }
 
 BurgerConstructor.propTypes = {
-    onclick: PropTypes.func
+    openOrderModal: PropTypes.func.isRequired
 }
 
 
