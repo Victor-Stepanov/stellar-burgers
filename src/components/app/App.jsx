@@ -7,11 +7,14 @@ import { useState } from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import { addIngridientDeatails, RESET_DETAILS_INGRIDIENT } from '../../services/actions/details';
-import { RESET_ITEM } from '../../services/actions/constructor'
+import { RESET_ITEM } from '../../services/actions/constructor';
+import { LoginPage, ProfilePage, IngredientsPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
+import { ProtectedRoute } from '../../components/protected-route/protected-route'
 
 
 function App() {
@@ -19,7 +22,7 @@ function App() {
 
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const { ingridientDetails } = useSelector(store => store.ingrideientData)
-    const {orderRequest } = useSelector(store => store.orderNumberData)
+    const { orderRequest } = useSelector(store => store.orderNumberData)
     const dispatch = useDispatch();
 
     //Block modal
@@ -46,23 +49,47 @@ function App() {
         <>
             <div className={styles.app}>
                 <AppHeader />
-                <main className={styles.main}>
-                    <DndProvider backend={HTML5Backend}>
-                        <BurgerIngredients onClick={openIngredientsModal} />
-                        <BurgerConstructor openOrderModal={openOrderDetailsModal} />
-                    </DndProvider>
-                </main>
+                <Router>
+                    <Switch>
+                        <Route exact={true} path="/">
+                            <main className={styles.main}>
+                                <DndProvider backend={HTML5Backend}>
+                                    <BurgerIngredients onClick={openIngredientsModal} />
+                                    <BurgerConstructor openOrderModal={openOrderDetailsModal} />
+                                </DndProvider>
+                            </main>
+                        </Route>
+                        <Route exact={true} path="/login" component={LoginPage}/>
+                        <Route exact={true} path="/register">
+                            <RegisterPage/>
+                        </Route>
+                        <Route exact={true} path="/forgot-password">
+                            <ForgotPasswordPage />
+                        </Route>
+                        <Route exact={true} path="/reset-password">
+                            <ResetPasswordPage />
+                        </Route>
+                        <ProtectedRoute exact={true} path="/profile">
+                            <ProfilePage />
+                        </ProtectedRoute>
+                        <Route exact={true} path="/ingredients/:id"></Route>
+                        <Route>
+                            <NotFound404/>
+                        </Route>
+                    </Switch>
+                </Router>
+
 
                 {!orderRequest && isOrderDetailsOpened &&
                     <Modal
                         title=''
                         onClose={closeAllModals}
                     >
-                        <OrderDetails/>
+                        <OrderDetails />
                     </Modal>
 
                 }
-                {isIngredientsOpened && Object.keys(ingridientDetails).length > 0  &&
+                {isIngredientsOpened && Object.keys(ingridientDetails).length > 0 &&
                     <Modal
                         title="Детали ингредиента"
                         onClose={closeAllModals}
