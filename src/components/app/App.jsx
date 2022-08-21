@@ -14,7 +14,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addIngridientDeatails, RESET_DETAILS_INGRIDIENT } from '../../services/actions/details';
 import { RESET_ITEM } from '../../services/actions/constructor';
 import { LoginPage, ProfilePage, IngredientsPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
-import { ProtectedRoute } from '../../components/protected-route/protected-route'
+import { ProtectedRoute } from '../../components/protected-route/protected-route';
+import {getCookie} from '../../utils/utils';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
     const { ingridientDetails } = useSelector(store => store.ingrideientData)
     const { orderRequest } = useSelector(store => store.orderNumberData)
     const dispatch = useDispatch();
+    const cookie = getCookie('token')
+    const refreshTokenData = localStorage.getItem('token');
 
     //Block modal
     const openOrderDetailsModal = () => {
@@ -59,7 +62,9 @@ function App() {
                                 </DndProvider>
                             </main>
                         </Route>
-                        <Route exact={true} path="/login" component={LoginPage}/>
+                        <Route exact={true} path="/login">
+                            <LoginPage />
+                        </Route>
                         <Route exact={true} path="/register">
                             <RegisterPage/>
                         </Route>
@@ -69,7 +74,7 @@ function App() {
                         <Route exact={true} path="/reset-password">
                             <ResetPasswordPage />
                         </Route>
-                        <ProtectedRoute exact={true} path="/profile">
+                        <ProtectedRoute anonymous={true} exact={true} path="/profile">
                             <ProfilePage />
                         </ProtectedRoute>
                         <Route exact={true} path="/ingredients/:id"></Route>

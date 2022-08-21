@@ -6,9 +6,13 @@ import { Link } from 'react-router-dom';
 
 export const ResetPasswordPage = () => {
 
-	const [value, setValue] = React.useState('')
-	const onChange = e => {
-		setValue(e.target.value)
+	const [password, setPassword] = React.useState('');
+	const [code, setCode] = React.useState('');
+	const onChangePassword = e => {
+		setPassword(e.target.value)
+	}
+	const onChangeCode = e => {
+		setCode(e.target.value)
 	}
 
 	return (
@@ -16,12 +20,12 @@ export const ResetPasswordPage = () => {
 			<h2 className="text text_type_main-medium">Восстановление пароля</h2>
 			<form className={styles.form}>
 				<div className="pt-6">
-				<PasswordInput type={'password'} placeholder={"Введите новый пароль"} errorText={'Ошибка'} size={'default'}  onChange={onChange} value={value} name={'password'} />
+					<PasswordInput type={'password'} placeholder={"Введите новый пароль"} errorText={'Ошибка'} size={'default'} onChange={onChangePassword} value={password} name={'password'} />
 				</div>
 				<div className="pt-6 pb-6">
-					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={onChange} value={value} name={'name'} />
+					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={onChangeCode} value={code} name={'name'} />
 				</div>
-				<Button type="primary" size="medium">Восстановить</Button>
+				<Button disabled={!(password, code)} type="primary" size="medium">Восстановить</Button>
 			</form>
 			<p className="pt-20 text text_type_main-default text_color_inactive">Вспомнили пароль?<Link className={styles.link} to="/login">Войти</Link></p>
 		</div>
