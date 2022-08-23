@@ -2,7 +2,7 @@ import React from "react";
 import styles from './login.module.css';
 import { Redirect, Link } from 'react-router-dom';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { sendLoginForm } from '../../services/actions/auth';
+import { sendLoginData } from '../../services/actions/auth';
 import { useDispatch, useSelector } from "react-redux";
 
 export const LoginPage = () => {
@@ -20,10 +20,9 @@ export const LoginPage = () => {
 
 	const userLogin = e => {
 		e.preventDefeault();
-		dispatch(sendLoginForm(email, password))
+		dispatch(sendLoginData(email, password))
 	}
 	
-	console.log(user)
 
 	//После авторизации перенаправление на главную старницу
 	if (user) {

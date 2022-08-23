@@ -43,12 +43,41 @@ const sendLoginRequestToServer = async (email, password) =>
         headers: config.headers,
         body: JSON.stringify({
             email: email,
-            password:password
+            password: password
         })
+    })
+        .then(res => checkStatus(res))
+
+
+//Выход с учетной записи пользователя
+const sendLogoutRequestToServer = async () =>
+    await fetch(`${config.baseUrl}/auth/logout`, {
+        method: 'POST',
+        headers: config.headers,
+        body: JSON.stringify({
+            token: localStorage.getItem('refreshToken')
+        })
+    })
+//Запрос обновления токена ()
+const updateToken = async () => 
+    await (fetch(`${config.baseUrl}/auth/token`, {
+        method: 'POST',
+        headers:config.headers,
+        body: JSON.stringify({
+            token: localStorage.getItem('refreshToken')
+        })
+    }))
+
+//Получение данных о пользователе
+const getUserRequest = async () => 
+    await fetch(`${config.baseUrl}/auth/user`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + getCookie('token')
+        }
+
     })
     .then(res => checkStatus(res))
 
-//Запрос обновления токена ()
-
-
-export { getIngredientsDataFromServer, getOrderDataFromServer, sendUserDataToServer, sendLoginRequestToServer };
+export { getIngredientsDataFromServer, getOrderDataFromServer, sendUserDataToServer, sendLoginRequestToServer, getUserRequest, updateToken };

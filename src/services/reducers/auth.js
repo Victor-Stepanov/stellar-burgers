@@ -1,7 +1,7 @@
 import {
 	USER_REGISTER_FAILED, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
 	USER_LOGIN_SUCCESS, USER_LOGIN_REQUEST, USER_LOGIN_FAILED,
-	TOKEN_REQUEST, TOKEN_SUCCESS, TOKEN_FAILED
+	TOKEN_UPDATE_REQUEST, TOKEN_UPDATE_SUCCESS, TOKEN_UPDATE_FAILED
 } from '../actions/auth';
 
 const initialUserState = {
@@ -62,6 +62,28 @@ export const userReducer = (state = initialUserState, action) => {
 				loginFailed: true,
 				loginRequest: false,
 				loginSuccess: false,
+			}
+		}
+		case TOKEN_UPDATE_REQUEST: {
+			return {
+				...state,
+				tokenRequest:true
+			}
+		}
+		case TOKEN_UPDATE_SUCCESS: {
+			return {
+				...state,
+				tokenRequest: false,
+				tokenSuccess: true,
+				tokenFailed:false
+			}
+		}
+		case TOKEN_UPDATE_FAILED: {
+			return {
+				...state,
+				tokenRequest: false,
+				tokenSuccess: false,
+				tokenFailed:true
 			}
 			}
 		default: {

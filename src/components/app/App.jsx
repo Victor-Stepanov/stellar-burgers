@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
@@ -7,7 +7,7 @@ import { useState } from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,19 +15,22 @@ import { addIngridientDeatails, RESET_DETAILS_INGRIDIENT } from '../../services/
 import { RESET_ITEM } from '../../services/actions/constructor';
 import { LoginPage, ProfilePage, IngredientsPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
-import {getCookie} from '../../utils/utils';
+import { getCookie } from '../../utils/utils';
+import { getUserRequest, updateToken } from '../../utils/api';
+import { sendUpdateToken } from '../../services/actions/auth';
 
 
 function App() {
+    const { log } = console;
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
 
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const { ingridientDetails } = useSelector(store => store.ingrideientData)
     const { orderRequest } = useSelector(store => store.orderNumberData)
     const dispatch = useDispatch();
-    const cookie = getCookie('token')
-    const refreshTokenData = localStorage.getItem('token');
-
+    const token = getCookie('token')
+    const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
+    
     //Block modal
     const openOrderDetailsModal = () => {
         setIsOrderDetailsOpened(true)
@@ -47,12 +50,17 @@ function App() {
         setIsOrderDetailsOpened(false);
 
     }
+    useEffect(() => {
+        if (!token && refreshToken) {
+            dispatch(sendUpdateToken())
+        }
+    },[dispatch, token, refreshToken])
 
+    
     return (
         <>
             <div className={styles.app}>
                 <AppHeader />
-                <Router>
                     <Switch>
                         <Route exact={true} path="/">
                             <main className={styles.main}>
@@ -74,7 +82,7 @@ function App() {
                         <Route exact={true} path="/reset-password">
                             <ResetPasswordPage />
                         </Route>
-                        <ProtectedRoute anonymous={true} exact={true} path="/profile">
+                        <ProtectedRoute anonymous={false} exact={true} path="/profile">
                             <ProfilePage />
                         </ProtectedRoute>
                         <Route exact={true} path="/ingredients/:id"></Route>
@@ -82,7 +90,6 @@ function App() {
                             <NotFound404/>
                         </Route>
                     </Switch>
-                </Router>
 
 
                 {!orderRequest && isOrderDetailsOpened &&
