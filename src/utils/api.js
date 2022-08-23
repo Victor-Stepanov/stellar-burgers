@@ -49,6 +49,7 @@ const sendLoginRequestToServer = async (email, password) =>
         .then(res => checkStatus(res))
 
 
+
 //Выход с учетной записи пользователя
 const sendLogoutRequestToServer = async () =>
     await fetch(`${config.baseUrl}/auth/logout`, {
@@ -59,17 +60,17 @@ const sendLogoutRequestToServer = async () =>
         })
     })
 //Запрос обновления токена ()
-const updateToken = async () => 
+const updateToken = async () =>
     await (fetch(`${config.baseUrl}/auth/token`, {
         method: 'POST',
-        headers:config.headers,
+        headers: config.headers,
         body: JSON.stringify({
             token: localStorage.getItem('refreshToken')
         })
     }))
 
 //Получение данных о пользователе
-const getUserRequest = async () => 
+const getUserRequest = async () =>
     await fetch(`${config.baseUrl}/auth/user`, {
         method: 'GET',
         headers: {
@@ -78,6 +79,6 @@ const getUserRequest = async () =>
         }
 
     })
-    .then(res => checkStatus(res))
+        .then(res => checkStatus(res))
 
-export { getIngredientsDataFromServer, getOrderDataFromServer, sendUserDataToServer, sendLoginRequestToServer, getUserRequest, updateToken };
+export { getIngredientsDataFromServer, getOrderDataFromServer, sendUserDataToServer, sendLoginRequestToServer,sendLogoutRequestToServer, getUserRequest, updateToken };

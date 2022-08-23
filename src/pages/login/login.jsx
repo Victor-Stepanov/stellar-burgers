@@ -8,9 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(store => store.userData.user);
+	console.log(user)
 
 	const [email, setEmail] = React.useState('')
 	const [password, setPassword] = React.useState('')
+
 	const onChangeEmail = e => {
 		setEmail(e.target.value)
 	}
@@ -19,11 +21,11 @@ export const LoginPage = () => {
 	}
 
 	const userLogin = e => {
-		e.preventDefeault();
+		e.preventDefault();
 		dispatch(sendLoginData(email, password))
 	}
 	
-
+	
 	//После авторизации перенаправление на главную старницу
 	if (user) {
 		return (

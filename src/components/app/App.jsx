@@ -7,7 +7,7 @@ import { useState } from 'react';
 import OrderDetails from '../order-details/order-details.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import Modal from '../modal/modal.jsx';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,7 +17,7 @@ import { LoginPage, ProfilePage, IngredientsPage, RegisterPage, ForgotPasswordPa
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
 import { getCookie } from '../../utils/utils';
 import { getUserRequest, updateToken } from '../../utils/api';
-import { sendUpdateToken } from '../../services/actions/auth';
+import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
 
 
 function App() {
@@ -25,12 +25,15 @@ function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
 
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
-    const { ingridientDetails } = useSelector(store => store.ingrideientData)
-    const { orderRequest } = useSelector(store => store.orderNumberData)
+    const { ingridientDetails } = useSelector(store => store.ingrideientData);
+    const { orderRequest } = useSelector(store => store.orderNumberData);
+    const { user } = useSelector(store => store.userData);
     const dispatch = useDispatch();
-    const token = getCookie('token')
+    const token = getCookie('token');
     const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
-    
+
+    const location = useLocation();
+    const history = useHistory();
     //Block modal
     const openOrderDetailsModal = () => {
         setIsOrderDetailsOpened(true)
@@ -54,42 +57,47 @@ function App() {
         if (!token && refreshToken) {
             dispatch(sendUpdateToken())
         }
-    },[dispatch, token, refreshToken])
+    }, [dispatch, token, refreshToken])
 
+    useEffect(() => {
+        dispatch(getUserInfo())
+    }, [dispatch])
+
+    const background = location.state?.background;
     
     return (
         <>
             <div className={styles.app}>
                 <AppHeader />
-                    <Switch>
-                        <Route exact={true} path="/">
-                            <main className={styles.main}>
-                                <DndProvider backend={HTML5Backend}>
-                                    <BurgerIngredients onClick={openIngredientsModal} />
-                                    <BurgerConstructor openOrderModal={openOrderDetailsModal} />
-                                </DndProvider>
-                            </main>
-                        </Route>
-                        <Route exact={true} path="/login">
-                            <LoginPage />
-                        </Route>
-                        <Route exact={true} path="/register">
-                            <RegisterPage/>
-                        </Route>
-                        <Route exact={true} path="/forgot-password">
-                            <ForgotPasswordPage />
-                        </Route>
-                        <Route exact={true} path="/reset-password">
-                            <ResetPasswordPage />
-                        </Route>
-                        <ProtectedRoute anonymous={false} exact={true} path="/profile">
-                            <ProfilePage />
-                        </ProtectedRoute>
-                        <Route exact={true} path="/ingredients/:id"></Route>
-                        <Route>
-                            <NotFound404/>
-                        </Route>
-                    </Switch>
+                <Switch location={background || location}>
+                    <Route exact={true} path="/">
+                        <main className={styles.main}>
+                            <DndProvider backend={HTML5Backend}>
+                                <BurgerIngredients onClick={openIngredientsModal} />
+                                <BurgerConstructor openOrderModal={openOrderDetailsModal} />
+                            </DndProvider>
+                        </main>
+                    </Route>
+                    <Route exact={true} path="/login">
+                        <LoginPage />
+                    </Route>
+                    <Route exact={true} path="/register">
+                        <RegisterPage />
+                    </Route>
+                    <Route exact={true} path="/forgot-password">
+                        <ForgotPasswordPage />
+                    </Route>
+                    <Route exact={true} path="/reset-password">
+                        <ResetPasswordPage />
+                    </Route>
+                    <ProtectedRoute exact={true} path="/profile">
+                        <ProfilePage />
+                    </ProtectedRoute>
+                    <Route exact={true} path="/ingredients/:id"></Route>
+                    <Route>
+                        <NotFound404 />
+                    </Route>
+                </Switch>
 
 
                 {!orderRequest && isOrderDetailsOpened &&

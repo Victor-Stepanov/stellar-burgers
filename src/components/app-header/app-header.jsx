@@ -25,7 +25,7 @@ const AppHeader = () =>
             </div>
             <menu className={appHeaderStyles.menuItems}>
                 <li className={`${appHeaderStyles.menuItem} pt-4 pb-4`}>
-                    <NavLink className={appHeaderStyles.link} to={{pathname: '/login'}}><ProfileIcon type="secondary" /><span
+                    <NavLink className={appHeaderStyles.link} to={{pathname: '/profile'}}><ProfileIcon type="secondary" /><span
                         className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</span></NavLink>
                 </li>
             </menu>

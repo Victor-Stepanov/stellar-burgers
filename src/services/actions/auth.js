@@ -1,4 +1,4 @@
-import { sendUserDataToServer, sendLoginRequestToServer, updateToken } from '../../utils/api'
+import { sendUserDataToServer, sendLoginRequestToServer, updateToken, getUserRequest, sendLogoutRequestToServer } from '../../utils/api'
 import { setCookie, deleteCookie } from "../../utils/utils";
 //Регистрация пользователя
 export const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';
@@ -16,28 +16,29 @@ export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 export const USER_LOGOUT_FAILED = 'USER_LOGOUT_FAILED';
 
 //Получение данных о пользователе
-export const USER_INFO_REQUEST = '';
-export const USER_INFO_SUCCESS = '';
-export const USER_INFO_FAILED = '';
+export const USER_INFO_REQUEST = 'USER_INFO_REQUEST';
+export const USER_INFO_SUCCESS = 'USER_INFO_SUCCESS';
+export const USER_INFO_FAILED = 'USER_INFO_FAILED';
 
 //Обновление токена
 export const TOKEN_UPDATE_REQUEST = 'TOKEN_UPDATE_REQUEST';
 export const TOKEN_UPDATE_SUCCESS = 'TOKEN_UPDATE_SUCCESS';
 export const TOKEN_UPDATE_FAILED = 'TOKEN_UPDATE_FAILED';
 
+//Данные регистрации
 export const sendUserData = (email, password, name) => (dispatch) => {
 	dispatch({
 		type: USER_REGISTER_REQUEST
 	})
 	sendUserDataToServer(email, password, name)
 		.then(res => {
-			const authToken = res.accessToken.split("Bearer")[1];
+			const authToken = res.accessToken.split("Bearer ")[1];
 			setCookie("token", authToken);
 			const refreshToken = res.refreshToken;
 			localStorage.setItem("refreshToken", refreshToken);
 			dispatch({
 				type: USER_REGISTER_SUCCESS,
-				payload: res
+				payload: res.user
 			})
 		})
 		.catch(err => {
@@ -49,13 +50,14 @@ export const sendUserData = (email, password, name) => (dispatch) => {
 		})
 }
 
+//Данные авторизации
 export const sendLoginData = (email, password) => (dispatch) => {
 	dispatch({
 		type: USER_LOGIN_REQUEST
 	})
 	sendLoginRequestToServer(email, password)
 		.then(res => {
-			const authToken = res.accessToken.split("Bearer")[1];
+			const authToken = res.accessToken.split("Bearer ")[1];
 			setCookie("token", authToken);
 			const refreshToken = res.refreshToken;
 			localStorage.setItem("refreshToken", refreshToken);
@@ -72,13 +74,36 @@ export const sendLoginData = (email, password) => (dispatch) => {
 
 }
 
+//Выход с учетной записи
+export const sendLogoutData = () => (dispatch) => {
+	dispatch({
+		type:USER_LOGOUT_REQUEST
+	})
+	sendLogoutRequestToServer()
+		.then(_ => {
+			localStorage.removeItem("refreshToken")
+			deleteCookie("token")
+			dispatch({
+				type:USER_LOGOUT_SUCCESS
+			})
+
+		})
+		.catch(err => {
+			console.error(err)
+			dispatch({
+				type:USER_LOGOUT_FAILED
+			})
+	})
+
+}
+
 export const sendUpdateToken = () => (dispatch) => {
 	dispatch({
 		type:TOKEN_UPDATE_REQUEST
 	})
 	updateToken()
 		.then(res => {
-			const authToken = res.accessToken.split("Bearer")[1];
+			const authToken = res.accessToken.split("Bearer ")[1];
 			setCookie("token", authToken);
 			const refreshToken = res.refreshToken;
 			localStorage.setItem("refreshToken", refreshToken);
@@ -93,4 +118,27 @@ export const sendUpdateToken = () => (dispatch) => {
 			type:TOKEN_UPDATE_FAILED
 		})
 	})
+}
+
+export const getUserInfo = () =>(dispatch) => {
+	dispatch({
+		type:USER_INFO_REQUEST
+	})
+	getUserRequest()
+		.then(res => {
+			const authToken = res.accessToken.split("Bearer ")[1];
+			setCookie("token", authToken);
+			const refreshToken = res.refreshToken;
+			localStorage.setItem("refreshToken", refreshToken)
+			dispatch({
+				type: USER_INFO_SUCCESS,
+				payload:res.user
+			})
+		})
+		.catch(err => {
+			dispatch({
+			type:USER_INFO_FAILED
+		})
+	})
+	
 }

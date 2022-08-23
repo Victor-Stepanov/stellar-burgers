@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import styles from './profile.module.css';
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { NavLink, Switch, Route } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
+import {sendLogoutData} from '../../services/actions/auth'
+import { useDispatch } from "react-redux";
 
 export const ProfilePage = () => {
+	const dispatch = useDispatch();
 	const [name, setName] = useState('');
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	//
 	const onChangeName = e => {
-		setPassword(e.target.value);
+		setName(e.target.value);
 	};
 	const onChangeLogin = e => {
 		setLogin(e.target.value);
@@ -17,41 +20,59 @@ export const ProfilePage = () => {
 	const onChangePassword = e => {
 		setPassword(e.target.value);
 	};
+
+	const logoutProfile = () => {
+		dispatch(sendLogoutData())
+	}
 	return (
-		<main>
-			<menu>
+		<div className={styles.container}>
+			<ul className={`${styles.list} mr-15`}>
 				<li>
-					<NavLink to='/'>
-						<p>Профиль</p>
+					<NavLink
+						className={`text text_type_main-medium ${styles.link}`}
+						to={{
+
+						}}>
+						<span className="text text_type_main-medium">Профиль</span>
 					</NavLink >
 				</li>
 				<li>
-					<NavLink to='/'>
-						<p>История заказов</p>
-					</NavLink>
+					<NavLink
+						className={styles.link}
+						to={{
+							
+						}}>
+						<span className="text text_type_main-medium">История заказов</span>
+					</NavLink >
 				</li>
 				<li>
-					<NavLink to='/'>
-						<p>Выход</p>
-					</NavLink>
+					<NavLink onClick={logoutProfile}
+						className={`text text_type_main-medium ${styles.link}`}
+						to={{
+							pathname:"/login"
+						}}>
+						<span className="text text_type_main-medium">Выход</span>
+					</NavLink >
 				</li>
-				<p>В этом разделе вы можете
+				<p className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}>В этом разделе вы можете
 					изменить свои персональные данные</p>
-			</menu>
-			<Switch>
-				<Route>
-			<form>
-				<Input type={'text'} placeholder={'Имя'}  onChange={onChangeName} value={name} />
-				<Input type={'email'} placeholder={'Логин'} onChange={onChangeLogin} value={login} />
-				<PasswordInput onChange={onChangePassword} value={password} />
+			</ul>
+			<form className={styles.form}>
+						<div className="pt-6">
+							<Input type={'text'} placeholder={'Имя'} errorText={'Ошибка'} size={'default'} onChange={onChangeName} value={name} name={'name'} />
+						</div>
+						<div className="pt-6">
+							<Input type={'email'} placeholder={'E-mail'} errorText={'Ошибка'} size={'default'} name={'email'} />
+						</div>
+						<div className="pt-6 pb-6">
+							<PasswordInput onChange={onChangePassword} value={password} name={'password'} />
+						</div>
+						<div className={styles.buttons}>
+							<Button type="secondary" size="medium" >Отмена</Button>
+							<Button type="primary" size="medium">Cохранить</Button>
+						</div>
 					</form>
-					<div>
-						<Button type="secondary" size="medium" >Отмена</Button>
-						<Button type="primary" size="medium">Cохранить</Button>
-					</div>
-			</Route>
-			</Switch>
-		</main>
+		</div>
 	)
 
 }

@@ -1,16 +1,16 @@
-import {Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export function ProtectedRoute({ anonymous = false,
-  children, ...rest }) {
-  
+export function ProtectedRoute({ ...rest }) {
+  const user = useSelector((store) => store.userData.user);
 
-  return (
-    <Route
-      {...rest}
-      render={() => (
-          children
-        )
-      }
+  return !user ? (
+    <Redirect
+      to={{
+        pathname: "/login",
+      }}
     />
+  ) : (
+    <Route {...rest} />
   );
-} 
+}
