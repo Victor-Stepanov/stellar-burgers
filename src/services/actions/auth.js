@@ -1,4 +1,4 @@
-import { sendUserDataToServer, sendLoginRequestToServer, updateToken, getUserRequest, sendLogoutRequestToServer } from '../../utils/api'
+import { sendUserDataToServer, sendLoginRequestToServer, sendForgoutPasswordRequest, sendResetPasswordRequest , updateToken, getUserRequest, sendLogoutRequestToServer } from '../../utils/api'
 import { setCookie, deleteCookie } from "../../utils/utils";
 //Регистрация пользователя
 export const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';
@@ -14,6 +14,16 @@ export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED';
 export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
 export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 export const USER_LOGOUT_FAILED = 'USER_LOGOUT_FAILED';
+
+//Отправка email на сброс пароля
+export const FORGOUT_PASSWORD_REQUEST = 'FORGOUT_PASSWORD_REQUEST';
+export const FORGOUT_PASSWORD_SUCCESS = 'FORGOUT_PASSWORD_SUCCESS';
+export const FORGOUT_PASSWORD_FAILED = 'FORGOUT_PASSWORD_FAILED';
+
+//Отправка нового пароля и токена
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILED = 'RESET_PASSWORD_FAILED';
 
 //Получение данных о пользователе
 export const USER_INFO_REQUEST = 'USER_INFO_REQUEST';
@@ -63,7 +73,7 @@ export const sendLoginData = (email, password) => (dispatch) => {
 			localStorage.setItem("refreshToken", refreshToken);
 			dispatch({
 				type: USER_LOGIN_SUCCESS,
-				payload:res
+				payload: res
 			})
 		})
 		.catch(err => {
@@ -77,29 +87,68 @@ export const sendLoginData = (email, password) => (dispatch) => {
 //Выход с учетной записи
 export const sendLogoutData = () => (dispatch) => {
 	dispatch({
-		type:USER_LOGOUT_REQUEST
+		type: USER_LOGOUT_REQUEST
 	})
 	sendLogoutRequestToServer()
 		.then(_ => {
 			localStorage.removeItem("refreshToken")
 			deleteCookie("token")
 			dispatch({
-				type:USER_LOGOUT_SUCCESS
+				type: USER_LOGOUT_SUCCESS
 			})
 
 		})
 		.catch(err => {
 			console.error(err)
 			dispatch({
-				type:USER_LOGOUT_FAILED
+				type: USER_LOGOUT_FAILED
 			})
-	})
+		})
 
+}
+
+export const sendEmailResetValue = (email) => (dispatch) => {
+	dispatch({
+		type: FORGOUT_PASSWORD_REQUEST
+	})
+	sendForgoutPasswordRequest(email)
+		.then(res => {
+			dispatch({
+				type: FORGOUT_PASSWORD_SUCCESS,
+				success:res.success
+			})
+
+		})
+		.catch(err => {
+			console.error(err)
+			dispatch({
+				type: FORGOUT_PASSWORD_FAILED
+			})
+		})
+}
+
+export const sendNewPassword = (password, token) => (dispatch) => {
+	dispatch({
+		type:RESET_PASSWORD_REQUEST
+	})
+	sendResetPasswordRequest(password, token)
+		.then(res => {
+			dispatch({
+				type: RESET_PASSWORD_SUCCESS,
+				success:res.success
+		})
+		})
+		.catch(err => {
+			console.error(err)
+			dispatch({
+			type:RESET_PASSWORD_FAILED
+		})
+	})
 }
 
 export const sendUpdateToken = () => (dispatch) => {
 	dispatch({
-		type:TOKEN_UPDATE_REQUEST
+		type: TOKEN_UPDATE_REQUEST
 	})
 	updateToken()
 		.then(res => {
@@ -108,21 +157,21 @@ export const sendUpdateToken = () => (dispatch) => {
 			const refreshToken = res.refreshToken;
 			localStorage.setItem("refreshToken", refreshToken);
 			dispatch({
-				type:TOKEN_UPDATE_SUCCESS
+				type: TOKEN_UPDATE_SUCCESS
 			})
-		
+
 		})
 		.catch(err => {
 			console.error(err)
 			dispatch({
-			type:TOKEN_UPDATE_FAILED
+				type: TOKEN_UPDATE_FAILED
+			})
 		})
-	})
 }
 
-export const getUserInfo = () =>(dispatch) => {
+export const getUserInfo = () => (dispatch) => {
 	dispatch({
-		type:USER_INFO_REQUEST
+		type: USER_INFO_REQUEST
 	})
 	getUserRequest()
 		.then(res => {
@@ -132,13 +181,13 @@ export const getUserInfo = () =>(dispatch) => {
 			localStorage.setItem("refreshToken", refreshToken)
 			dispatch({
 				type: USER_INFO_SUCCESS,
-				payload:res.user
+				payload: res.user
 			})
 		})
 		.catch(err => {
 			dispatch({
-			type:USER_INFO_FAILED
+				type: USER_INFO_FAILED
+			})
 		})
-	})
-	
+
 }

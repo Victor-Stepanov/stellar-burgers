@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from './profile.module.css';
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { NavLink, Redirect } from "react-router-dom";
 import {sendLogoutData} from '../../services/actions/auth'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProfilePage = () => {
 	const dispatch = useDispatch();
-	const [name, setName] = useState('');
-	const [login, setLogin] = useState('');
+	const {user} = useSelector(store => store.userData.user)
+
+	//Поля формы
+	const [name, setName] = useState(user.name);
+	const [login, setLogin] = useState(user.email);
 	const [password, setPassword] = useState('');
 	//
 	const onChangeName = e => {
@@ -21,9 +24,10 @@ export const ProfilePage = () => {
 		setPassword(e.target.value);
 	};
 
-	const logoutProfile = () => {
+	const logoutProfile = useCallback((e) => {
+		e.preventDefault();
 		dispatch(sendLogoutData())
-	}
+	}, [dispatch]) 
 	return (
 		<div className={styles.container}>
 			<ul className={`${styles.list} mr-15`}>
@@ -59,10 +63,10 @@ export const ProfilePage = () => {
 			</ul>
 			<form className={styles.form}>
 						<div className="pt-6">
-							<Input type={'text'} placeholder={'Имя'} errorText={'Ошибка'} size={'default'} onChange={onChangeName} value={name} name={'name'} />
+							<Input type={'text'} icon={'EditIcon'} placeholder={'Имя'} errorText={'Ошибка'} size={'default'} onChange={onChangeName} value={name} name={'name'} />
 						</div>
 						<div className="pt-6">
-							<Input type={'email'} placeholder={'E-mail'} errorText={'Ошибка'} size={'default'} name={'email'} />
+							<Input type={'email'}  icon={'EditIcon'} placeholder={'Логин'} errorText={'Ошибка'} size={'default'} name={'email'} onChange={onChangeLogin} value={login} />
 						</div>
 						<div className="pt-6 pb-6">
 							<PasswordInput onChange={onChangePassword} value={password} name={'password'} />

@@ -59,6 +59,30 @@ const sendLogoutRequestToServer = async () =>
             token: localStorage.getItem('refreshToken')
         })
     })
+        .then(res => checkStatus(res))
+
+
+//Запрос на сброс пароля
+const sendForgoutPasswordRequest = async (email) =>
+    await fetch(`${config.baseUrl}/password-reset`, {
+        method: 'POST',
+        headers: config.headers,
+        body: JSON.stringify({
+            email: email
+        })
+    })
+        .then(res => checkStatus(res))
+//Запрос на обновление пароля
+const sendResetPasswordRequest = async (password, token) =>
+    await fetch(`${config.baseUrl}/password-reset/reset`, {
+        method: 'POST',
+        headers: config.headers,
+        body: JSON.stringify({
+            password: password,
+            token: token
+        })
+    })
+        .then(res => checkStatus(res))
 //Запрос обновления токена ()
 const updateToken = async () =>
     await (fetch(`${config.baseUrl}/auth/token`, {
@@ -68,6 +92,7 @@ const updateToken = async () =>
             token: localStorage.getItem('refreshToken')
         })
     }))
+        .then(res => checkStatus(res))
 
 //Получение данных о пользователе
 const getUserRequest = async () =>
@@ -81,4 +106,14 @@ const getUserRequest = async () =>
     })
         .then(res => checkStatus(res))
 
-export { getIngredientsDataFromServer, getOrderDataFromServer, sendUserDataToServer, sendLoginRequestToServer,sendLogoutRequestToServer, getUserRequest, updateToken };
+export {
+    getIngredientsDataFromServer,
+    getOrderDataFromServer,
+    sendUserDataToServer,
+    sendLoginRequestToServer,
+    sendLogoutRequestToServer,
+    sendForgoutPasswordRequest,
+    sendResetPasswordRequest,
+    getUserRequest,
+    updateToken
+};

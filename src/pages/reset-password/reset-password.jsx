@@ -1,13 +1,19 @@
 import React from "react";
 import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { sendNewPassword } from '../../services/actions/auth';
 
 
 export const ResetPasswordPage = () => {
 
+	const disptach = useDispatch();
+	const success = useSelector(store => store.userData);
+
 	const [password, setPassword] = React.useState('');
 	const [code, setCode] = React.useState('');
+
 	const onChangePassword = e => {
 		setPassword(e.target.value)
 	}
@@ -15,10 +21,21 @@ export const ResetPasswordPage = () => {
 		setCode(e.target.value)
 	}
 
+	const resetValue = e => {
+		e.preventDefault();
+		disptach(sendNewPassword(password, code))
+	}
+
+	if (success) {
+		return <Redirect to={{
+			pathname:'/login'
+		}} />
+	}
+
 	return (
 		<div className={styles.container}>
 			<h2 className="text text_type_main-medium">Восстановление пароля</h2>
-			<form className={styles.form}>
+			<form className={styles.form} onSubmit={resetValue}>
 				<div className="pt-6">
 					<PasswordInput type={'password'} placeholder={"Введите новый пароль"} errorText={'Ошибка'} size={'default'} onChange={onChangePassword} value={password} name={'password'} />
 				</div>
