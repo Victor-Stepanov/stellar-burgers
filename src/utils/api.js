@@ -83,6 +83,9 @@ const sendResetPasswordRequest = async (password, token) =>
         })
     })
         .then(res => checkStatus(res))
+
+//Запрос на обновление данных пользователя
+//auth/user
 //Запрос обновления токена ()
 const updateToken = async () =>
     await (fetch(`${config.baseUrl}/auth/token`, {
