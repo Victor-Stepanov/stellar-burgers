@@ -13,25 +13,25 @@ class Api {
 	}
     //Получаем ингридиенты с сервера
 	async getIngredientsDataFromServer() {
-		const res = await fetch(`${this._url}/ingredients`);
-		return this._checkStatus(res);
+		const responce = await fetch(`${this._url}/ingredients`);
+		return this._checkStatus(responce);
 
     }
     //Получаем номер заказа
 	async getOrderDataFromServer(id) {
-		const res = await fetch(`${this._url}/orders`, {
+		const responce = await fetch(`${this._url}/orders`, {
 			method: 'POST',
 			headers: this._headers,
 			body: JSON.stringify({
 				ingredients: id
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //Запрос на регистрацию пользователя auth/register
 	async sendUserDataToServer(email, password, name) {
-		const res = await fetch(`${this._url}/auth/register`, {
+		const responce = await fetch(`${this._url}/auth/register`, {
 			method: 'POST',
 			headers: this._headers,
 			body: JSON.stringify({
@@ -40,62 +40,62 @@ class Api {
 				name: name
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //Запрос на авторизацию пользователя auth/login
 	async sendLoginRequestToServer(email, password) {
-		const res = await fetch(`${this._url}/auth/login`, {
+		const responce = await fetch(`${this._url}/auth/login`, {
 			method: 'POST',
-			headers: config.headers,
+			headers: this._headers,
 			body: JSON.stringify({
 				email: email,
 				password: password
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //Запрос на деавторизацию пользователя auth/logout
 	async sendLogoutRequestToServer() {
-		const res = await fetch(`${this._url}/auth/logout`, {
+		const responce = await fetch(`${this._url}/auth/logout`, {
 			method: 'POST',
-			headers: config.headers,
+			headers: this._headers,
 			body: JSON.stringify({
 				token: localStorage.getItem('refreshToken')
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //Запрос на восстановление пароля /password-reset
 	async sendForgoutPasswordRequest(email) {
-		const res = await fetch(`${this._url}/password-reset`, {
+		const responce = await fetch(`${this._url}/password-reset`, {
 			method: 'POST',
-			headers: config.headers,
+			headers: this._headers,
 			body: JSON.stringify({
 				email: email
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
 	}
 
     //Запрос на сброс пароля /password-reset/reset
 	async sendResetPasswordRequest(password, token) {
-		const res = await fetch(`${this._url}/password-reset/reset`, {
+		const responce = await fetch(`${this._url}/password-reset/reset`, {
 			method: 'POST',
-			headers: config.headers,
+			headers: this._headers,
 			body: JSON.stringify({
 				password: password,
 				token: token
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //Запрос на обновление данных пользователя auth/use
 	async sendUpdateProfileData(email, password, name) {
-		const res = await fetch(`${this._url}/auth/user`, {
+		const responce = await fetch(`${this._url}/auth/user`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -107,31 +107,31 @@ class Api {
 				name: name
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //запрос на обновление accessToken
 	async updateToken() {
-		const res = await fetch(`${this._url}/auth/token`, {
+		const responce = await fetch(`${this._url}/auth/token`, {
 			method: 'POST',
-			headers: config.headers,
+			headers: this._headers,
 			body: JSON.stringify({
 				token: localStorage.getItem('refreshToken')
 			})
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
     }
     
     //Запрос на получение данных пользователя auth/user
 	async getUserRequest() {
-		const res = await fetch(`${this._url}/auth/user`, {
+		const responce = await fetch(`${this._url}/auth/user`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: 'Bearer ' + getCookie('token')
 			}
 		});
-		return this._checkStatus(res);
+		return this._checkStatus(responce);
 	}
 }
 

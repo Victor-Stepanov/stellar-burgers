@@ -16,7 +16,6 @@ import { RESET_ITEM } from '../../services/actions/constructor';
 import { LoginPage, ProfilePage, IngredientsPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
 import { getCookie } from '../../utils/utils';
-import { getUserRequest, updateToken } from '../../utils/api';
 import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
 
 
