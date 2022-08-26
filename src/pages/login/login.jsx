@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(store => store.userData.user);
-	console.log(user)
 
 	const [email, setEmail] = React.useState('')
 	const [password, setPassword] = React.useState('')

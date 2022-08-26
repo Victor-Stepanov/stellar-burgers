@@ -16,8 +16,17 @@
   right: 26px;
 }
 
+.text {
+  color: #8585AD;
+}
 .link {
   text-decoration: none;
+  color: #8585AD;
+  opacity: 1.0;
+}
+
+.linkActive {
+  color: #F2F2F3;
 }
 
 .link:hover {

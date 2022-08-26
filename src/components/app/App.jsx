@@ -63,7 +63,7 @@ function App() {
     }, [dispatch])
 
     const background = location.state?.background;
-    
+
     return (
         <>
             <div className={styles.app}>

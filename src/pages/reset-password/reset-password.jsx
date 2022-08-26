@@ -26,11 +26,11 @@ export const ResetPasswordPage = () => {
 		disptach(sendNewPassword(password, code))
 	}
 
-	if (success) {
-		return <Redirect to={{
-			pathname:'/login'
-		}} />
-	}
+	//if (success) {
+	//	return <Redirect to={{
+	//		pathname:'/login'
+	//	}} />
+	//}
 
 	return (
 		<div className={styles.container}>

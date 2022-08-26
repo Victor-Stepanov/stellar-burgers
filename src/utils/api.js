@@ -7,17 +7,17 @@ class Api {
 		this._headers = config.headers;
 	}
 
-    // Проверяем статус запроса
+	// Проверяем статус запроса
 	_checkStatus(res) {
 		return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 	}
-    //Получаем ингридиенты с сервера
+	//Получаем ингридиенты с сервера
 	async getIngredientsDataFromServer() {
 		const responce = await fetch(`${this._url}/ingredients`);
 		return this._checkStatus(responce);
 
-    }
-    //Получаем номер заказа
+	}
+	//Получаем номер заказа
 	async getOrderDataFromServer(id) {
 		const responce = await fetch(`${this._url}/orders`, {
 			method: 'POST',
@@ -27,9 +27,9 @@ class Api {
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //Запрос на регистрацию пользователя auth/register
+	}
+
+	//Запрос на регистрацию пользователя auth/register
 	async sendUserDataToServer(email, password, name) {
 		const responce = await fetch(`${this._url}/auth/register`, {
 			method: 'POST',
@@ -41,9 +41,9 @@ class Api {
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //Запрос на авторизацию пользователя auth/login
+	}
+
+	//Запрос на авторизацию пользователя auth/login
 	async sendLoginRequestToServer(email, password) {
 		const responce = await fetch(`${this._url}/auth/login`, {
 			method: 'POST',
@@ -54,9 +54,9 @@ class Api {
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //Запрос на деавторизацию пользователя auth/logout
+	}
+
+	//Запрос на деавторизацию пользователя auth/logout
 	async sendLogoutRequestToServer() {
 		const responce = await fetch(`${this._url}/auth/logout`, {
 			method: 'POST',
@@ -66,9 +66,9 @@ class Api {
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //Запрос на восстановление пароля /password-reset
+	}
+
+	//Запрос на восстановление пароля /password-reset
 	async sendForgoutPasswordRequest(email) {
 		const responce = await fetch(`${this._url}/password-reset`, {
 			method: 'POST',
@@ -80,7 +80,7 @@ class Api {
 		return this._checkStatus(responce);
 	}
 
-    //Запрос на сброс пароля /password-reset/reset
+	//Запрос на сброс пароля /password-reset/reset
 	async sendResetPasswordRequest(password, token) {
 		const responce = await fetch(`${this._url}/password-reset/reset`, {
 			method: 'POST',
@@ -91,10 +91,10 @@ class Api {
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //Запрос на обновление данных пользователя auth/use
-	async sendUpdateProfileData(email, password, name) {
+	}
+
+	//Запрос на обновление данных пользователя auth/use
+	async sendUpdateProfileData(email, name, password) {
 		const responce = await fetch(`${this._url}/auth/user`, {
 			method: 'PATCH',
 			headers: {
@@ -103,14 +103,14 @@ class Api {
 			},
 			body: JSON.stringify({
 				email: email,
-				password: password,
-				name: name
+				name: name,
+				password: password
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //запрос на обновление accessToken
+	}
+
+	//запрос на обновление accessToken
 	async updateToken() {
 		const responce = await fetch(`${this._url}/auth/token`, {
 			method: 'POST',
@@ -120,9 +120,9 @@ class Api {
 			})
 		});
 		return this._checkStatus(responce);
-    }
-    
-    //Запрос на получение данных пользователя auth/user
+	}
+
+	//Запрос на получение данных пользователя auth/user
 	async getUserRequest() {
 		const responce = await fetch(`${this._url}/auth/user`, {
 			method: 'GET',

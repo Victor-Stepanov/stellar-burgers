@@ -55,7 +55,7 @@ export const sendUserData = (email, password, name) => (dispatch) => {
 			localStorage.setItem("refreshToken", refreshToken);
 			dispatch({
 				type: USER_REGISTER_SUCCESS,
-				payload: res.user
+				payload: res
 			})
 		})
 		.catch(err => {
@@ -137,17 +137,13 @@ export const sendEmailResetValue = (email) => (dispatch) => {
 		})
 }
 
-export const sendUpdateUserData = (email, password, name) => (dispatch) => {
+export const sendUpdateUserData = (email,name, password) => (dispatch) => {
 	dispatch({
 		type: UPDATE_USER_REQUEST
 	})
 	Api
-	.sendUpdateProfileData(email, password, name)
+	.sendUpdateProfileData(email,name, password)
 		.then(res => {
-			const authToken = res.accessToken.split("Bearer ")[1];
-			setCookie("token", authToken);
-			const refreshToken = res.refreshToken;
-			localStorage.setItem("refreshToken", refreshToken);
 			dispatch({
 				type: UPDATE_USER_SUCCESS,
 				payload: res
