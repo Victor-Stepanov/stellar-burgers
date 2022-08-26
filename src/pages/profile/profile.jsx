@@ -4,6 +4,7 @@ import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burg
 import { NavLink, Redirect } from "react-router-dom";
 import {sendLogoutData} from '../../services/actions/auth'
 import { useDispatch, useSelector } from "react-redux";
+import { sendUpdateUserData } from '../../services/actions/auth';
 
 export const ProfilePage = () => {
 	const dispatch = useDispatch();
@@ -27,7 +28,12 @@ export const ProfilePage = () => {
 	const logoutProfile = useCallback((e) => {
 		e.preventDefault();
 		dispatch(sendLogoutData())
-	}, [dispatch]) 
+	}, [dispatch])
+	
+	const userUpdateDate = e => {
+		e.preventDefault();
+		dispatch(sendUpdateUserData(name, login, password))
+	}
 	return (
 		<div className={styles.container}>
 			<ul className={`${styles.list} mr-15`}>
@@ -73,7 +79,7 @@ export const ProfilePage = () => {
 						</div>
 						<div className={styles.buttons}>
 							<Button type="secondary" size="medium" >Отмена</Button>
-							<Button type="primary" size="medium">Cохранить</Button>
+							<Button onClick={userUpdateDate} type="primary" size="medium">Cохранить</Button>
 						</div>
 					</form>
 		</div>

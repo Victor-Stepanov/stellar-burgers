@@ -1,122 +1,139 @@
 import config from './const.js';
 import { getCookie } from './utils';
 
-//Проверка статуса ответа
-const checkStatus = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`); //проверка статуса ответа сервера
+class Api {
+	constructor(config) {
+		this._url = config.baseUrl;
+		this._headers = config.headers;
+	}
+
+    // Проверяем статус запроса
+	_checkStatus(res) {
+		return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+	}
+    //Получаем ингридиенты с сервера
+	async getIngredientsDataFromServer() {
+		const res = await fetch(`${this._url}/ingredients`);
+		return this._checkStatus(res);
+
+    }
+    //Получаем номер заказа
+	async getOrderDataFromServer(id) {
+		const res = await fetch(`${this._url}/orders`, {
+			method: 'POST',
+			headers: this._headers,
+			body: JSON.stringify({
+				ingredients: id
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //Запрос на регистрацию пользователя auth/register
+	async sendUserDataToServer(email, password, name) {
+		const res = await fetch(`${this._url}/auth/register`, {
+			method: 'POST',
+			headers: this._headers,
+			body: JSON.stringify({
+				email: email,
+				password: password,
+				name: name
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //Запрос на авторизацию пользователя auth/login
+	async sendLoginRequestToServer(email, password) {
+		const res = await fetch(`${this._url}/auth/login`, {
+			method: 'POST',
+			headers: config.headers,
+			body: JSON.stringify({
+				email: email,
+				password: password
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //Запрос на деавторизацию пользователя auth/logout
+	async sendLogoutRequestToServer() {
+		const res = await fetch(`${this._url}/auth/logout`, {
+			method: 'POST',
+			headers: config.headers,
+			body: JSON.stringify({
+				token: localStorage.getItem('refreshToken')
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //Запрос на восстановление пароля /password-reset
+	async sendForgoutPasswordRequest(email) {
+		const res = await fetch(`${this._url}/password-reset`, {
+			method: 'POST',
+			headers: config.headers,
+			body: JSON.stringify({
+				email: email
+			})
+		});
+		return this._checkStatus(res);
+	}
+
+    //Запрос на сброс пароля /password-reset/reset
+	async sendResetPasswordRequest(password, token) {
+		const res = await fetch(`${this._url}/password-reset/reset`, {
+			method: 'POST',
+			headers: config.headers,
+			body: JSON.stringify({
+				password: password,
+				token: token
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //Запрос на обновление данных пользователя auth/use
+	async sendUpdateProfileData(email, password, name) {
+		const res = await fetch(`${this._url}/auth/user`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + getCookie('token')
+			},
+			body: JSON.stringify({
+				email: email,
+				password: password,
+				name: name
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //запрос на обновление accessToken
+	async updateToken() {
+		const res = await fetch(`${this._url}/auth/token`, {
+			method: 'POST',
+			headers: config.headers,
+			body: JSON.stringify({
+				token: localStorage.getItem('refreshToken')
+			})
+		});
+		return this._checkStatus(res);
+    }
+    
+    //Запрос на получение данных пользователя auth/user
+	async getUserRequest() {
+		const res = await fetch(`${this._url}/auth/user`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + getCookie('token')
+			}
+		});
+		return this._checkStatus(res);
+	}
+}
 
 
-//Получение ингридиентов с сервера
-const getIngredientsDataFromServer = async () =>
-    await fetch(`${config.baseUrl}/ingredients`)
-        .then(res => checkStatus(res))
-
-
-//Создание заказа
-const getOrderDataFromServer = async (id) =>
-    await fetch(`${config.baseUrl}/orders`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            ingredients: id
-        })
-    })
-        .then(res => checkStatus(res))
-
-
-//Регистрация пользователя
-const sendUserDataToServer = async (email, password, name) =>
-    await fetch(`${config.baseUrl}/auth/register`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            email: email,
-            password: password,
-            name: name
-        })
-    })
-        .then(res => checkStatus(res))
-
-//Авторизация пользователя на сайте
-const sendLoginRequestToServer = async (email, password) =>
-    await fetch(`${config.baseUrl}/auth/login`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-        .then(res => checkStatus(res))
-
-
-
-//Выход с учетной записи пользователя
-const sendLogoutRequestToServer = async () =>
-    await fetch(`${config.baseUrl}/auth/logout`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            token: localStorage.getItem('refreshToken')
-        })
-    })
-        .then(res => checkStatus(res))
-
-
-//Запрос на сброс пароля
-const sendForgoutPasswordRequest = async (email) =>
-    await fetch(`${config.baseUrl}/password-reset`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            email: email
-        })
-    })
-        .then(res => checkStatus(res))
-//Запрос на обновление пароля
-const sendResetPasswordRequest = async (password, token) =>
-    await fetch(`${config.baseUrl}/password-reset/reset`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            password: password,
-            token: token
-        })
-    })
-        .then(res => checkStatus(res))
-
-//Запрос на обновление данных пользователя
-//auth/user
-//Запрос обновления токена ()
-const updateToken = async () =>
-    await (fetch(`${config.baseUrl}/auth/token`, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify({
-            token: localStorage.getItem('refreshToken')
-        })
-    }))
-        .then(res => checkStatus(res))
-
-//Получение данных о пользователе
-const getUserRequest = async () =>
-    await fetch(`${config.baseUrl}/auth/user`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + getCookie('token')
-        }
-
-    })
-        .then(res => checkStatus(res))
-
-export {
-    getIngredientsDataFromServer,
-    getOrderDataFromServer,
-    sendUserDataToServer,
-    sendLoginRequestToServer,
-    sendLogoutRequestToServer,
-    sendForgoutPasswordRequest,
-    sendResetPasswordRequest,
-    getUserRequest,
-    updateToken
-};
+export default new Api(config);
