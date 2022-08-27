@@ -31,7 +31,7 @@ const DraggableItem = ({ ingredient, onClick }) => {
         <li
             ref={dragRef}
             className={`${styles.item} mt-6 ml-4 mr-6`}
-            onClick={() => onClick(ingredient)}
+            onClick={onClick}
             draggable
         >
             {!isDrag && (

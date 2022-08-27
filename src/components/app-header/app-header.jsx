@@ -1,10 +1,11 @@
 import React from 'react';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import appHeaderStyles from './app-header.module.css';
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useHistory } from 'react-router-dom'
 
 const AppHeader = () => {
-
+    const history = useHistory();
+    let path = history.location.pathname
     return (
         <header className={`${appHeaderStyles.header} `}>
             <nav className={appHeaderStyles.navigation}>
@@ -15,7 +16,7 @@ const AppHeader = () => {
                                 className={appHeaderStyles.link}
                                 activeClassName={appHeaderStyles.linkActive}
                                 to={{ pathname: '/' }}>
-                                <BurgerIcon type="primary" />
+                                <BurgerIcon type={path === '/' ? 'primary':'secondary'} />
                                 <span className="text text_type_main-default pl-2">Конструктор</span>
                             </NavLink>
                         </li>
@@ -40,7 +41,7 @@ const AppHeader = () => {
                             className={appHeaderStyles.link}
                             activeClassName={appHeaderStyles.linkActive}
                             to={{ pathname: '/profile' }}>
-                            <ProfileIcon type="secondary" />
+                            <ProfileIcon type={path === '/profile' ? 'primary':'secondary'} />
                             <span className="text text_type_main-default pl-2">Личный кабинет</span>
                         </NavLink>
                     </li>

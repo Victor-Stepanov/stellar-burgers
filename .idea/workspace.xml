@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/protected-route/protected-route.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/protected-route/protected-route.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ingredient-details/ingredient-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ingredient-details/ingredient-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/404.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ingredients/ingredients.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ingredients/ingredients.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/not-found/not-found.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/not-found/not-found.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/not-found/not-found.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/not-found/not-found.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +106,7 @@
       <workItem from="1657997642173" duration="477000" />
       <workItem from="1658040413541" duration="2000" />
       <workItem from="1660901482850" duration="1952000" />
+      <workItem from="1661599316288" duration="1000" />
     </task>
     <servers />
   </component>

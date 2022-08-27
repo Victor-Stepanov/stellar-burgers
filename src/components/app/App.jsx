@@ -13,34 +13,31 @@ import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import { addIngridientDeatails, RESET_DETAILS_INGRIDIENT } from '../../services/actions/details';
 import { RESET_ITEM } from '../../services/actions/constructor';
-import { LoginPage, ProfilePage, IngredientsPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
+import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
 import { getCookie } from '../../utils/utils';
+import { getIngredients } from '../../services/actions/ingredients';
 import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
 
 
 function App() {
     const { log } = console;
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
-
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
-    const { ingridientDetails } = useSelector(store => store.ingrideientData);
     const { orderRequest } = useSelector(store => store.orderNumberData);
-    const { user } = useSelector(store => store.userData);
     const dispatch = useDispatch();
     const token = getCookie('token');
     const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
 
     const location = useLocation();
-    const history = useHistory();
+    //const history = useHistory();
     //Block modal
     const openOrderDetailsModal = () => {
         setIsOrderDetailsOpened(true)
     } //открыли модальное окно
     /*Открыли модальное окно с выбранным элементом(item), который передали в
     onClick={() => onClick(elem)} - файл ingridients-item.jsx-(burger-ingridients)*/
-    const openIngredientsModal = (item) => {
-        dispatch(addIngridientDeatails(item))
+    const openIngredientsModal = () => {
         setIsIngredientsOpened(true);
     };
 
@@ -52,6 +49,7 @@ function App() {
         setIsOrderDetailsOpened(false);
 
     }
+
     useEffect(() => {
         if (!token && refreshToken) {
             dispatch(sendUpdateToken())
@@ -62,7 +60,12 @@ function App() {
         dispatch(getUserInfo())
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(getIngredients())
+    }, [dispatch])
+
     const background = location.state?.background;
+
 
     return (
         <>
@@ -92,12 +95,13 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile">
                         <ProfilePage />
                     </ProtectedRoute>
-                    <Route exact={true} path="/ingredients/:id"></Route>
+                    <Route exact={true} path="/ingredients/:id">
+                        <IngredientDetails />
+                    </Route>
                     <Route>
                         <NotFound404 />
                     </Route>
                 </Switch>
-
 
                 {!orderRequest && isOrderDetailsOpened &&
                     <Modal
@@ -108,13 +112,15 @@ function App() {
                     </Modal>
 
                 }
-                {isIngredientsOpened && Object.keys(ingridientDetails).length > 0 &&
-                    <Modal
-                        title="Детали ингредиента"
-                        onClose={closeAllModals}
-                    >
-                        <IngredientDetails data={ingridientDetails} />
-                    </Modal>
+                {isIngredientsOpened &&
+                    <Route exact={true} path="/ingredients/:id">
+                        <Modal
+                            title="Детали ингредиента"
+                            onClose={closeAllModals}
+                        >
+                            <IngredientDetails />
+                        </Modal>
+                    </Route>
 
                 }
 

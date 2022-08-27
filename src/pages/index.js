@@ -3,7 +3,6 @@ import { ProfilePage } from './profile/profile';
 import { RegisterPage } from './register/register';
 import { ForgotPasswordPage } from './forgot-password/forgot-password';
 import { ResetPasswordPage } from './reset-password/reset-password';
-import { IngredientsPage } from './ingredients/ingredients';
 import { NotFound404 } from './not-found/not-found';
 
-export {LoginPage, ProfilePage,IngredientsPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404}
+export {LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404}

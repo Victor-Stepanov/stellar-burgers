@@ -19,6 +19,8 @@ export const ProfilePage = () => {
 	const [email, setEmail] = useState(user.email);
 	const [password, setPassword] = useState('');
 	//
+
+	console.log(user.name)
 	const onChangeName = (e) => {
 		setName(e.target.value);
 	};

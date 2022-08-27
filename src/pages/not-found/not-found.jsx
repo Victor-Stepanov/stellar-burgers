@@ -1,19 +1,36 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import styles from './not-found.module.css'
+import styles from './not-found.module.css';
+import notf from '../../images/notf.svg';
+import { useSelector } from "react-redux";
+
 
 export const NotFound404 = () => {
-	return (
-		<div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <h1>Oops! 404 Error</h1>
-          <p>The page you requested does not exist</p>
-          <br />
-          <br />
-          <p>check the address or try <Link to='/' className={styles.link}>homepage</Link></p>
-        </div>
+  const user = useSelector(store => store.userData?.user?.user)
+  
+  let title;
+  if (!user) {
+    title = 'Boddy'
+  } else {
+    title = user.name
+  }
+  return (
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <p className={styles.subtitle}>Error 404</p>
+        <h3 className={styles.title}>{`Hey ${title}` }</h3>
+        <p className={styles.description}>
+          We can’t seem to find
+          the page you are looking for.
+        </p>
+        <Link className={styles.link} to='/'>
+          <span className={styles.linkText}>Go Home</span>
+        </Link>
+      </div>
+      <div className={styles.imgbox}>
+        <img className={styles.img} src={notf} alt="приведение" />
+        <span className={styles.test}></span>
       </div>
     </div>
-	)
+  )
 }
