@@ -1,5 +1,8 @@
 # stellar-burger 
 
+# Стэк технологий:
+* HTML, CSS, JS
+* React, Redux
 
 # Getting Started with Create React App
 
