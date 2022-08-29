@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./profile.module.css";
 import {
 	Button,
 	Input,
 	PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { sendLogoutData } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
 
 export const ProfilePage = () => {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const { user } = useSelector((store) => store.userData.user);
 
@@ -18,9 +19,8 @@ export const ProfilePage = () => {
 	const [name, setName] = useState(user.name);
 	const [email, setEmail] = useState(user.email);
 	const [password, setPassword] = useState('');
-	//
 
-	console.log(user.name)
+	//Функционал
 	const onChangeName = (e) => {
 		setName(e.target.value);
 	};
@@ -31,9 +31,13 @@ export const ProfilePage = () => {
 		setPassword(e.target.value);
 	};
 
-	const logoutProfile = () => {
-		dispatch(sendLogoutData());
-	};
+	const logoutProfile = useCallback(
+		(e) => {
+			e.preventDefault();
+			dispatch(sendLogoutData())
+			history.replace({ pathname: '/login' });
+		},[dispatch, history]
+	)
 
 	const resetFormValue = () => {
 		setName(user.name)
@@ -45,6 +49,8 @@ export const ProfilePage = () => {
 		e.preventDefault();
 		dispatch(sendUpdateUserData(email, name, password));
 	};
+
+	
 	return (
 		<div className={styles.container}>
 			<ul className={`${styles.list} mr-15`}>
@@ -73,17 +79,7 @@ export const ProfilePage = () => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink
-						exact
-						onClick={logoutProfile}
-						className={styles.link}
-						activeClassName={styles.linkActive}
-						to={{
-							pathname: "/login",
-						}}
-					>
-						<span className="text text_type_main-medium">Выход</span>
-					</NavLink>
+				<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
 				</li>
 				<p
 					className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}

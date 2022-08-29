@@ -9,8 +9,7 @@ import {
 
 const initialUserState = {
 	user: null,
-	success: false,
-
+	
 	userRequest: false,
 	userError: false,
 

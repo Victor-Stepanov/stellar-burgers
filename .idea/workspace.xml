@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ingredient-details/ingredient-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ingredient-details/ingredient-details.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/404.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ingredients/ingredients.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ingredients/ingredients.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/not-found/not-found.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/not-found/not-found.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/not-found/not-found.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/not-found/not-found.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/draggable-item/draggable-item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/draggable-item/draggable-item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/components/ingridients-item/ingridients-item.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/actions/details.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/actions/details.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +102,7 @@
       <workItem from="1658040413541" duration="2000" />
       <workItem from="1660901482850" duration="1952000" />
       <workItem from="1661599316288" duration="1000" />
+      <workItem from="1661760394702" duration="29000" />
     </task>
     <servers />
   </component>

@@ -8,12 +8,8 @@ import { useSelector } from "react-redux";
 export const NotFound404 = () => {
   const user = useSelector(store => store.userData?.user?.user)
   
-  let title;
-  if (!user) {
-    title = 'Boddy'
-  } else {
-    title = user.name
-  }
+  let title = !user ? 'Boddy':user.name;
+  
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -23,7 +19,7 @@ export const NotFound404 = () => {
           We can’t seem to find
           the page you are looking for.
         </p>
-        <Link className={styles.link} to='/'>
+        <Link className={styles.link} to={{ pathname: '/' }}>
           <span className={styles.linkText}>Go Home</span>
         </Link>
       </div>

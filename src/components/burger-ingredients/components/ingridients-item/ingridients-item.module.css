@@ -31,3 +31,8 @@
     cursor: grab;
     opacity: 0.6;
 }
+
+.link {
+    text-decoration: none;
+    color: #F2F2F3;
+}

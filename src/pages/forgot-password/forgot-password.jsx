@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendEmailResetValue } from '../../services/actions/auth'
 
 export const ForgotPasswordPage = () => {
-	const { success } = useSelector(store => store.userData);
+	const { forgoutSuccess } = useSelector(store => store.userData);
 	const dispatch = useDispatch();
 	const [email, setEmail] = React.useState('')
 	const onChangeEmail = e => {
@@ -18,14 +18,7 @@ export const ForgotPasswordPage = () => {
 		dispatch(sendEmailResetValue(email))
 	}
 
-
-	//if (user) {
-	//	return <Redirect to={{
-	//		pathname:'/'
-	//	}} />
-	//}
-
-	if (success) {
+	if (forgoutSuccess) {
 		return <Redirect to={{
 			pathname: '/reset-password'
 		}} />
@@ -40,7 +33,7 @@ export const ForgotPasswordPage = () => {
 				</div>
 				<Button disabled={!(email)} type="primary" size="medium">Восстановить</Button>
 			</form>
-			<p className="pt-20 text text_type_main-default text_color_inactive">Вспомнили пароль?<Link className={styles.link} to="/login">Войти</Link></p>
+			<p className="pt-20 text text_type_main-default text_color_inactive">Вспомнили пароль?<Link className={styles.link} to={{ pathname: '/login' }}>Войти</Link></p>
 		</div>
 	)
 

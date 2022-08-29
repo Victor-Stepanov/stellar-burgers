@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 export const RegisterPage = () => {
-	const user = useSelector(store => store.userData.user);
+	const {user} = useSelector(store => store.userData);
 	
 	const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ export const RegisterPage = () => {
 				</div>
 				<Button disabled={!(name && email && password)}  type="primary" size="large">Зарегистрироваться</Button>
 			</form>
-			<p className="pt-20 text text_type_main-default text_color_inactive">Уже зарегистрированы?<Link className={styles.link} to="/login">Войти</Link></p>
+			<p className="pt-20 text text_type_main-default text_color_inactive">Уже зарегистрированы?<Link className={styles.link} to={{ pathname:'/login'}}>Войти</Link></p>
 		</div>
 	)
 }

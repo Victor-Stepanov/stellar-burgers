@@ -5,8 +5,10 @@ import { ingredientPropType } from '../../../../../utils/prop-types.js';
 import PropTypes from 'prop-types';
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag } from "react-dnd";
+import { Link, useLocation } from "react-router-dom";
 
 const DraggableItem = ({ ingredient, onClick }) => {
+    const location = useLocation();
     const { element, bun } = useSelector((state) => state.constructorData)
     const [{ isDrag }, dragRef] = useDrag({
         type: "ingredient",
@@ -28,6 +30,7 @@ const DraggableItem = ({ ingredient, onClick }) => {
 
 
     return (
+        <Link className={styles.link} to={{pathname:`/ingredients/${ingredient._id}`, state: { background: location }}}>
         <li
             ref={dragRef}
             className={`${styles.item} mt-6 ml-4 mr-6`}
@@ -47,7 +50,8 @@ const DraggableItem = ({ ingredient, onClick }) => {
                     <p className="text text_type_main-default">{ingredient.name}</p>
                 </>
             )}
-        </li>
+            </li>
+            </Link>
     );
 };
 

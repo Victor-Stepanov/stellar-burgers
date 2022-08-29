@@ -9,7 +9,7 @@ import { sendNewPassword } from '../../services/actions/auth';
 export const ResetPasswordPage = () => {
 
 	const disptach = useDispatch();
-	const success = useSelector(store => store.userData);
+	const { resetSuccess, forgoutSuccess} = useSelector(store => store.userData);
 
 	const [password, setPassword] = React.useState('');
 	const [code, setCode] = React.useState('');
@@ -25,12 +25,18 @@ export const ResetPasswordPage = () => {
 		e.preventDefault();
 		disptach(sendNewPassword(password, code))
 	}
+	if (!forgoutSuccess) {
+		return <Redirect to={{
+			pathname: '/forgot-password'
+		}} />
+	}
 
-	//if (success) {
-	//	return <Redirect to={{
-	//		pathname:'/login'
-	//	}} />
-	//}
+	if (resetSuccess) {
+		return <Redirect to={{
+			pathname: '/login'
+		}} />
+	}
+
 
 	return (
 		<div className={styles.container}>
@@ -44,7 +50,7 @@ export const ResetPasswordPage = () => {
 				</div>
 				<Button disabled={!(password, code)} type="primary" size="medium">Восстановить</Button>
 			</form>
-			<p className="pt-20 text text_type_main-default text_color_inactive">Вспомнили пароль?<Link className={styles.link} to="/login">Войти</Link></p>
+			<p className="pt-20 text text_type_main-default text_color_inactive">Вспомнили пароль?<Link className={styles.link} to={{ pathname: '/login' }}>Войти</Link></p>
 		</div>
 	)
 
