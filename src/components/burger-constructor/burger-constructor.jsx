@@ -14,7 +14,7 @@ import { getOrder } from '../../services/actions/order'
 const BurgerConstructor = ({ openOrderModal }) => {
     const dispatch = useDispatch()
     const { element, bun } = useSelector((state) => state.constructorData) // получаем элементы из хранилища
-
+    
     const [total, setTotal] = useState(0);
     useEffect(() => {
         const price = element.reduce((sum, item) => sum + item.price, bun.price)

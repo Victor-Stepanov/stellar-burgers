@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import styles from "./profile.module.css";
 import {
 	Button,
@@ -13,7 +13,7 @@ import { sendUpdateUserData } from "../../services/actions/auth";
 export const ProfilePage = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const { user } = useSelector((store) => store.userData.user);
+	const { user, logoutSuccess } = useSelector((store) => store.userData.user);
 
 	//Поля формы
 	const [name, setName] = useState(user.name);
@@ -31,13 +31,21 @@ export const ProfilePage = () => {
 		setPassword(e.target.value);
 	};
 
-	const logoutProfile = useCallback(
-		(e) => {
-			e.preventDefault();
-			dispatch(sendLogoutData())
+	//const logoutProfile = useCallback(
+	//	() => {
+	//		dispatch(sendLogoutData())
+	//		history.replace({ pathname: '/login' });
+	//	},[dispatch, history]
+	//)
+
+
+	//Временное решение
+	const logoutProfile = () => {
+		dispatch(sendLogoutData())
+		if (logoutSuccess) {
 			history.replace({ pathname: '/login' });
-		},[dispatch, history]
-	)
+		}
+	}
 
 	const resetFormValue = () => {
 		setName(user.name)
@@ -50,7 +58,7 @@ export const ProfilePage = () => {
 		dispatch(sendUpdateUserData(email, name, password));
 	};
 
-	
+
 	return (
 		<div className={styles.container}>
 			<ul className={`${styles.list} mr-15`}>
@@ -79,7 +87,7 @@ export const ProfilePage = () => {
 					</NavLink>
 				</li>
 				<li>
-				<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
+					<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
 				</li>
 				<p
 					className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}

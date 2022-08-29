@@ -24,7 +24,6 @@ export const LoginPage = () => {
 		dispatch(sendLoginData(email, password))
 	}
 
-
 	//После авторизации перенаправление на главную старницу
 	if (user) {
 		return (

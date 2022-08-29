@@ -11,7 +11,9 @@ import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
-import { addIngridientDeatails, RESET_DETAILS_INGRIDIENT } from '../../services/actions/details';
+import {
+    RESET_DETAILS_INGRIDIENT
+} from '../../services/actions/details';
 import { RESET_ITEM } from '../../services/actions/constructor';
 import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
@@ -21,20 +23,19 @@ import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
 
 
 function App() {
-    const { log } = console;
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const { orderRequest } = useSelector(store => store.orderNumberData);
+    const { user } = useSelector(state => state.userData) // получили user
     const dispatch = useDispatch();
     const token = getCookie('token');
     const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
 
     const location = useLocation();
-    //const history = useHistory();
+    const history = useHistory();
     //Block modal
-    const openOrderDetailsModal = () => {
-        setIsOrderDetailsOpened(true)
-    } //открыли модальное окно
+    const openOrderDetailsModal = () => user ? setIsOrderDetailsOpened(true) : history.replace('/login');
+    //открыли модальное окно
     /*Открыли модальное окно с выбранным элементом(item), который передали в
     onClick={() => onClick(elem)} - файл ingridients-item.jsx-(burger-ingridients)*/
     const openIngredientsModal = () => {
@@ -47,24 +48,29 @@ function App() {
         dispatch({ type: RESET_ITEM })
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
+        history.replace('/')
 
     }
-
+    //Обновление токена
     useEffect(() => {
         if (!token && refreshToken) {
             dispatch(sendUpdateToken())
         }
     }, [dispatch, token, refreshToken])
 
+    //Получение данных о пользователе
     useEffect(() => {
-        dispatch(getUserInfo())
-    }, [dispatch])
+        if (user) {
+            dispatch(getUserInfo())
+        }
+    }, [dispatch, user])
 
+    //Получение ингредиентов
     useEffect(() => {
         dispatch(getIngredients())
     }, [dispatch])
 
-    const background = location.state?.background;
+    const background = location.state && location.state.background;
 
 
     return (
@@ -95,8 +101,8 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile">
                         <ProfilePage />
                     </ProtectedRoute>
-                    <Route exact={true} path="/ingredients/:id">
-                        <IngredientDetails />
+                    <Route path="/ingredients/:id">
+                        <IngredientDetails title={'Детали ингредиента'} />
                     </Route>
                     <Route>
                         <NotFound404 />
@@ -112,8 +118,8 @@ function App() {
                     </Modal>
 
                 }
-                {isIngredientsOpened &&
-                    <Route exact={true} path="/ingredients/:id">
+                {background && isIngredientsOpened &&
+                    <Route path="/ingredients/:id">
                         <Modal
                             title="Детали ингредиента"
                             onClose={closeAllModals}

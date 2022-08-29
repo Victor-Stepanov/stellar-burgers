@@ -3,7 +3,7 @@ import IngredientDetailsStyle from './ingredient-details.module.css';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-const IngredientDetails = () => {
+const IngredientDetails = ({title}) => {
     const { ingredients } = useSelector(store => store.ingredientsData);
     const { id } = useParams();
 
@@ -21,6 +21,7 @@ const IngredientDetails = () => {
         <div className={`mt-30 ${IngredientDetailsStyle.container}`}>
             {ingredient && (
                 <div className={IngredientDetailsStyle.box}>
+                    <h3 className={`${IngredientDetailsStyle.title} text text_type_main-large`}>{title }</h3>
                     <img src={ingredient.image_large} alt={ingredient.name}></img>
                     <h3 className={`${IngredientDetailsStyle.subtitle} text text_type_main-medium mt-4 mb-8`}>{ingredient.name}</h3>
                     <ul className={`${IngredientDetailsStyle.items} mb-15`}>
