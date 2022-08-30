@@ -1,23 +1,15 @@
-import React, { useEffect, useMemo } from 'react';
+import React, {useMemo } from 'react';
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import TabsMenu from '../burger-ingredients/components/tabs-menu/tabs-menu.jsx';
 import IngridientsItem from '../burger-ingredients/components/ingridients-item/ingridients-item.jsx';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import { getIngredients } from '../../services/actions/ingredients';
 import { useInView } from 'react-intersection-observer';
 
 
 const BurgerIngredients = ({ onClick }) => {
-    const dispatch = useDispatch()
     const { ingredients, ingredientsRequest } = useSelector(state => state.ingredientsData)
 
-    useEffect(
-        () => {
-            dispatch(getIngredients());
-        },
-        [dispatch]
-    );
 
     const bun = useMemo(() => ingredients.filter((item) => item.type === 'bun'), [ingredients]) // Булки
     const sauce = useMemo(() => ingredients.filter((item) => item.type === 'sauce'), [ingredients]) // Соусы

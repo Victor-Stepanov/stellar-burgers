@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './login.module.css';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useLocation } from 'react-router-dom';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { sendLoginData } from '../../services/actions/auth';
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(store => store.userData.user);
+	const location = useLocation();
 
 	const [email, setEmail] = React.useState('')
 	const [password, setPassword] = React.useState('')
@@ -27,9 +28,7 @@ export const LoginPage = () => {
 	//После авторизации перенаправление на главную старницу
 	if (user) {
 		return (
-			<Redirect to={{
-				pathname: '/'
-			}}
+			<Redirect to={location?.state?.from || '/'}
 			/>
 		);
 	}
