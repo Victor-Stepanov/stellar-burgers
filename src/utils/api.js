@@ -30,28 +30,21 @@ class Api {
 	}
 
 	//Запрос на регистрацию пользователя auth/register
-	async sendUserDataToServer(email, password, name) {
+	async sendUserDataToServer(form) {
 		const responce = await fetch(`${this._url}/auth/register`, {
 			method: 'POST',
 			headers: this._headers,
-			body: JSON.stringify({
-				email: email,
-				password: password,
-				name: name
-			})
+			body: JSON.stringify(form)
 		});
 		return this._checkStatus(responce);
 	}
 
 	//Запрос на авторизацию пользователя auth/login
-	async sendLoginRequestToServer(email, password) {
+	async sendLoginRequestToServer(form) {
 		const responce = await fetch(`${this._url}/auth/login`, {
 			method: 'POST',
 			headers: this._headers,
-			body: JSON.stringify({
-				email: email,
-				password: password
-			})
+			body: JSON.stringify(form)
 		});
 		return this._checkStatus(responce);
 	}
@@ -69,43 +62,34 @@ class Api {
 	}
 
 	//Запрос на восстановление пароля /password-reset
-	async sendForgoutPasswordRequest(email) {
+	async sendForgoutPasswordRequest(form) {
 		const responce = await fetch(`${this._url}/password-reset`, {
 			method: 'POST',
 			headers: this._headers,
-			body: JSON.stringify({
-				email: email
-			})
+			body: JSON.stringify(form)
 		});
 		return this._checkStatus(responce);
 	}
 
 	//Запрос на сброс пароля /password-reset/reset
-	async sendResetPasswordRequest(password, token) {
+	async sendResetPasswordRequest(form) {
 		const responce = await fetch(`${this._url}/password-reset/reset`, {
 			method: 'POST',
 			headers: this._headers,
-			body: JSON.stringify({
-				password: password,
-				token: token
-			})
+			body: JSON.stringify(form)
 		});
 		return this._checkStatus(responce);
 	}
 
 	//Запрос на обновление данных пользователя auth/use
-	async sendUpdateProfileData(email, name, password) {
+	async sendUpdateProfileData(form) {
 		const responce = await fetch(`${this._url}/auth/user`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: 'Bearer ' + getCookie('token')
 			},
-			body: JSON.stringify({
-				email: email,
-				name: name,
-				password: password
-			})
+			body: JSON.stringify(form)
 		});
 		return this._checkStatus(responce);
 	}

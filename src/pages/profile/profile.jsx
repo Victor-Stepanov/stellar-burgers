@@ -1,36 +1,23 @@
-import React, { useState } from "react";
+import React, {useCallback } from "react";
 import styles from "./profile.module.css";
 import {
 	Button,
 	Input,
 	PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory} from "react-router-dom";
 import { sendLogoutData } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
+import useForm from '../../hooks/useForm';
 
 export const ProfilePage = () => {
+	
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { user, logoutSuccess } = useSelector((store) => store.userData.user);
-
-	//Поля формы
-	const [name, setName] = useState(user.name);
-	const [email, setEmail] = useState(user.email);
-	const [password, setPassword] = useState('');
-
-	//Функционал
-	const onChangeName = (e) => {
-		setName(e.target.value);
-	};
-	const onChangeLogin = (e) => {
-		setEmail(e.target.value);
-	};
-	const onChangePassword = (e) => {
-		setPassword(e.target.value);
-	};
-
+	const { values, handleChange, setValues } = useForm({ name: user.name, email: user.email, password: '' });
+	
 	//const logoutProfile = useCallback(
 	//	() => {
 	//		dispatch(sendLogoutData())
@@ -48,15 +35,17 @@ export const ProfilePage = () => {
 	}
 
 	const resetFormValue = () => {
-		setName(user.name)
-		setEmail(user.email)
-		setPassword('')
+		setValues({ name: user.name, email: user.email, password: '' })
 	}
 
-	const userUpdateDate = (e) => {
-		e.preventDefault();
-		dispatch(sendUpdateUserData(email, name, password));
-	};
+	
+	const userUpdateDate = useCallback(
+		e => {
+			e.preventDefault();
+			dispatch(sendUpdateUserData(values));
+		},
+		[values, dispatch]
+	);
 
 
 	return (
@@ -103,8 +92,8 @@ export const ProfilePage = () => {
 						placeholder={"Имя"}
 						errorText={"Ошибка"}
 						size={"default"}
-						onChange={onChangeName}
-						value={name}
+						onChange={handleChange}
+						value={values.name}
 						name={"name"}
 					/>
 				</div>
@@ -116,14 +105,14 @@ export const ProfilePage = () => {
 						errorText={"Ошибка"}
 						size={"default"}
 						name={"email"}
-						onChange={onChangeLogin}
-						value={email}
+						onChange={handleChange}
+						value={values.email}
 					/>
 				</div>
 				<div className="pt-6 pb-6">
 					<PasswordInput
-						onChange={onChangePassword}
-						value={password}
+						onChange={handleChange}
+						value={values.password}
 						name={"password"}
 					/>
 				</div>

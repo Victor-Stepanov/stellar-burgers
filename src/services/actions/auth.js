@@ -42,12 +42,12 @@ export const TOKEN_UPDATE_SUCCESS = 'TOKEN_UPDATE_SUCCESS';
 export const TOKEN_UPDATE_FAILED = 'TOKEN_UPDATE_FAILED';
 
 //Данные регистрации
-export const sendUserData = (email, password, name) => (dispatch) => {
+export const sendUserData = (form) => (dispatch) => {
 	dispatch({
 		type: USER_REGISTER_REQUEST
 	})
 	Api
-	.sendUserDataToServer(email, password, name)
+	.sendUserDataToServer(form)
 		.then(res => {
 			const authToken = res.accessToken.split("Bearer ")[1];
 			setCookie("token", authToken);
@@ -68,12 +68,12 @@ export const sendUserData = (email, password, name) => (dispatch) => {
 }
 
 //Данные авторизации
-export const sendLoginData = (email, password) => (dispatch) => {
+export const sendLoginData = (form) => (dispatch) => {
 	dispatch({
 		type: USER_LOGIN_REQUEST
 	})
 	Api
-	.sendLoginRequestToServer(email, password)
+	.sendLoginRequestToServer(form)
 		.then(res => {
 			const authToken = res.accessToken.split("Bearer ")[1];
 			setCookie("token", authToken);
@@ -116,12 +116,12 @@ export const sendLogoutData = () => (dispatch) => {
 
 }
 
-export const sendEmailResetValue = (email) => (dispatch) => {
+export const sendEmailResetValue = (form) => (dispatch) => {
 	dispatch({
 		type: FORGOUT_PASSWORD_REQUEST
 	})
 	Api
-	.sendForgoutPasswordRequest(email)
+	.sendForgoutPasswordRequest(form)
 		.then(res => {
 			dispatch({
 				type: FORGOUT_PASSWORD_SUCCESS,
@@ -137,12 +137,12 @@ export const sendEmailResetValue = (email) => (dispatch) => {
 		})
 }
 
-export const sendUpdateUserData = (email,name, password) => (dispatch) => {
+export const sendUpdateUserData = (form) => (dispatch) => {
 	dispatch({
 		type: UPDATE_USER_REQUEST
 	})
 	Api
-	.sendUpdateProfileData(email,name, password)
+	.sendUpdateProfileData(form)
 		.then(res => {
 			dispatch({
 				type: UPDATE_USER_SUCCESS,
@@ -158,12 +158,12 @@ export const sendUpdateUserData = (email,name, password) => (dispatch) => {
 		})
 }
 
-export const sendNewPassword = (password, token) => (dispatch) => {
+export const sendNewPassword = (form) => (dispatch) => {
 	dispatch({
 		type: RESET_PASSWORD_REQUEST
 	})
 	Api
-	.sendResetPasswordRequest(password, token)
+	.sendResetPasswordRequest(form)
 		.then(res => {
 			dispatch({
 				type: RESET_PASSWORD_SUCCESS,

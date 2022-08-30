@@ -1,13 +1,13 @@
 import { Route, Redirect } from "react-router-dom";
-import { getCookie } from "../../utils/utils";
+import { useSelector } from "react-redux";
 
 export function ProtectedRoute({ children, ...rest }) {
-  const token = getCookie('token');
+  const {user} = useSelector((store) => store.userData);
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        token ? (
+      user ? (
           children
         ) : (
           <Redirect
