@@ -33,11 +33,9 @@ function App() {
 
     const location = useLocation();
     const history = useHistory();
-    //Block modal
+
     const openOrderDetailsModal = () => user ? setIsOrderDetailsOpened(true) : history.replace('/login');
-    //открыли модальное окно
-    /*Открыли модальное окно с выбранным элементом(item), который передали в
-    onClick={() => onClick(elem)} - файл ingridients-item.jsx-(burger-ingridients)*/
+
     const openIngredientsModal = () => {
         setIsIngredientsOpened(true);
     };
@@ -51,20 +49,18 @@ function App() {
         history.replace('/')
 
     }
+
     useEffect(() => {
         dispatch(getIngredients())
-    }, [dispatch])
-    //Обновление токена
-    useEffect(() => {
         if (!token && refreshToken) {
             dispatch(sendUpdateToken())
         }
-        if(token) {
+        if (token) {
             dispatch(getUserInfo())
         }
     }, [dispatch, token, refreshToken])
 
- 
+
     const background = location.state && location.state.background;
 
 
@@ -96,7 +92,7 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile">
                         <ProfilePage />
                     </ProtectedRoute>
-                    <Route path="/ingredients/:id">
+                    <Route exact={true}  path="/ingredients/:id">
                         <IngredientDetails title={'Детали ингредиента'} />
                     </Route>
                     <Route>
@@ -113,8 +109,8 @@ function App() {
                     </Modal>
 
                 }
-                {background && isIngredientsOpened &&
-                    <Route path="/ingredients/:id">
+                {background && 
+                    <Route exact={true} path="/ingredients/:id">
                         <Modal
                             title="Детали ингредиента"
                             onClose={closeAllModals}
