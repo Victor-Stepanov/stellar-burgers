@@ -46,7 +46,7 @@ function App() {
         dispatch({ type: RESET_ITEM })
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
-        history.replace('/')
+        history.goBack()
 
     }
 
