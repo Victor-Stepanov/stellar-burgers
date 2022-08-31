@@ -51,25 +51,20 @@ function App() {
         history.replace('/')
 
     }
+    useEffect(() => {
+        dispatch(getIngredients())
+    }, [dispatch])
     //Обновление токена
     useEffect(() => {
         if (!token && refreshToken) {
             dispatch(sendUpdateToken())
         }
-    }, [dispatch, token, refreshToken])
-
-    //Получение данных о пользователе
-    useEffect(() => {
-        if (user) {
+        if(token) {
             dispatch(getUserInfo())
         }
-    }, [dispatch, user])
+    }, [dispatch, token, refreshToken])
 
-    //Получение ингредиентов
-    useEffect(() => {
-        dispatch(getIngredients())
-    }, [dispatch])
-
+ 
     const background = location.state && location.state.background;
 
 

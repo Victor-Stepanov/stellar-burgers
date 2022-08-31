@@ -195,7 +195,6 @@ export const sendUpdateToken = () => (dispatch) => {
 
 		})
 		.catch(err => {
-			console.error(err)
 			dispatch({
 				type: TOKEN_UPDATE_FAILED
 			})
@@ -209,13 +208,9 @@ export const getUserInfo = () => (dispatch) => {
 	Api
 	.getUserRequest()
 		.then(res => {
-			const authToken = res.accessToken.split("Bearer ")[1];
-			setCookie("token", authToken);
-			const refreshToken = res.refreshToken;
-			localStorage.setItem("refreshToken", refreshToken)
 			dispatch({
 				type: USER_INFO_SUCCESS,
-				payload: res.user
+				payload: res
 			})
 		})
 		.catch(err => {
