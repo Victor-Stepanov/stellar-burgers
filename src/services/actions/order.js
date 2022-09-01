@@ -1,4 +1,4 @@
-import { getOrderDataFromServer } from '../../utils/api'
+import Api from '../../utils/api';
 
 export const CREATE_ORDER_REQUEST = 'CREATE_ORDER_REQUEST';
 export const CREATE_ORDER_SUCCESS = 'CREATE_ORDER_SUCCESS';
@@ -8,7 +8,8 @@ export const getOrder = (id) => (dispatch) => {
     dispatch({
         type: CREATE_ORDER_REQUEST
     })
-    getOrderDataFromServer(id)
+    Api
+    .getOrderDataFromServer(id)
         .then(res => {
             dispatch({
                 type: CREATE_ORDER_SUCCESS,
