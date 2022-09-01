@@ -15,7 +15,7 @@ import {
     RESET_DETAILS_INGRIDIENT
 } from '../../services/actions/details';
 import { RESET_ITEM } from '../../services/actions/constructor';
-import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, NotFound404 } from '../../pages/index';
+import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, FeedPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
 import { getCookie } from '../../utils/utils';
 import { getIngredients } from '../../services/actions/ingredients';
@@ -92,8 +92,11 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile">
                         <ProfilePage />
                     </ProtectedRoute>
-                    <Route exact={true}  path="/ingredients/:id">
+                    <Route exact={true} path="/ingredients/:id">
                         <IngredientDetails title={'Детали ингредиента'} />
+                    </Route>
+                    <Route exact={true} path="/feed">
+                        <FeedPage />
                     </Route>
                     <Route>
                         <NotFound404 />
@@ -109,7 +112,7 @@ function App() {
                     </Modal>
 
                 }
-                {background && 
+                {background &&
                     <Route exact={true} path="/ingredients/:id">
                         <Modal
                             title="Детали ингредиента"
