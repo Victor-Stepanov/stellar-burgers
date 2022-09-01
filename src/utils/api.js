@@ -1,4 +1,4 @@
-import config from './const.js';
+import {config} from './const.js';
 import { getCookie } from './utils';
 
 class Api {

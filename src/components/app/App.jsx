@@ -13,8 +13,8 @@ import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     RESET_DETAILS_INGRIDIENT
-} from '../../services/actions/details';
-import { RESET_ITEM } from '../../services/actions/constructor';
+} from '../../services/action-types/detailsTypes';
+import { RESET_ITEM } from '../../services/action-types';
 import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, FeedPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
 import { getCookie } from '../../utils/utils';

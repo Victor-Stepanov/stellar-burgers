@@ -1,6 +1,8 @@
 import { compose, createStore, applyMiddleware } from 'redux';
+import { socketMiddleware } from './middleware';
 import { rootReducer } from './reducers';
 import thunk from 'redux-thunk';
+import {wsUrl, wsActions} from '../utils/const'
 
 const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
