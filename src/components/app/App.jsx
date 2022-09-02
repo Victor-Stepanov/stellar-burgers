@@ -21,6 +21,9 @@ import { getCookie } from '../../utils/utils';
 import { getIngredients } from '../../services/actions/ingredients';
 import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
 
+import { WS_AUTH_CONNECTION_START} from '../../services/action-types'
+import { store } from '../../services/store';
+
 
 function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
@@ -30,7 +33,6 @@ function App() {
     const dispatch = useDispatch();
     const token = getCookie('token');
     const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
-
     const location = useLocation();
     const history = useHistory();
 
@@ -40,6 +42,7 @@ function App() {
         setIsIngredientsOpened(true);
     };
 
+    
     //Закрыли все модальные окна
     const closeAllModals = () => {
         dispatch({ type: RESET_DETAILS_INGRIDIENT })
@@ -62,8 +65,7 @@ function App() {
 
 
     const background = location.state && location.state.background;
-
-
+    
     return (
         <>
             <div className={styles.app}>
