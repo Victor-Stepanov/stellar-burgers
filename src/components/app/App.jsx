@@ -27,8 +27,7 @@ import { getCookie } from "../../utils/utils";
 import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
 
-import { WS_AUTH_CONNECTION_START } from "../../services/action-types";
-import { store } from "../../services/store";
+
 
 function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
