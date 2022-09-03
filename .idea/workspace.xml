@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06cb412b-9601-435a-8680-1eb29be59e7b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/burger-ingredients/burger-ingredients.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/protected-route/protected-route.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/protected-route/protected-route.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/action-types/wsActionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/action-types/wsActionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +100,7 @@
       <workItem from="1660901482850" duration="1952000" />
       <workItem from="1661599316288" duration="1000" />
       <workItem from="1661760394702" duration="29000" />
+      <workItem from="1662054002983" duration="123000" />
     </task>
     <servers />
   </component>

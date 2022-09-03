@@ -1,4 +1,4 @@
-import { GET_DETAILS_INGRIDIENT, RESET_DETAILS_INGRIDIENT } from '../actions/details';
+import { GET_DETAILS_INGRIDIENT, RESET_DETAILS_INGRIDIENT } from '../action-types';
 
 const initialState = {
 	ingridientDetails: {}

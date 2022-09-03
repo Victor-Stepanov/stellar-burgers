@@ -13,13 +13,16 @@ import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     RESET_DETAILS_INGRIDIENT
-} from '../../services/actions/details';
-import { RESET_ITEM } from '../../services/actions/constructor';
+} from '../../services/action-types/detailsTypes';
+import { RESET_ITEM } from '../../services/action-types';
 import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, FeedPage, NotFound404 } from '../../pages/index';
 import { ProtectedRoute } from '../../components/protected-route/protected-route';
 import { getCookie } from '../../utils/utils';
 import { getIngredients } from '../../services/actions/ingredients';
 import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
+
+import { WS_AUTH_CONNECTION_START} from '../../services/action-types'
+import { store } from '../../services/store';
 
 
 function App() {
@@ -30,7 +33,6 @@ function App() {
     const dispatch = useDispatch();
     const token = getCookie('token');
     const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
-
     const location = useLocation();
     const history = useHistory();
 
@@ -40,6 +42,7 @@ function App() {
         setIsIngredientsOpened(true);
     };
 
+    
     //Закрыли все модальные окна
     const closeAllModals = () => {
         dispatch({ type: RESET_DETAILS_INGRIDIENT })
@@ -62,8 +65,7 @@ function App() {
 
 
     const background = location.state && location.state.background;
-
-
+    
     return (
         <>
             <div className={styles.app}>
