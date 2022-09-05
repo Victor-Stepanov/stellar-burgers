@@ -1,71 +1,73 @@
-import React, { useEffect } from 'react';
-import styles from './app.module.css'
-import AppHeader from '../app-header/app-header.jsx';
-import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
-import { useState } from 'react';
-import OrderDetails from '../order-details/order-details.jsx';
-import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
-import Modal from '../modal/modal.jsx';
-import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { DndProvider } from 'react-dnd';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from "react";
+import styles from "./app.module.css";
+import AppHeader from "../app-header/app-header.jsx";
+import BurgerConstructor from "../burger-constructor/burger-constructor.jsx";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients.jsx";
+import { useState } from "react";
+import OrderDetails from "../order-details/order-details.jsx";
+import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
+import Modal from "../modal/modal.jsx";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
+import { useSelector, useDispatch } from "react-redux";
+import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types/detailsTypes";
+import { RESET_ITEM } from "../../services/action-types";
 import {
-    RESET_DETAILS_INGRIDIENT
-} from '../../services/action-types/detailsTypes';
-import { RESET_ITEM } from '../../services/action-types';
-import { LoginPage, ProfilePage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, FeedPage, NotFound404 } from '../../pages/index';
-import { ProtectedRoute } from '../../components/protected-route/protected-route';
-import { getCookie } from '../../utils/utils';
-import { getIngredients } from '../../services/actions/ingredients';
-import { sendUpdateToken, getUserInfo } from '../../services/actions/auth';
+    LoginPage,
+    ProfilePage,
+    RegisterPage,
+    ForgotPasswordPage,
+    ResetPasswordPage,
+    FeedPage,
+    NotFound404,
+} from "../../pages/index";
+import { ProtectedRoute } from "../../components/protected-route/protected-route";
+import { getCookie } from "../../utils/utils";
+import { getIngredients } from "../../services/actions/ingredients";
+import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
 
-import { WS_AUTH_CONNECTION_START} from '../../services/action-types'
-import { store } from '../../services/store';
 
 
 function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
-    const { orderRequest } = useSelector(store => store.orderNumberData);
-    const { user } = useSelector(state => state.userData) // получили user
+    const { orderRequest } = useSelector((store) => store.orderNumberData);
+    const { user } = useSelector((state) => state.userData); // получили user
     const dispatch = useDispatch();
-    const token = getCookie('token');
-    const refreshToken = localStorage.getItem('refreshToken'); // token - для обновления токена, если он умер
+    const token = getCookie("token");
+    const refreshToken = localStorage.getItem("refreshToken"); // token - для обновления токена, если он умер
     const location = useLocation();
     const history = useHistory();
 
-    const openOrderDetailsModal = () => user ? setIsOrderDetailsOpened(true) : history.replace('/login');
+    const openOrderDetailsModal = () =>
+        user ? setIsOrderDetailsOpened(true) : history.replace("/login");
 
     const openIngredientsModal = () => {
         setIsIngredientsOpened(true);
     };
 
-    
     //Закрыли все модальные окна
     const closeAllModals = () => {
-        dispatch({ type: RESET_DETAILS_INGRIDIENT })
-        dispatch({ type: RESET_ITEM })
+        dispatch({ type: RESET_DETAILS_INGRIDIENT });
+        dispatch({ type: RESET_ITEM });
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
-        history.goBack()
-
-    }
+        history.goBack();
+    };
 
     useEffect(() => {
-        dispatch(getIngredients())
+        dispatch(getIngredients());
         if (!token && refreshToken) {
-            dispatch(sendUpdateToken())
+            dispatch(sendUpdateToken());
         }
         if (token) {
-            dispatch(getUserInfo())
+            dispatch(getUserInfo());
         }
-    }, [dispatch, token, refreshToken])
-
+    }, [dispatch, token, refreshToken]);
 
     const background = location.state && location.state.background;
-    
+
     return (
         <>
             <div className={styles.app}>
@@ -95,7 +97,7 @@ function App() {
                         <ProfilePage />
                     </ProtectedRoute>
                     <Route exact={true} path="/ingredients/:id">
-                        <IngredientDetails title={'Детали ингредиента'} />
+                        <IngredientDetails title={"Детали ингредиента"} />
                     </Route>
                     <Route exact={true} path="/feed">
                         <FeedPage />
@@ -105,27 +107,18 @@ function App() {
                     </Route>
                 </Switch>
 
-                {!orderRequest && isOrderDetailsOpened &&
-                    <Modal
-                        title=''
-                        onClose={closeAllModals}
-                    >
+                {!orderRequest && isOrderDetailsOpened && (
+                    <Modal title="" onClose={closeAllModals}>
                         <OrderDetails />
                     </Modal>
-
-                }
-                {background &&
+                )}
+                {background && (
                     <Route exact={true} path="/ingredients/:id">
-                        <Modal
-                            title="Детали ингредиента"
-                            onClose={closeAllModals}
-                        >
+                        <Modal title="Детали ингредиента" onClose={closeAllModals}>
                             <IngredientDetails />
                         </Modal>
                     </Route>
-
-                }
-
+                )}
             </div>
         </>
     );

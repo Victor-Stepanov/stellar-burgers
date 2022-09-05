@@ -24,8 +24,8 @@ const AppHeader = () => {
                             <NavLink exact
                                 className={appHeaderStyles.link}
                                 activeClassName={appHeaderStyles.linkActive}
-                                to={{ pathname: '#' }}>
-                                <ListIcon type="secondary" />
+                                to={{ pathname: '/feed' }}>
+                                <ListIcon type={path === '/feed' ? 'primary':'secondary'} />
                                 <span className="text text_type_main-default pl-2">Лента заказов</span>
                             </NavLink>
                         </li>
