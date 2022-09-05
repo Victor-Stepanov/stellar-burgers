@@ -1,10 +1,9 @@
 import React from "react";
 import styles from './feed.module.css';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
+
 
 export const FeedPage = () => {
-	const dispatch = useDispatch()
 	return (
 		<section className={styles.section}>
 			<h2 className={`text text_type_main-large pt-10 pb-5 `}>Лента заказов</h2>
