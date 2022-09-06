@@ -31,3 +31,16 @@ export const getCookie = (name) => {
 export const deleteCookie = (name) => {
 	setCookie(name, null, { expires: -1 });
 }
+
+export const convertedDate = (date) => {
+	let options = {
+		year: 'numeric',
+		month: 'numeric',
+		day: 'numeric',
+		timezone: 'UTC',
+		hour: 'numeric',
+		minute: 'numeric'
+	};
+	//return new Date(date).toISOString().slice(0,10)
+	return new Date(date).toLocaleDateString("ru", options)
+}
