@@ -26,7 +26,8 @@ import { ProtectedRoute } from "../../components/protected-route/protected-route
 import { getCookie } from "../../utils/utils";
 import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
-import  OrderInfo  from '../order-info/order-info';
+import OrderInfo from '../order-info/order-info';
+import Loader from "../../components/loader/loader";
 
 
 
@@ -80,12 +81,12 @@ function App() {
                 <AppHeader />
                 <Switch location={background || location}>
                     <Route exact={true} path="/">
-                        <main className={styles.main}>
-                            <DndProvider backend={HTML5Backend}>
-                                <BurgerIngredients onClick={openIngredientsModal} />
-                                <BurgerConstructor openOrderModal={openOrderDetailsModal} />
-                            </DndProvider>
-                        </main>
+                            <main className={styles.main}>
+                                <DndProvider backend={HTML5Backend}>
+                                    <BurgerIngredients onClick={openIngredientsModal} />
+                                    <BurgerConstructor openOrderModal={openOrderDetailsModal} />
+                                </DndProvider>
+                            </main>
                     </Route>
                     <Route exact={true} path="/login">
                         <LoginPage />
@@ -125,7 +126,7 @@ function App() {
                         </Modal>
                     </Route>
                 )}
-                {
+                {background &&
                     <Route exact={true} path="/feed/:id">
                         <Modal title="" onClose={closeAllModals}>
                             <OrderInfo />

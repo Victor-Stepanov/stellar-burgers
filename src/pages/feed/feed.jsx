@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from './feed.module.css';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import { wsConnectionOpen, wsConnectionClosed } from '../../services/action-types'
 import { Link, useLocation } from "react-router-dom";
-import { convertedDate } from "../../utils/utils";
+import { convertedDate, checkedOrderStatus } from "../../utils/utils";
+
 
 
 
@@ -18,21 +19,21 @@ export const FeedPage = () => {
 		}
 	}, [dispatch])
 
-
-
 	return (
-		<section className={styles.section}>
-			<h2 className={`text text_type_main-large pt-10 pb-5 `}>Лента заказов</h2>
-			<div className={styles.container}>
-				<Orders />
-				<OrdersStats />
-			</div>
-		</section>
+		<>
+			<section className={styles.section}>
+				<h2 className={`text text_type_main-large pt-10 pb-5 `}>Лента заказов</h2>
+				<div className={styles.container}>
+					<Orders />
+					<OrdersStats />
+				</div>
+			</section >
+		</>
 	)
 }
 
 
-const Orders = () => {
+export const Orders = () => {
 	const location = useLocation();
 	const orders = useSelector(store => store.ws.orders);
 
@@ -51,9 +52,16 @@ const Orders = () => {
 	)
 }
 
-const OrderItem = ({ order }) => {
-	const { ingredients } = useSelector(state => state.ingredientsData)
-	
+export const OrderItem = ({ order }) => {
+	const { ingredients } = useSelector(state => state.ingredientsData);
+	const all = order.ingredients; //массив ингредиентов заказа
+
+
+	const filterArr = useMemo(
+		() => all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
+		), [ingredients, all])
+
+	//Сделать подсчет суммы
 	return (
 		<li className={styles.item}>
 			<div className={`mb-6 ${styles.itemID}`}>
@@ -61,31 +69,39 @@ const OrderItem = ({ order }) => {
 				<p className={`text text_type_main-default text_color_inactive ${styles.timestemp}`}>{convertedDate(order.createdAt)}</p>
 			</div>
 			<div className={`mb-6 ${styles.itemInfo}`}>
-				<p className={`text text_type_main-medium ${styles}`}>{order.name}</p>
-				<p className={`text text_type_main-small ${styles.status}`}></p>
+				<p className={`text text_type_main-medium ${styles.name}`}>{order.name}</p>
+				<p className={`text text_type_main-small ${styles.status}`}>{checkedOrderStatus(order.status)}</p>
 			</div>
 			<div className={`${styles.boxImagePrice}`}>
+				<div className={styles.fixBox}>
+					{filterArr && filterArr.length <= 5 && [...new Set(filterArr)].map((item, index) =>
+
+						<div className={styles.itemIamge}>
+							<img className={styles.image} src={item.image} alt={item.name} />
+						</div>
+
+					)}
+					{filterArr && filterArr.length > 6 && [...new Set(filterArr)].map((item, index) =>
+
+						<div className={styles.itemIamge}>
+							<img className={styles.image} src={item.image} alt={item.name} />
+						</div>
+
+					)}
+				</div>
 				<div className={`${styles.price}`}>
 					<p className={`text text_type_digits-default pr-2 ${styles}`}>370</p>
 					<CurrencyIcon type="primary" />
 				</div>
 			</div>
-		</li>
+		</li >
 
 	)
 
 }
 
-const ImageItem = () => {
-	return (
-		<div className={styles.boxImage}>
-			<div className={styles.img}>
-				
-			</div>
-			
-		</div>
-	)
-}
+
+
 
 const OrdersStats = () => {
 	//Все заказы
@@ -94,10 +110,8 @@ const OrdersStats = () => {
 	const doneStatus = orders.filter((order) => order.status === 'done').filter((order, index) => index < 10);
 	//В работе
 	const inWorkStatus = orders.filter((order) => order.status !== 'done').filter((order, index) => index < 10);
-	//Total
-	const total = useSelector(store => store.ws.total);
-	//totalToday
-	const totalToday = useSelector(store => store.ws.totalToday);
+	//Total && totalToday
+	const { total, totalToday } = useSelector(store => store.ws);
 	return (
 		<div className={styles.OrdersStats}>
 			<ul className={`${styles.OrdersBoard}`}>

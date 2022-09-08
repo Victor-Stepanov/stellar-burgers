@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -13,6 +13,20 @@ const OrderInfo = () => {
 
 	//Достать id ingredients из order
 	//Найти по этим id полный список элементов из ingredients
+	const all = order.ingredients; //массив ингредиентов из кликнутого заказа
+
+	//const filterArr = all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient))
+
+	const filterArr = useMemo(
+		() => all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
+		), [ingredients,all])
+
+	function checkOrderStatus(status) {
+		return status === 'done' ? 'Выполнен' : status === 'pending' ? 'Готовится' : status === 'created' ? 'Создан' : 'Выполнен';
+	}
+
+	console.log(filterArr)
+
 
 
 	return (
@@ -22,16 +36,20 @@ const OrderInfo = () => {
 					<p className={`text text_type_digits-default ${styles.text}`}>#{order.number}</p>
 					<div className={`pt-10 pb-15 ${styles.orderInfo}`}>
 						<p className={`text text_type_main-medium ${styles}`}>{order.name}</p>
-						<p className={`text text_type_main-small ${styles.status}`}></p>
+						<p className={`text text_type_main-small ${styles.status}`}>{checkOrderStatus(order.status)}</p>
 					</div>
 					<ul className={styles.list}>
-						<p className={`text text_type_main-medium ${styles}`}>Состав:</p>
-						<li>
-							<img src="" alt="" />
-							<p>Флюоресцентная булка R2-D3</p>
-							<p className={`text text_type_digits-default pr-2 ${styles}`}>370</p>
-							<CurrencyIcon type="primary" />
-						</li>
+						<p className={`text text_type_main-medium pb-6 ${styles}`}>Состав:</p>
+						{filterArr.map((item) =>
+							<li className={styles.item}>
+								<div className={styles.border}>
+									<img className={styles.itemImg} src={item.image_mobile} alt="" />
+								</div>
+								<p className={`pl-4 pr-4 text text_type_main-default`}>{item.name}</p>
+								<p className={`text text_type_digits-default pr-2 ${styles}`}>{item.price }</p>
+								<CurrencyIcon type="primary" />
+							</li>
+						)}
 					</ul>
 					<div className={`mt-10 ${styles.boxTimePrice}`}>
 						<p className={`text text_type_main-default text_color_inactive ${styles.timestemp}`}>{convertedDate(order.createdAt)}</p>

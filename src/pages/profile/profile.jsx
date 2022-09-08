@@ -1,4 +1,4 @@
-import React, {useCallback } from "react";
+import React, {useCallback, useEffect } from "react";
 import styles from "./profile.module.css";
 import {
 	Button,
@@ -9,6 +9,7 @@ import { NavLink, useHistory} from "react-router-dom";
 import { sendLogoutData } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
+import {wsAuthConnectionOpen, wsAuthConnectionClosed} from '../../services/action-types'
 import useForm from '../../hooks/useForm';
 
 export const ProfilePage = () => {
@@ -24,6 +25,13 @@ export const ProfilePage = () => {
 	//		history.replace({ pathname: '/login' });
 	//	},[dispatch, history]
 	//)
+
+	useEffect(() => {
+		dispatch(wsAuthConnectionOpen())
+		return () => {
+			dispatch(wsAuthConnectionClosed())
+		}
+	}, [dispatch])
 
 
 	//Временное решение
