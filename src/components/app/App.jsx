@@ -81,12 +81,12 @@ function App() {
                 <AppHeader />
                 <Switch location={background || location}>
                     <Route exact={true} path="/">
-                            <main className={styles.main}>
-                                <DndProvider backend={HTML5Backend}>
-                                    <BurgerIngredients onClick={openIngredientsModal} />
-                                    <BurgerConstructor openOrderModal={openOrderDetailsModal} />
-                                </DndProvider>
-                            </main>
+                        <main className={styles.main}>
+                            <DndProvider backend={HTML5Backend}>
+                                <BurgerIngredients onClick={openIngredientsModal} />
+                                <BurgerConstructor openOrderModal={openOrderDetailsModal} />
+                            </DndProvider>
+                        </main>
                     </Route>
                     <Route exact={true} path="/login">
                         <LoginPage />
@@ -109,6 +109,9 @@ function App() {
                     <Route exact={true} path="/feed">
                         <FeedPage />
                     </Route>
+                    <Route path='/feed/:id' exact>
+                        <OrderInfo/>
+                    </Route>
                     <Route>
                         <NotFound404 />
                     </Route>
@@ -119,7 +122,7 @@ function App() {
                         <OrderDetails />
                     </Modal>
                 )}
-                {background && (
+                {background  && (
                     <Route exact={true} path="/ingredients/:id">
                         <Modal title="Детали ингредиента" onClose={closeAllModals}>
                             <IngredientDetails />

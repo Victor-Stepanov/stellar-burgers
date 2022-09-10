@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
 import { convertedDate } from "../../utils/utils";
+import Loader from "../loader/loader";
 
 const OrderInfo = () => {
 	const { id } = useParams(); //id заказа
@@ -30,7 +31,7 @@ const OrderInfo = () => {
 
 
 	return (
-		<>
+		<>  {!order && <Loader/>}
 			{order && (
 				<div className={styles.container}>
 					<p className={`text text_type_digits-default ${styles.text}`}>#{order.number}</p>

@@ -56,3 +56,18 @@ export const checkedOrderStatus = (status) =>
     : status === "created"
     ? "Создан"
     : "Выполнен";
+
+export const sumIngredients = (arr) => {
+  let sum = 0;
+  if (Array.isArray(arr)) {
+    arr.forEach((item) => {
+      if (item?.price) {
+        sum += item.price;
+      }
+    });
+  }
+  return sum;
+};
+
+export const checkedArrayLength = (arr) =>
+  arr.length - 6 > 0 ? `${arr.length - 6}` : null;
