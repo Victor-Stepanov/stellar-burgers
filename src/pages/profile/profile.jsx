@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
 import useForm from '../../hooks/useForm';
 import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../services/action-types';
+import ProfileMenu from "./profile-menu/profile-menu";
 
 export const ProfilePage = () => {
 	
-	const history = useHistory();
 	const dispatch = useDispatch();
-	const { user, logoutSuccess } = useSelector((store) => store.userData.user);
+	const { user} = useSelector((store) => store.userData.user);
 	const { values, handleChange, setValues } = useForm({ name: user.name, email: user.email, password: '' });
 	
 	//const logoutProfile = useCallback(
@@ -32,14 +32,6 @@ export const ProfilePage = () => {
 			dispatch(wsAuthConnectionClosed())
 		}
 	}, [dispatch])
-
-	//Временное решение
-	const logoutProfile = () => {
-		dispatch(sendLogoutData())
-		if (logoutSuccess) {
-			history.replace({ pathname: '/login' });
-		}
-	}
 
 	const resetFormValue = () => {
 		setValues({ name: user.name, email: user.email, password: '' })
@@ -57,40 +49,7 @@ export const ProfilePage = () => {
 
 	return (
 		<div className={styles.container}>
-			<ul className={`${styles.list} mr-15`}>
-				<li>
-					<NavLink
-						exact
-						className={styles.link}
-						activeClassName={styles.linkActive}
-						to={{
-							pathname: "/profile",
-						}}
-					>
-						<span className="text text_type_main-medium">Профиль</span>
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						exact
-						className={styles.link}
-						activeClassName={styles.linkActive}
-						to={{
-							pathname: "/profile/orders",
-						}}
-					>
-						<span className="text text_type_main-medium">История заказов</span>
-					</NavLink>
-				</li>
-				<li>
-					<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
-				</li>
-				<p
-					className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}
-				>
-					В этом разделе вы можете изменить свои персональные данные
-				</p>
-			</ul>
+			<ProfileMenu />
 			<form className={styles.form} onSubmit={userUpdateDate}>
 				<div className="pt-6">
 					<Input
