@@ -33,7 +33,7 @@ const OrdersHistory = () => {
 					{orders && orders.map((order, index) => (
 						<Link key={index} className={styles.orderLink}
 							to={{
-								pathname: `/feed/${order._id}`,
+								pathname: `/profile/orders/${order._id}`,
 								state: { background: location }
 							}}>
 							<OrderItem order={order} />
