@@ -1,13 +1,16 @@
-import { CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, CREATE_ORDER_FAILED } from '../actions/order';
-
+import {
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_SUCCESS,
+    CREATE_ORDER_FAILED,
+} from "../action-types";
 
 const orderState = {
     order: {
-        number: null
+        number: null,
     },
     orderRequest: false,
-    orderError: false
-}
+    orderError: false,
+};
 
 export const orderNumberReducer = (state = orderState, action) => {
     switch (action.type) {
@@ -15,8 +18,8 @@ export const orderNumberReducer = (state = orderState, action) => {
             return {
                 ...state,
                 orderLoading: true,
-                orderRequest: false
-            }
+                orderRequest: false,
+            };
         }
         case CREATE_ORDER_SUCCESS: {
             return {
@@ -25,19 +28,18 @@ export const orderNumberReducer = (state = orderState, action) => {
                 orderError: false,
                 order: {
                     ...state.order,
-                    number: action.payload
-                }
-
-            }
+                    number: action.payload,
+                },
+            };
         }
         case CREATE_ORDER_FAILED: {
             return {
                 ...state,
                 orderError: true,
-                orderLoading: false
-            }
+                orderLoading: false,
+            };
         }
         default:
-            return state
+            return state;
     }
-}
+};

@@ -1,4 +1,5 @@
-import { ADD_ITEM, REMOVE_ITEM, RESET_ITEM, MOVE_ITEM } from '../actions/constructor';
+import { ADD_ITEM, REMOVE_ITEM, MOVE_ITEM, RESET_ITEM } from "../action-types";
+
 import update from 'immutability-helper';
 
 const initialConstructorState = {
