@@ -21,7 +21,10 @@ class Api {
 	async getOrderDataFromServer(id) {
 		const responce = await fetch(`${this._url}/orders`, {
 			method: 'POST',
-			headers: this._headers,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + getCookie('token')
+			},
 			body: JSON.stringify({
 				ingredients: id
 			})

@@ -1,129 +1,52 @@
 .section {
-	max-width: 1240px;
-	width: 100%;
-	margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .container {
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	column-gap: 60px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 60px;
 }
 .text {
-	text-align: left;
+  text-align: left;
 }
 
-.listOrders {
-	list-style: none;
-	max-width: 600px;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	padding: 0;
-	overflow-x: hidden;
-	overflow-y: auto;
-}
-
-.listOrders::-webkit-scrollbar {
-	width: 8px;
-	background-color: #2f2f37;
-}
-.listOrders::-webkit-scrollbar-thumb {
-	background-color: #8585ad;
-	border: 3px solid #8585ad;
-}
-
-.item {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	background: #1c1c21;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 2px rgba(0, 0, 0, 0.06), 0px 0px 1px rgba(0, 0, 0, 0.04);
-	margin: 0 8px 24px auto;
-	border-radius: 40px;
-	padding: 24px;
-	gap: 24px;
-	box-sizing: border-box;
-}
-
-.itemID {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 100%;
-}
-.id {
-	margin: 0;
-}
-.timestemp {
-	display: flex;
-	align-items: center;
-	text-align: right;
-}
-
-.itemInfo {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-}
-.status {
-	color: #00cccc;
-	font-size: 16px;
-}
-
-.boxImagePrice {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.boxImage {
-	margin: 0;
-	width: 304px;
-	height: 64px;
-}
-
-.price {
-	max-width: 76px;
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	align-items: center;
-}
 
 .OrdersStats {
-	display: flex;
-	flex-direction: column;
-	max-width: 580px;
-	box-sizing: border-box;
-	width: 100%;	
+  display: flex;
+  flex-direction: column;
+  max-width: 580px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.OrdersBoard{
-	margin: 0;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-column: 36px;
-	list-style: none;
-	padding: 0;
+.OrdersBoard {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column: 36px;
+  list-style: none;
+  padding: 0;
 }
-.OrderDoneNumber{
-	color: #00CCCC;
+.OrderDoneNumber {
+  color: #00cccc;
 }
 
 .Order {
-	max-width: 280px;
-	width: 100%;
+  max-width: 280px;
+  width: 100%;
 }
 .OrderTitle {
-	display: flex;
-align-items: center;
-	color: #F2F2F3;
+  display: flex;
+  align-items: center;
+  color: #f2f2f3;
 }
 
-.TotalNumber{
-	text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25),
-	 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+.TotalNumber {
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25),
+    0px 4px 32px rgba(51, 51, 255, 0.5);
 }
+

@@ -1,4 +1,4 @@
-import React, {useCallback } from "react";
+import React, {useCallback, useEffect } from "react";
 import styles from "./profile.module.css";
 import {
 	Button,
@@ -10,6 +10,7 @@ import { sendLogoutData } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
 import useForm from '../../hooks/useForm';
+import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../services/action-types';
 
 export const ProfilePage = () => {
 	
@@ -25,6 +26,12 @@ export const ProfilePage = () => {
 	//	},[dispatch, history]
 	//)
 
+	useEffect(() => {
+		dispatch(wsAuthConnectionOpen())
+		return () => {
+			dispatch(wsAuthConnectionClosed())
+		}
+	}, [dispatch])
 
 	//Временное решение
 	const logoutProfile = () => {

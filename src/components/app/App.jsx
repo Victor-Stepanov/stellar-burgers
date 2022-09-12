@@ -26,11 +26,15 @@ import { ProtectedRoute } from "../../components/protected-route/protected-route
 import { getCookie } from "../../utils/utils";
 import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
+import OrderInfo from '../order-info/order-info';
+import OrdersHistory from "../../pages/profile/orders-history/orders-history";
+import Loader from "../../components/loader/loader";
 
 
 
 function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
+    const [isOrderInfoOpened, setIsOrderInfoOpened] = useState(false);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const { orderRequest } = useSelector((store) => store.orderNumberData);
     const { user } = useSelector((state) => state.userData); // получили user
@@ -47,12 +51,16 @@ function App() {
         setIsIngredientsOpened(true);
     };
 
+    const openOrderInfoModal = () => {
+        setIsOrderInfoOpened(true);
+    }
     //Закрыли все модальные окна
     const closeAllModals = () => {
         dispatch({ type: RESET_DETAILS_INGRIDIENT });
         dispatch({ type: RESET_ITEM });
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
+        setIsOrderInfoOpened(false)
         history.goBack();
     };
 
@@ -96,11 +104,17 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile">
                         <ProfilePage />
                     </ProtectedRoute>
+                    <ProtectedRoute exact={true} path="/profile/orders">
+                        <OrdersHistory />
+                    </ProtectedRoute>
                     <Route exact={true} path="/ingredients/:id">
                         <IngredientDetails title={"Детали ингредиента"} />
                     </Route>
                     <Route exact={true} path="/feed">
                         <FeedPage />
+                    </Route>
+                    <Route path='/feed/:id' exact>
+                        <OrderInfo/>
                     </Route>
                     <Route>
                         <NotFound404 />
@@ -112,13 +126,20 @@ function App() {
                         <OrderDetails />
                     </Modal>
                 )}
-                {background && (
+                {background  && (
                     <Route exact={true} path="/ingredients/:id">
                         <Modal title="Детали ингредиента" onClose={closeAllModals}>
                             <IngredientDetails />
                         </Modal>
                     </Route>
                 )}
+                {background &&
+                    <Route exact={true} path="/feed/:id">
+                        <Modal title="" onClose={closeAllModals}>
+                            <OrderInfo />
+                        </Modal>
+                    </Route>
+                }
             </div>
         </>
     );
