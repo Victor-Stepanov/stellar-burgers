@@ -44,7 +44,7 @@ export const OrderItem = ({ order }) => {
 						<div className={styles.itemIamge}>
 							<img className={styles.image} src={item.image_mobile}
 								alt={item.name} key={index} />
-							<span className={`text text_type_digits-default  ${styles.count}`}>{`+${checkedArrayLength(filterArr)}`}</span>
+							<span className={`text text_type_digits-default ${styles.count}`}>{`+${checkedArrayLength(filterArr)}`}</span>
 						</div>
 					))}
 				</div>

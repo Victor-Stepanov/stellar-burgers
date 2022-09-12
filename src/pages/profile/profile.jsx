@@ -9,8 +9,8 @@ import { NavLink, useHistory} from "react-router-dom";
 import { sendLogoutData } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
-import {wsAuthConnectionOpen, wsAuthConnectionClosed} from '../../services/action-types'
 import useForm from '../../hooks/useForm';
+import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../services/action-types';
 
 export const ProfilePage = () => {
 	
@@ -32,7 +32,6 @@ export const ProfilePage = () => {
 			dispatch(wsAuthConnectionClosed())
 		}
 	}, [dispatch])
-
 
 	//Временное решение
 	const logoutProfile = () => {

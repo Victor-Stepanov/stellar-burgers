@@ -27,6 +27,7 @@ import { getCookie } from "../../utils/utils";
 import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
 import OrderInfo from '../order-info/order-info';
+import OrdersHistory from "../../pages/profile/orders-history/orders-history";
 import Loader from "../../components/loader/loader";
 
 
@@ -102,6 +103,9 @@ function App() {
                     </Route>
                     <ProtectedRoute exact={true} path="/profile">
                         <ProfilePage />
+                    </ProtectedRoute>
+                    <ProtectedRoute exact={true} path="/profile/orders">
+                        <OrdersHistory />
                     </ProtectedRoute>
                     <Route exact={true} path="/ingredients/:id">
                         <IngredientDetails title={"Детали ингредиента"} />

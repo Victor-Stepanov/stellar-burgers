@@ -34,7 +34,7 @@ export const FeedPage = () => {
 
 const OrdersStats = () => {
 	//Все заказы
-	const orders = useSelector(store => store.ws.orders);
+	const {orders} = useSelector(store => store.ws);
 	//Готовые:
 	const doneStatus = orders.filter((order) => order.status === 'done').filter((order, index) => index < 10);
 	//В работе

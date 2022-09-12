@@ -71,3 +71,19 @@ export const sumIngredients = (arr) => {
 
 export const checkedArrayLength = (arr) =>
   arr.length - 6 > 0 ? `${arr.length - 6}` : null;
+
+export const countIngredients = (arr, value) => {
+  let result = {};
+  let name = null;
+  if (Array.isArray(arr)) {
+    arr.forEach((item) => {
+      name = item.name;
+      if (name in result) {
+        result[name]++;
+      } else {
+        result[name] = 1;
+      }
+    });
+  }
+  return value in result ? result[value] : null;
+};

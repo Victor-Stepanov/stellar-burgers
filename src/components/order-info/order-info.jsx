@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
-import { convertedDate } from "../../utils/utils";
-import Loader from "../loader/loader";
+import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";
+
 
 const OrderInfo = () => {
 	const { id } = useParams(); //id заказа
@@ -12,50 +12,46 @@ const OrderInfo = () => {
 	const order = orders.find((item) => item._id === id); //Кликнутый
 	const { ingredients } = useSelector(state => state.ingredientsData); // все ингредиенты
 
-	//Достать id ingredients из order
-	//Найти по этим id полный список элементов из ingredients
-	const all = order.ingredients; //массив ингредиентов из кликнутого заказа
 
-	//const filterArr = all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient))
+	//const all = order.ingredients; //массив ингредиентов из кликнутого заказа
+
 
 	const filterArr = useMemo(
-		() => all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
-		), [ingredients,all])
-
-	function checkOrderStatus(status) {
-		return status === 'done' ? 'Выполнен' : status === 'pending' ? 'Готовится' : status === 'created' ? 'Создан' : 'Выполнен';
-	}
-
-	console.log(filterArr)
-
+		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
+		), [ingredients, order.ingredients])
 
 
 	return (
-		<>  {!order && <Loader/>}
-			{order && (
+		<>
+			{orders && (
 				<div className={styles.container}>
 					<p className={`text text_type_digits-default ${styles.text}`}>#{order.number}</p>
 					<div className={`pt-10 pb-15 ${styles.orderInfo}`}>
-						<p className={`text text_type_main-medium ${styles}`}>{order.name}</p>
-						<p className={`text text_type_main-small ${styles.status}`}>{checkOrderStatus(order.status)}</p>
+						<p className={`text text_type_main-medium`}>{order.name}</p>
+						<p className={`text text_type_main-small ${styles.status}`}>{checkedOrderStatus(order.status)}</p>
 					</div>
 					<ul className={styles.list}>
 						<p className={`text text_type_main-medium pb-6 ${styles}`}>Состав:</p>
-						{filterArr.map((item) =>
-							<li className={styles.item}>
-								<div className={styles.border}>
-									<img className={styles.itemImg} src={item.image_mobile} alt="" />
-								</div>
-								<p className={`pl-4 pr-4 text text_type_main-default`}>{item.name}</p>
-								<p className={`text text_type_digits-default pr-2 ${styles}`}>{item.price }</p>
-								<CurrencyIcon type="primary" />
-							</li>
-						)}
+						<div className={styles.scroll}>
+							{[...new Set(filterArr)].map((item, index) =>
+								<li className={`${styles.item}`} key={index} >
+									<div className={styles.itemIamge}>
+										<img className={styles.image} src={item.image_mobile}
+											alt={item.name} />
+									</div>
+									<p className={`pl-4 pr-4 text text_type_main-default`}>{item.name}</p>
+									<div className={`${styles.price}`}>
+										<p className={`text text_type_digits-default pr-2 ${styles}`}>{countIngredients(filterArr, item.name)}x{item.price}</p>
+										<CurrencyIcon type="primary" />
+									</div>
+								</li>
+							)}
+						</div>
 					</ul>
 					<div className={`mt-10 ${styles.boxTimePrice}`}>
 						<p className={`text text_type_main-default text_color_inactive ${styles.timestemp}`}>{convertedDate(order.createdAt)}</p>
 						<div className={`${styles.price}`}>
-							<p className={`text text_type_digits-default pr-2 ${styles}`}>370</p>
+							<p className={`text text_type_digits-default pr-2 ${styles}`}>{sumIngredients(filterArr)}</p>
 							<CurrencyIcon type="primary" />
 						</div>
 					</div>
