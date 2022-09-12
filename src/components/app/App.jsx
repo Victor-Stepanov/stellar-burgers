@@ -107,6 +107,9 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile/orders">
                         <OrdersHistory />
                     </ProtectedRoute>
+                    <ProtectedRoute exact={true} path="/profile/orders/:id">
+                        <OrderInfo />
+                    </ProtectedRoute>
                     <Route exact={true} path="/ingredients/:id">
                         <IngredientDetails title={"Детали ингредиента"} />
                     </Route>
@@ -114,7 +117,7 @@ function App() {
                         <FeedPage />
                     </Route>
                     <Route path='/feed/:id' exact>
-                        <OrderInfo/>
+                        <OrderInfo />
                     </Route>
                     <Route>
                         <NotFound404 />
@@ -126,7 +129,7 @@ function App() {
                         <OrderDetails />
                     </Modal>
                 )}
-                {background  && (
+                {background && (
                     <Route exact={true} path="/ingredients/:id">
                         <Modal title="Детали ингредиента" onClose={closeAllModals}>
                             <IngredientDetails />
