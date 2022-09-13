@@ -116,7 +116,7 @@ function App() {
                     <Route exact={true} path="/feed">
                         <FeedPage />
                     </Route>
-                    <Route path='/feed/:id' exact>
+                    <Route exact={true} path='/feed/:id'>
                         <OrderInfo />
                     </Route>
                     <Route>
@@ -138,6 +138,13 @@ function App() {
                 )}
                 {background &&
                     <Route exact={true} path="/feed/:id">
+                        <Modal title="" onClose={closeAllModals}>
+                            <OrderInfo />
+                        </Modal>
+                    </Route>
+                }
+                {background &&
+                    <Route exact={true} path="/profile/orders/:id">
                         <Modal title="" onClose={closeAllModals}>
                             <OrderInfo />
                         </Modal>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/action-types';
 import {useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { OrderItem } from "../../../components/order-item/order-item";
+import { OrderItem } from "../../../components/orders/order-item/order-item";
 import ProfileMenu from "../profile-menu/profile-menu";
 
 
@@ -13,7 +13,6 @@ import ProfileMenu from "../profile-menu/profile-menu";
 const OrdersHistory = () => {
 	const orders = useSelector(store => store.ws.userOrders);
 	const dispatch = useDispatch();
-	console.log(orders)
 	const location = useLocation();
 
 	useEffect(() => {

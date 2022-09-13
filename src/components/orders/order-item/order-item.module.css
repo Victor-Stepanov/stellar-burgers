@@ -65,6 +65,7 @@
 	z-index: 2;
 	position: relative;
 	box-sizing: border-box;
+	margin-right: -24px;
   }
   .image {
 	width: 64px;
@@ -72,10 +73,7 @@
 	object-fit: cover;
   }
   
-  
-  .itemIamge:nth-of-type(n) {
-	margin-right: -16px;
-  }
+
 
   .price {
 	display: flex;
