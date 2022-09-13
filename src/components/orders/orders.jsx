@@ -11,13 +11,13 @@ export const Orders = () => {
 	return (
 		<ul className={styles.listOrders}>
 			<div className={styles.scroll}>
-			{orders && orders.map((order, index) => (
-				<Link key={index} className={styles.link}
+			{orders && orders.map((order) => (
+				<Link key={order._id} className={styles.link}
 					to={{
 						pathname: `/feed/${order._id}`,
 						state: { background: location }
 					}}>
-					<OrderItem order={order} />
+					<OrderItem order={order}/>
 				</Link>
 			))}
 			</div>

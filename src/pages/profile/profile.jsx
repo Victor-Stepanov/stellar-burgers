@@ -26,12 +26,7 @@ export const ProfilePage = () => {
 	//	},[dispatch, history]
 	//)
 
-	useEffect(() => {
-		dispatch(wsAuthConnectionOpen())
-		return () => {
-			dispatch(wsAuthConnectionClosed())
-		}
-	}, [dispatch])
+
 
 	const resetFormValue = () => {
 		setValues({ name: user.name, email: user.email, password: '' })

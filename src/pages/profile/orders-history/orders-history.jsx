@@ -35,7 +35,7 @@ const OrdersHistory = () => {
 								pathname: `/profile/orders/${order._id}`,
 								state: { background: location }
 							}}>
-							<OrderItem order={order} />
+							<OrderItem order={order} key={Math.random().toString(36).slice(2)}/>
 						</Link>
 					))}
 				</div>

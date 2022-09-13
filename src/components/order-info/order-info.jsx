@@ -1,9 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useParams, useRouteMatch } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
-import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";
+import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients, getCookie } from "../../utils/utils";
+import Loader from "../loader/loader";
+import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/action-types";
+
 
 
 
@@ -11,20 +14,39 @@ import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } f
 const OrderInfo = () => {
 	const { id } = useParams(); //id заказа
 	const { path } = useRouteMatch(); //получаем текущий путь
+	const dispatch = useDispatch();
+	const token = getCookie('token')
 
 	const allOrders = useSelector(store => store.ws.orders); // Все заказы
-	const { ingredients } = useSelector(store => store.ingredientsData); // все ингредиенты
+	const { ingredients } = useSelector(store => store?.ingredientsData); // все ингредиенты
 	const { userOrders } = useSelector(store => store.ws);//Заказы пользователя
 
 	const orders = path.includes('feed') ? allOrders : userOrders; //в зависимости от пути, присваиваем нужный стор
 	const order = orders.find((item) => item._id === id); //Кликнутый
 
-	
 	const filterArr = useMemo(
-		() => order?.ingredients.map((orderIngredient) => ingredients?.find((item) => item._id === orderIngredient)
-		), [ingredients, order.ingredients])
+		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
+		), [ingredients, order?.ingredients])
 
-	
+	useEffect(() => {
+		if (!order) {
+			if (path.includes('feed')) {
+				dispatch(wsConnectionOpen())
+			}
+			if (path.includes('profile')) {
+				dispatch(wsAuthConnectionOpen())
+			}
+			return (() => {
+				if (path.includes('feed')) {
+					dispatch(wsConnectionClosed())
+				}
+				if (path.includes('profile')) {
+					dispatch(wsAuthConnectionClosed())
+				}
+			})
+		}
+	}, [dispatch, order, path])
+
 	return (
 		<>
 			{order && filterArr && (
