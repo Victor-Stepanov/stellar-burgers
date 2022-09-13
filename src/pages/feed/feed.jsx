@@ -1,11 +1,13 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import styles from './feed.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { wsConnectionOpen, wsConnectionClosed } from '../../services/action-types';
 import { Orders } from "../../components/orders/orders";
+import Loader from "../../components/loader/loader";
 
 
 export const FeedPage = () => {
+
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -34,7 +36,7 @@ export const FeedPage = () => {
 
 const OrdersStats = () => {
 	//Все заказы
-	const {orders} = useSelector(store => store.ws);
+	const { orders } = useSelector(store => store.ws);
 	//Готовые:
 	const doneStatus = orders.filter((order) => order.status === 'done').filter((order, index) => index < 10);
 	//В работе

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import styles from './orders.module.css';
-import { OrderItem } from "../order-item/order-item";
+import { OrderItem } from "./order-item/order-item";
 
 export const Orders = () => {
 	const location = useLocation();

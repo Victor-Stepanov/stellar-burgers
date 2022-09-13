@@ -1,29 +1,33 @@
 import React, { useMemo } from "react";
-import { useParams } from "react-router";
+import { useParams, useRouteMatch } from "react-router";
 import { useSelector } from "react-redux";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";
 
 
+
+
 const OrderInfo = () => {
 	const { id } = useParams(); //id заказа
-	const orders = useSelector(store => store.ws.orders); // Все заказы
+	const { path } = useRouteMatch(); //получаем текущий путь
+
+	const allOrders = useSelector(store => store.ws.orders); // Все заказы
+	const { ingredients } = useSelector(store => store.ingredientsData); // все ингредиенты
+	const { userOrders } = useSelector(store => store.ws);//Заказы пользователя
+
+	const orders = path.includes('feed') ? allOrders : userOrders; //в зависимости от пути, присваиваем нужный стор
 	const order = orders.find((item) => item._id === id); //Кликнутый
-	const { ingredients } = useSelector(state => state.ingredientsData); // все ингредиенты
 
-
-	//const all = order.ingredients; //массив ингредиентов из кликнутого заказа
-
-
+	
 	const filterArr = useMemo(
-		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
+		() => order?.ingredients.map((orderIngredient) => ingredients?.find((item) => item._id === orderIngredient)
 		), [ingredients, order.ingredients])
 
-
+	
 	return (
 		<>
-			{orders && (
+			{order && filterArr && (
 				<div className={styles.container}>
 					<p className={`text text_type_digits-default ${styles.text}`}>#{order.number}</p>
 					<div className={`pt-10 pb-15 ${styles.orderInfo}`}>
@@ -41,7 +45,7 @@ const OrderInfo = () => {
 									</div>
 									<p className={`pl-4 pr-4 text text_type_main-default`}>{item.name}</p>
 									<div className={`${styles.price}`}>
-										<p className={`text text_type_digits-default pr-2 ${styles}`}>{countIngredients(filterArr, item.name)}x{item.price}</p>
+										<p className={`text text_type_digits-default pr-2`}>{countIngredients(filterArr, item.name)}x{item.price}</p>
 										<CurrencyIcon type="primary" />
 									</div>
 								</li>

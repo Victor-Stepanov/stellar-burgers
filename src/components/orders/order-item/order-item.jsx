@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './order-item.module.css';
-import { convertedDate, checkedOrderStatus, sumIngredients, checkedArrayLength } from "../../utils/utils";
+import { convertedDate, checkedOrderStatus, sumIngredients, checkedArrayLength } from "../../../utils/utils";
 
 
 export const OrderItem = ({ order }) => {
@@ -49,7 +49,7 @@ export const OrderItem = ({ order }) => {
 					))}
 				</div>
 				<div className={`${styles.price}`}>
-					<p className={`text text_type_digits-default pr-2 ${styles}`}>{sumIngredients(filterArr)}</p>
+					<p className={`text text_type_digits-default pr-2`}>{sumIngredients(filterArr)}</p>
 					<CurrencyIcon type="primary" />
 				</div>
 			</div>
