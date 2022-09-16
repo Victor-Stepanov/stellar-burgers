@@ -6,6 +6,7 @@ import {useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";
 import ProfileMenu from "../profile-menu/profile-menu";
+import Loader from "../../../components/loader/loader";
 
 
 
@@ -35,7 +36,7 @@ const OrdersHistory = () => {
 								pathname: `/profile/orders/${order._id}`,
 								state: { background: location }
 							}}>
-							<OrderItem order={order} />
+							<OrderItem order={order} key={Math.random().toString(36).slice(2)}/>
 						</Link>
 					))}
 				</div>
