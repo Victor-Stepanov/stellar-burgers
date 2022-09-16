@@ -19,39 +19,39 @@ const ProfileMenu = () => {
 
 	return (
 		<menu className={`${styles.list} mr-15`}>
-				<li>
-					<NavLink
-						exact
-						className={styles.link}
-						activeClassName={styles.linkActive}
-						to={{
-							pathname: "/profile",
-						}}
-					>
-						<span className="text text_type_main-medium">Профиль</span>
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						exact
-						className={styles.link}
-						activeClassName={styles.linkActive}
-						to={{
-							pathname: "/profile/orders",
-						}}
-					>
-						<span className="text text_type_main-medium">История заказов</span>
-					</NavLink>
-				</li>
-				<li>
-					<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
-				</li>
-				<p
-					className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}
+			<li>
+				<NavLink
+					exact
+					className={styles.link}
+					activeClassName={styles.linkActive}
+					to={{
+						pathname: "/profile",
+					}}
 				>
-					В этом разделе вы можете изменить свои персональные данные
-				</p>
-			</menu>
+					<span className="text text_type_main-medium">Профиль</span>
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					exact
+					className={styles.link}
+					activeClassName={styles.linkActive}
+					to={{
+						pathname: "/profile/orders",
+					}}
+				>
+					<span className="text text_type_main-medium">История заказов</span>
+				</NavLink>
+			</li>
+			<li>
+				<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
+			</li>
+			<p
+				className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}
+			>
+				В этом разделе вы можете изменить свои персональные данные
+			</p>
+		</menu>
 	)
 }
 

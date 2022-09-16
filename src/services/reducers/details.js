@@ -1,26 +1,27 @@
-import { GET_DETAILS_INGRIDIENT, RESET_DETAILS_INGRIDIENT } from '../action-types';
+import {
+	GET_DETAILS_INGRIDIENT,
+	RESET_DETAILS_INGRIDIENT,
+} from "../action-types";
 
 const initialState = {
-	ingridientDetails: {}
-}
+	ingridientDetails: {},
+};
 
 export const detailsIngrideientReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_DETAILS_INGRIDIENT: {
 			return {
 				...state,
-				ingridientDetails: action.item
-
-			}
+				ingridientDetails: action.item,
+			};
 		}
 		case RESET_DETAILS_INGRIDIENT: {
 			return {
 				...state,
-				ingridientDetails:{}
-			}
+				ingridientDetails: {},
+			};
 		}
 		default:
 			return state;
-
 	}
-}
+};
