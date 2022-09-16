@@ -6,6 +6,7 @@ import {useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";
 import ProfileMenu from "../profile-menu/profile-menu";
+import Loader from "../../../components/loader/loader";
 
 
 

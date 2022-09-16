@@ -1,16 +1,13 @@
-import React, {useCallback, useEffect } from "react";
+import React, {useCallback} from "react";
 import styles from "./profile.module.css";
 import {
 	Button,
 	Input,
 	PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { NavLink, useHistory} from "react-router-dom";
-import { sendLogoutData } from "../../services/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUpdateUserData } from "../../services/actions/auth";
 import useForm from '../../hooks/useForm';
-import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../services/action-types';
 import ProfileMenu from "./profile-menu/profile-menu";
 
 export const ProfilePage = () => {
@@ -19,15 +16,6 @@ export const ProfilePage = () => {
 	const { user} = useSelector((store) => store.userData.user);
 	const { values, handleChange, setValues } = useForm({ name: user.name, email: user.email, password: '' });
 	
-	//const logoutProfile = useCallback(
-	//	() => {
-	//		dispatch(sendLogoutData())
-	//		history.replace({ pathname: '/login' });
-	//	},[dispatch, history]
-	//)
-
-
-
 	const resetFormValue = () => {
 		setValues({ name: user.name, email: user.email, password: '' })
 	}

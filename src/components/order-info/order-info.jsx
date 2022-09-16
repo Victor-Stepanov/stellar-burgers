@@ -15,7 +15,6 @@ const OrderInfo = () => {
 	const { id } = useParams(); //id заказа
 	const { path } = useRouteMatch(); //получаем текущий путь
 	const dispatch = useDispatch();
-	const token = getCookie('token')
 
 	const allOrders = useSelector(store => store.ws.orders); // Все заказы
 	const { ingredients } = useSelector(store => store?.ingredientsData); // все ингредиенты
