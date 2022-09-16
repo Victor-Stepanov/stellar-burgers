@@ -1,12 +1,11 @@
 import { ADD_ITEM, REMOVE_ITEM, MOVE_ITEM, RESET_ITEM } from "../action-types";
 
-import update from 'immutability-helper';
+import update from "immutability-helper";
 
 const initialConstructorState = {
     bun: [],
-    element: []
-}
-
+    element: [],
+};
 
 export const constructorReducer = (state = initialConstructorState, action) => {
     switch (action.type) {
@@ -15,21 +14,20 @@ export const constructorReducer = (state = initialConstructorState, action) => {
                 if (state.bun) {
                     return {
                         ...state,
-                        bun: action.payload
+                        bun: action.payload,
                     };
                 }
             }
             return {
                 ...state,
-                element: [...state.element, action.payload]
-            }
+                element: [...state.element, action.payload],
+            };
         }
         case REMOVE_ITEM: {
             return {
                 ...state,
-                element: [...state.element].filter((item) => item.id !== action.id)
-
-            }
+                element: [...state.element].filter((item) => item.id !== action.id),
+            };
         }
         case MOVE_ITEM: {
             return {
@@ -37,20 +35,19 @@ export const constructorReducer = (state = initialConstructorState, action) => {
                 element: update(state.element, {
                     $splice: [
                         [action.dragIndex, 1],
-                        [action.hoverIndex, 0, state.element[action.dragIndex]]
-                    ]
-                })
-            }
+                        [action.hoverIndex, 0, state.element[action.dragIndex]],
+                    ],
+                }),
+            };
         }
         case RESET_ITEM: {
             return {
                 ...state,
                 bun: [],
-                element: []
-            }
+                element: [],
+            };
         }
         default:
             return state;
-
     }
-}
+};

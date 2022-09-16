@@ -10,7 +10,7 @@ import {
   WS_AUTH_CONNECTION_CLOSED,
   WS_AUTH_CONNECTION_ERROR,
   WS_AUTH_GET_ORDERS,
-  WS_AUTH_SEND_ORDERS
+  WS_AUTH_SEND_ORDERS,
 } from "../services/action-types";
 
 const config = {
@@ -41,7 +41,7 @@ const wsActions = {
   onMessage: WS_GET_ORDERS,
 };
 
- const wsActionsAuth = {
+const wsActionsAuth = {
   wsInitWithToken: WS_AUTH_CONNECTION_START,
   wsSendMessage: WS_AUTH_SEND_ORDERS,
   onOpen: WS_AUTH_CONNECTION_SUCCESS,
@@ -50,4 +50,4 @@ const wsActions = {
   onMessage: WS_AUTH_GET_ORDERS,
 };
 
-export { config, wsUrlAllOrders, wsUrlUserOrders,wsActions, wsActionsAuth };
+export { config, wsUrlAllOrders, wsUrlUserOrders, wsActions, wsActionsAuth };

@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  max-width: 480px;
+  width: 100%;
+}
+
+.form div {
+  width: 480px;
+}
+.form svg {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -9,7 +9,7 @@
 }
 
 .scroll {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   padding-right: 8px;
 }

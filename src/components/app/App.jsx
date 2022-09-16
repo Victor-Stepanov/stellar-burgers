@@ -28,7 +28,7 @@ import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
 import OrderInfo from '../order-info/order-info';
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
-import Loader from "../../components/loader/loader";
+
 
 
 
@@ -129,7 +129,7 @@ function App() {
                         <OrderDetails />
                     </Modal>
                 )}
-                {background && (
+                {background  && (
                     <Route exact={true} path="/ingredients/:id">
                         <Modal title="Детали ингредиента" onClose={closeAllModals}>
                             <IngredientDetails />

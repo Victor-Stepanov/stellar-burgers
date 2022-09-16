@@ -49,13 +49,7 @@ export const convertedDate = (date) => {
 };
 
 export const checkedOrderStatus = (status) =>
-  status === "done"
-    ? "Выполнен"
-    : status === "pending"
-    ? "Готовится"
-    : status === "created"
-    ? "Создан"
-    : "Выполнен";
+  status === "done" ? "Выполнен" : status === "pending" ? "Готовится" : "";
 
 export const sumIngredients = (arr) => {
   let sum = 0;
