@@ -33,7 +33,7 @@ const OrdersHistory = () => {
 				<ul className={styles.listOrders}>
 					<div className={styles.scroll}>
 						{orders && orders.map((order, index) => (
-							<Link key={index} className={styles.orderLink}
+							<Link key={order._id} className={styles.orderLink}
 								to={{
 									pathname: `/profile/orders/${order._id}`,
 									state: { background: location }
