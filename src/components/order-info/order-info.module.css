@@ -82,6 +82,5 @@
 .price {
   display: flex;
   flex-direction: row;
-  padding-left: auto;
   align-items: center;
 }
