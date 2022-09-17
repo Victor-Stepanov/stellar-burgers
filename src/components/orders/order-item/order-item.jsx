@@ -44,26 +44,29 @@ const ImageContainer = ({ filterArr }) => {
 	const uniqIngredients = [...new Set(filterArr)];
 
 	return (
-		<div className={styles.fixBox}>
-			{filterArr.length <= 5 && uniqIngredients.map((item, index) => (
-				<div className={styles.itemIamge} key={index}>
-					<img className={styles.image} src={item.image_mobile}
-						alt={item.name} />
-				</div>
-			))}
-			{filterArr.length >= 6 && uniqIngredients.slice(0, 5).map((item, index) => (
-				<div className={styles.itemIamge} key={index}>
-					<img className={styles.image} src={item.image_mobile}
-						alt={item.name} />
-				</div>
-			))}
-			{filterArr.length > 6 && uniqIngredients.slice(5, 6).map((item, index) => (
-				<div className={styles.itemIamge} key={index}>
-					<img className={styles.image} src={item.image_mobile}
-						alt={item.name} />
-					<span className={`text text_type_digits-default ${styles.count}`}>{`+${checkedArrayLength(filterArr)}`}</span>
-				</div>
-			))}
-		</div>
+		<>{filterArr &&
+			<div className={styles.fixBox}>
+				{filterArr.length <= 5 && uniqIngredients.map((item, index) => (
+					<div className={styles.itemIamge} key={index}>
+						<img className={styles.image} src={item.image_mobile}
+							alt={item.name} />
+					</div>
+				))}
+				{filterArr.length >= 6 && uniqIngredients.slice(0, 5).map((item, index) => (
+					<div className={styles.itemIamge} key={index}>
+						<img className={styles.image} src={item.image_mobile}
+							alt={item.name} />
+					</div>
+				))}
+				{filterArr.length > 6 && uniqIngredients.slice(5, 6).map((item, index) => (
+					<div className={styles.itemIamge} key={index}>
+						<img className={styles.image} src={item.image_mobile}
+							alt={item.name} />
+						<span className={`text text_type_digits-default ${styles.count}`}>{`+${checkedArrayLength(filterArr)}`}</span>
+					</div>
+				))}
+			</div>
+		}
+		</>
 	)
 }

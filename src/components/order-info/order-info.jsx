@@ -62,11 +62,13 @@ const OrderInfo = () => {
 						<div className={styles.scroll}>
 							{uniqIngredients.map((item, index) =>
 								<li className={styles.item} key={index} >
-									<div className={styles.itemIamge}>
-										<img className={styles.image} src={item.image_mobile}
-											alt={item.name} />
+									<div className={styles.fix}>
+										<div className={styles.itemIamge}>
+											<img className={styles.image} src={item.image_mobile}
+												alt={item.name} />
+										</div>
+										<p className={`pl-4 pr-4 text text_type_main-default`}>{item.name}</p>
 									</div>
-									<p className={`pl-4 pr-4 text text_type_main-default`}>{item.name}</p>
 									<div className={styles.price}>
 										<p className={`text text_type_digits-default pr-2`}>{countIngredients(filterArr, item.name)}x{item.price}</p>
 										<CurrencyIcon type="primary" />
