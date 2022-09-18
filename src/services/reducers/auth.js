@@ -154,8 +154,8 @@ export const userReducer = (state = initialUserState, action) => {
 				...state,
 				userUpdateRequest: false,
 				userUpdateSuccess: false,
-				userUpdateFailed: true
-			}
+				userUpdateFailed: true,
+			};
 		}
 		case FORGOUT_PASSWORD_REQUEST: {
 			return {

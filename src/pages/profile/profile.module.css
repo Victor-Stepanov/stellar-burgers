@@ -1,69 +1,6 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  max-width: 480px;
-  width: 100%;
-}
-
-.form div {
-  width: 480px;
-}
-.form svg {
-  position: absolute;
-  top: 22px;
-  right: 26px;
-}
-
-.text {
-  color: #8585AD;
-}
-.link {
-  text-decoration: none;
-  color: #8585AD;
-  opacity: 1.0;
-}
-
-.linkActive {
-  color: #F2F2F3;
-}
-
-.link:hover {
-  opacity: 0.6;
-}
-
 .container {
   display: flex;
   padding: 120px 0 0 380px;
   margin: 0 auto;
   max-width: 1248px;
-}
-
-.text {
-  max-width: 320px;
-}
-
-.list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 320px;
-  padding: 0;
-}
-
-.button {
- color: #8585AD;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.button:hover{
-  opacity: 0.6;
-}
-
-.buttons {
-  display: flex;
-  justify-content: flex-end;
 }

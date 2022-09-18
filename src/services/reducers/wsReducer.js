@@ -16,7 +16,7 @@ const initialState = {
 	totalToday: null,
 
 	wsUserConnected: false,
-	userOrders: []
+	userOrders: [],
 };
 
 export const wsReducer = (state = initialState, action) => {
@@ -67,7 +67,7 @@ export const wsReducer = (state = initialState, action) => {
 		case WS_AUTH_GET_ORDERS: {
 			return {
 				...state,
-				userOrders: action.payload.orders
+				userOrders: action.payload.orders,
 			};
 		}
 		default:

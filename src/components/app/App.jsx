@@ -28,7 +28,7 @@ import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
 import OrderInfo from '../order-info/order-info';
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
-import Loader from "../../components/loader/loader";
+
 
 
 
@@ -107,14 +107,17 @@ function App() {
                     <ProtectedRoute exact={true} path="/profile/orders">
                         <OrdersHistory />
                     </ProtectedRoute>
+                    <ProtectedRoute exact={true} path="/profile/orders/:id">
+                        <OrderInfo />
+                    </ProtectedRoute>
                     <Route exact={true} path="/ingredients/:id">
                         <IngredientDetails title={"Детали ингредиента"} />
                     </Route>
                     <Route exact={true} path="/feed">
                         <FeedPage />
                     </Route>
-                    <Route path='/feed/:id' exact>
-                        <OrderInfo/>
+                    <Route exact={true} path='/feed/:id'>
+                        <OrderInfo />
                     </Route>
                     <Route>
                         <NotFound404 />
@@ -139,6 +142,13 @@ function App() {
                             <OrderInfo />
                         </Modal>
                     </Route>
+                }
+                {background &&
+                    <ProtectedRoute exact={true} path="/profile/orders/:id">
+                        <Modal title="" onClose={closeAllModals}>
+                            <OrderInfo />
+                        </Modal>
+                    </ProtectedRoute>
                 }
             </div>
         </>

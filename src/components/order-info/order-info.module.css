@@ -10,7 +10,7 @@
 }
 
 .status {
-  color: #00CCCC;
+  color: #00cccc;
 }
 .orderInfo {
   display: flex;
@@ -32,9 +32,15 @@
   justify-content: space-between;
 }
 
+.fix {
+  display: flex;
+  align-items: center;
+}
+
 .item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-bottom: 16px;
   max-width: 608px;
   width: 100%;
@@ -76,7 +82,5 @@
 .price {
   display: flex;
   flex-direction: row;
-
   align-items: center;
-
 }
