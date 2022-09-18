@@ -144,11 +144,11 @@ function App() {
                     </Route>
                 }
                 {background &&
-                    <Route exact={true} path="/profile/orders/:id">
+                    <ProtectedRoute exact={true} path="/profile/orders/:id">
                         <Modal title="" onClose={closeAllModals}>
                             <OrderInfo />
                         </Modal>
-                    </Route>
+                    </ProtectedRoute>
                 }
             </div>
         </>
