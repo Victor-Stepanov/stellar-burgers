@@ -66,13 +66,8 @@ function App() {
 
     useEffect(() => {
         dispatch(getIngredients());
-        if (!token && refreshToken) {
-            dispatch(sendUpdateToken());
-        }
-        if (token) {
-            dispatch(getUserInfo());
-        }
-    }, [dispatch, token, refreshToken]);
+       
+    }, [dispatch]);
 
     const background = location.state && location.state.background;
 

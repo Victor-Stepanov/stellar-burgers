@@ -3,7 +3,7 @@ import IngridientsItemStyles from './ingridients-item.module.css';
 import {DragIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd'
-import {moveItem} from '../../../../services/actions/constructor';
+import {moveItem} from '../../../../services/slice/constructorSlice';
 import { useDispatch} from 'react-redux';
 
 

@@ -1,6 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
-import { ADD_ITEM, REMOVE_ITEM, MOVE_ITEM } from "../action-types";
-
+//import { v4 as uuidv4 } from "uuid";
+//import { ADD_ITEM, REMOVE_ITEM, MOVE_ITEM } from "../action-types";
+//import { addItem, removeItem, moveItem, resetItem } from '../slice/constructorSlice';
+/*
 export const addItem = (item) => {
     return {
         type: ADD_ITEM,
@@ -25,3 +26,4 @@ export const moveItem = (dragIndex, hoverIndex) => {
         hoverIndex: hoverIndex,
     };
 };
+*/

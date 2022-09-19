@@ -1,24 +1,13 @@
 import Api from "../../utils/api";
 import {
-    GET_INGREDIENTS_REQUEST,
-    GET_INGREDIENTS_SUCCESS,
-    GET_INGREDIENTS_FAILED,
-} from "../action-types";
+    ingredientsRequest,
+    ingredientsSuccessed,
+    ingredientsFailed,
+} from "../slice/ingredientsSlice";
 
 export const getIngredients = () => (dispatch) => {
-    dispatch({
-        type: GET_INGREDIENTS_REQUEST,
-    });
+    dispatch(ingredientsRequest());
     Api.getIngredientsDataFromServer()
-        .then((res) => {
-            dispatch({
-                type: GET_INGREDIENTS_SUCCESS,
-                ingredients: res.data,
-            });
-        })
-        .catch((_) => {
-            dispatch({
-                type: GET_INGREDIENTS_FAILED,
-            });
-        });
+        .then((response) => dispatch(ingredientsSuccessed(response.data)))
+        .catch((_) => dispatch(ingredientsFailed()));
 };

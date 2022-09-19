@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import burgerConstructorStyles from './burger-constructor.module.css'
 import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngridientsItem from '../burger-constructor/components/ingridients-item/ingridients-item.jsx';
@@ -6,7 +7,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from "react-dnd";
-import { addItem, removeItem } from '../../services/actions/constructor';
+import { addItem, removeItem } from '../../services/slice/constructorSlice';
 import { getOrder } from '../../services/actions/order'
 
 
@@ -14,7 +15,6 @@ import { getOrder } from '../../services/actions/order'
 const BurgerConstructor = ({ openOrderModal }) => {
     const dispatch = useDispatch()
     const { element, bun } = useSelector((state) => state.constructorData) // получаем элементы из хранилища
-    
     const [total, setTotal] = useState(0);
     useEffect(() => {
         const price = element.reduce((sum, item) => sum + item.price, bun.price)
@@ -24,7 +24,7 @@ const BurgerConstructor = ({ openOrderModal }) => {
     const [, dropTarget] = useDrop({
         accept: "ingredient",
         drop: (item) => {
-            dispatch(addItem(item));
+            dispatch(addItem({...item, id: uuidv4()}));
         }
 
     });
