@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";
-import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/action-types";
+import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/slice/wsSlice";
 
 
 

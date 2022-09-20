@@ -1,17 +1,18 @@
+
 import {
-  WS_CONNECTION_CLOSED,
-  WS_CONNECTION_ERROR,
-  WS_CONNECTION_START,
-  WS_CONNECTION_SUCCESS,
-  WS_GET_ORDERS,
-  WS_SEND_ORDERS,
-  WS_AUTH_CONNECTION_START,
-  WS_AUTH_CONNECTION_SUCCESS,
-  WS_AUTH_CONNECTION_CLOSED,
-  WS_AUTH_CONNECTION_ERROR,
-  WS_AUTH_GET_ORDERS,
-  WS_AUTH_SEND_ORDERS,
-} from "../services/action-types";
+  wsConnectionOpen,
+  wsAuthConnectionOpen,
+  wsConnectionSuccess,
+  wsAuthConnectionSuccess,
+  wsConnectionError,
+  wsAuthConnectionError,
+  wsConnectionClosed,
+  wsAuthConnectionClosed,
+  wsGetOrders,
+  wsAuthGetOrders,
+  wsSendOrders,
+  wsAuthSendOrders,
+} from '../services/slice/wsSlice';
 
 const config = {
   baseUrl: "https://norma.nomoreparties.space/api",
@@ -33,21 +34,21 @@ const wsUrlAllOrders = "wss://norma.nomoreparties.space/orders/all";
 const wsUrlUserOrders = "wss://norma.nomoreparties.space/orders";
 
 const wsActions = {
-  wsInit: WS_CONNECTION_START,
-  wsSendMessage: WS_SEND_ORDERS,
-  onOpen: WS_CONNECTION_SUCCESS,
-  onClose: WS_CONNECTION_CLOSED,
-  onError: WS_CONNECTION_ERROR,
-  onMessage: WS_GET_ORDERS,
+  wsInit: wsConnectionOpen,
+  wsSendMessage: wsSendOrders,
+  onOpen: wsConnectionSuccess,
+  onClose: wsConnectionClosed,
+  onError: wsConnectionError,
+  onMessage: wsGetOrders,
 };
 
 const wsActionsAuth = {
-  wsInitWithToken: WS_AUTH_CONNECTION_START,
-  wsSendMessage: WS_AUTH_SEND_ORDERS,
-  onOpen: WS_AUTH_CONNECTION_SUCCESS,
-  onClose: WS_AUTH_CONNECTION_CLOSED,
-  onError: WS_AUTH_CONNECTION_ERROR,
-  onMessage: WS_AUTH_GET_ORDERS,
+  wsInitWithToken: wsAuthConnectionOpen,
+  wsSendMessage: wsAuthSendOrders,
+  onOpen: wsAuthConnectionSuccess,
+  onClose: wsAuthConnectionClosed,
+  onError: wsAuthConnectionError,
+  onMessage: wsAuthGetOrders,
 };
 
 export { config, wsUrlAllOrders, wsUrlUserOrders, wsActions, wsActionsAuth };
