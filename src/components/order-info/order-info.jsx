@@ -32,17 +32,17 @@ const OrderInfo = () => {
 	useEffect(() => {
 		if (!order) {
 			if (path.includes('feed')) {
-				dispatch(wsConnectionOpen())
+				dispatch({ type: wsConnectionOpen })
 			}
 			if (path.includes('profile')) {
-				dispatch(wsAuthConnectionOpen())
+				dispatch({ type: wsAuthConnectionOpen })
 			}
 			return (() => {
 				if (path.includes('feed')) {
-					dispatch(wsConnectionClosed())
+					dispatch({ type: wsConnectionClosed })
 				}
 				if (path.includes('profile')) {
-					dispatch(wsAuthConnectionClosed())
+					dispatch({ type: wsAuthConnectionClosed })
 				}
 			})
 		}

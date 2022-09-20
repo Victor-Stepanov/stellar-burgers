@@ -17,9 +17,9 @@ const OrdersHistory = () => {
 	const location = useLocation();
 
 	useEffect(() => {
-		dispatch(wsAuthConnectionOpen())
+		dispatch({type:wsAuthConnectionOpen})
 		return () => {
-			dispatch(wsAuthConnectionClosed())
+			dispatch({type:wsAuthConnectionClosed})
 		}
 	}, [dispatch])
 

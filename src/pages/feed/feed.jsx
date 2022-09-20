@@ -10,9 +10,9 @@ export const FeedPage = () => {
 
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(wsConnectionOpen())
+		dispatch({type:wsConnectionOpen})
 		return () => {
-			dispatch(wsConnectionClosed())
+			dispatch({type:wsConnectionClosed})
 		}
 	}, [dispatch])
 
