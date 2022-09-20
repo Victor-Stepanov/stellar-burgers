@@ -12,7 +12,8 @@ export const ResetPasswordPage = () => {
 	const dispatch = useDispatch();
 	const { resetSuccess, forgoutSuccess } = useSelector(store => store.userData);
 
-	const { values, handleChange } = useForm({ email: '', code: '' });
+	const { values, handleChange } = useForm({ password: '', code: '' });
+	console.log(values)
 
 	const resetValue = useCallback(
 		e => {
@@ -43,7 +44,7 @@ export const ResetPasswordPage = () => {
 					<PasswordInput type={'password'} placeholder={"Введите новый пароль"} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.password} name={'password'} />
 				</div>
 				<div className="pt-6 pb-6">
-					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.code} name={'name'} />
+					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.code} name={'code'} />
 				</div>
 				<Button disabled={!(values.password, values.code)} type="primary" size="medium">Восстановить</Button>
 			</form>
