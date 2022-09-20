@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendUpdateUserData } from "../../../services/actions/auth";
+import { sendUpdateUserData } from "../../../services/slice/userSlice";
 import {
 	Button,
 	Input,
@@ -14,7 +14,7 @@ import styles from "./profile-form.module.css";
 export const ProfileForm = () => {
 
 	const dispatch = useDispatch();
-	const { user } = useSelector((store) => store.userData.user);
+	const { user } = useSelector((store) => store.userData);
 	const { values, handleChange, setValues } = useForm({ name: user.name, email: user.email, password: '' });
 
 	const resetFormValue = () => {

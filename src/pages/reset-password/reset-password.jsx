@@ -3,7 +3,7 @@ import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { sendNewPassword } from '../../services/actions/auth';
+import { sendNewPassword } from '../../services/slice/userSlice';
 import useForm from '../../hooks/useForm';
 
 

@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import styles from './register.module.css';
 import { Link, Redirect } from 'react-router-dom';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { sendUserData } from '../../services/actions/auth';
+import { sendUserData } from '../../services/slice/userSlice';
 import { useDispatch, useSelector } from "react-redux";
 import useForm from '../../hooks/useForm';
 

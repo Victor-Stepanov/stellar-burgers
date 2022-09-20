@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from "react-dnd";
 import { addItem, removeItem } from '../../services/slice/constructorSlice';
-import { getOrder } from '../../services/actions/order'
+import { getOrder } from '../../services/slice/orderSlice';
 
 
 

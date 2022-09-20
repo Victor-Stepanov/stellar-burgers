@@ -11,8 +11,6 @@ import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
-import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types/detailsTypes";
-import { RESET_ITEM } from "../../services/action-types";
 import {
     LoginPage,
     ProfilePage,
@@ -24,8 +22,8 @@ import {
 } from "../../pages/index";
 import { ProtectedRoute } from "../../components/protected-route/protected-route";
 import { getCookie } from "../../utils/utils";
-import { getIngredients } from "../../services/actions/ingredients";
-import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
+import { getIngredients } from "../../services/slice/ingredientsSlice";
+import { sendUpdateToken, getUserInfo } from "../../services/slice/userSlice";
 import OrderInfo from '../order-info/order-info';
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
 
@@ -56,8 +54,6 @@ function App() {
     }
     //Закрыли все модальные окна
     const closeAllModals = () => {
-        dispatch({ type: RESET_DETAILS_INGRIDIENT });
-        dispatch({ type: RESET_ITEM });
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
         setIsOrderInfoOpened(false)
@@ -66,8 +62,13 @@ function App() {
 
     useEffect(() => {
         dispatch(getIngredients());
-       
-    }, [dispatch]);
+        if (!token && refreshToken) {
+            dispatch(sendUpdateToken());
+        }
+        if (token) {
+            dispatch(getUserInfo());
+        }
+    }, [dispatch, token, refreshToken]);
 
     const background = location.state && location.state.background;
 

@@ -10,7 +10,6 @@ import { useInView } from 'react-intersection-observer';
 const BurgerIngredients = ({ onClick }) => {
     const { ingredients, ingredientsRequest } = useSelector(state => state.ingredientsData)
 
-
     const bun = useMemo(() => ingredients.filter((item) => item.type === 'bun'), [ingredients]) // Булки
     const sauce = useMemo(() => ingredients.filter((item) => item.type === 'sauce'), [ingredients]) // Соусы
     const main = useMemo(() => ingredients.filter((item) => item.type === 'main'), [ingredients]) // Начинка

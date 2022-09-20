@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import styles from './profile-menu.module.css';
-import { sendLogoutData } from "../../../services/actions/auth";
+import { sendLogoutData } from "../../../services/slice/userSlice";
 
 const ProfileMenu = () => {
 
