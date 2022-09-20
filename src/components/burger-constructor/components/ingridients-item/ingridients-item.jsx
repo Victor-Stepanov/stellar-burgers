@@ -36,7 +36,7 @@ const IngridientsItem = ({ item, removeItem, index }) => {
             // if dragging up, continue only when hover is bigger than middle Y
             if (dragIndex > hoverIndex && hoverActualY > hoverMiddleY) return
 
-            dispatch(moveItem(dragIndex, hoverIndex))
+            dispatch(moveItem({dragIndex, hoverIndex}))
             item.index = hoverIndex
         },
     })

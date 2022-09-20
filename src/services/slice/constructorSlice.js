@@ -22,8 +22,8 @@ const constructorSlice = createSlice({
 			}
 		},
 		removeItem(state, action) {
+			state.element = state.element.filter((item) => item.id !== action.payload);
 		
-			
 		 },
 		moveItem(state, action) {
 			state.element = update(state.element, {
@@ -33,7 +33,10 @@ const constructorSlice = createSlice({
 				],
 			})
 		},
-		resetItem(){}
+		resetItem(state) {
+			state.bun = [];
+			state.element = [];
+		}
 		
 	}
 })

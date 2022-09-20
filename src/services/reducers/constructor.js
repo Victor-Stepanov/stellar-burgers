@@ -26,7 +26,7 @@ export const constructorReducer = (state = initialConstructorState, action) => {
         case REMOVE_ITEM: {
             return {
                 ...state,
-                element: [...state.element].filter((item) => item.id !== action.id),
+                element: [...state.element].filter((item) => item.id !== action.payload),
             };
         }
         case MOVE_ITEM: {
