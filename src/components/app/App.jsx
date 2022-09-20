@@ -26,6 +26,7 @@ import { getIngredients } from "../../services/slice/ingredientsSlice";
 import { sendUpdateToken, getUserInfo } from "../../services/slice/userSlice";
 import OrderInfo from '../order-info/order-info';
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
+import { resetItem } from '../../services/slice/constructorSlice';
 
 
 
@@ -56,8 +57,9 @@ function App() {
     const closeAllModals = () => {
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
-        setIsOrderInfoOpened(false)
-        history.goBack();
+        setIsOrderInfoOpened(false);
+        dispatch(resetItem())
+        history.replace('/');
     };
 
     useEffect(() => {

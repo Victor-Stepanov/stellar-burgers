@@ -19,8 +19,8 @@ export const getOrder = createAsyncThunk(
 			if (!responce.ok) {
 				throw new Error('An error occurred while receiving the order number');
 			}
-			const { order } = await responce.json();
-			return order;
+			const data = await responce.json();
+			return data;
 
 		} catch (error) {
 			return rejectWithValue(error.message);
@@ -43,8 +43,9 @@ const orderNumberSlice = createSlice({
 			state.orderRequest = true;
 		},
 		[getOrder.fulfilled]: (state, action) => {
+			const { order } = action.payload;
 			state.orderRequest = false;
-			state.order = action.payload;
+			state.order = order;
 			state.orderError = null;
 		},
 		[getOrder.rejected]: (state, action) => {

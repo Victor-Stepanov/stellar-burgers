@@ -10,7 +10,7 @@ export const getIngredients = createAsyncThunk(
 			if (!responce.ok) {
 				throw new Error('Loadin error');
 			}
-			const {data} = await responce.json();
+			const data = await responce.json();
 			return data;
 		
 		} catch (error) {
@@ -36,9 +36,10 @@ const ingredientsSlice = createSlice({
 			
 		},
 		[getIngredients.fulfilled]: (state, action) => {
+			const { data } = action.payload;
 			state.ingredientsRequest = false;
 			state.ingredientsFailed = null;
-			state.ingredients = action.payload;
+			state.ingredients = data;
 		},
 		[getIngredients.rejected]: (state, action) => {
 			state.ingredientsRequest = false;
