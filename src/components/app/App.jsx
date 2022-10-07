@@ -37,7 +37,7 @@ function App() {
     const [isOrderInfoOpened, setIsOrderInfoOpened] = useState(false);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const { orderRequest } = useSelector((store) => store.orderNumberData);
-    const { user } = useSelector((state) => state.userData); // получили user
+    const { user } = useSelector((state) => state.userData); 
     const dispatch = useDispatch();
     const token = getCookie("token");
     const refreshToken = localStorage.getItem("refreshToken"); // token - для обновления токена, если он умер
