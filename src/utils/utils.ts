@@ -1,3 +1,4 @@
+import { TIngrediens } from "../services/types/data";
 export const getCookie = (name: string): string | undefined => {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([$?*|{}\]\\^])/g, '\\$1') + '=([^;]*)')
@@ -5,7 +6,7 @@ export const getCookie = (name: string): string | undefined => {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export const setCookie =(
+export const setCookie = (
   name: string,
   value: string,
   props: { [key: string]: any } & { expires?: number | Date | string } = {}
@@ -36,22 +37,14 @@ export const deleteCookie = (name: string) => {
   setCookie(name, '', { expires: -1 });
 }
 
-export const convertedDate = (date) => {
-  let options = {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    timezone: "UTC",
-    hour: "numeric",
-    minute: "numeric",
-  };
-  return new Date(date).toLocaleDateString("ru", options);
+export const convertedDate = (date: string) => {
+  return new Date(date).toLocaleString()
 };
 
-export const checkedOrderStatus = (status:string) =>
+export const checkedOrderStatus = (status: string) =>
   status === "done" ? "Выполнен" : status === "pending" ? "Готовится" : "";
 
-export const sumIngredients = (arr) => {
+export const sumIngredients = (arr: Array<TIngrediens>) => {
   let sum = 0;
   if (Array.isArray(arr)) {
     arr.forEach((item) => {
@@ -63,21 +56,19 @@ export const sumIngredients = (arr) => {
   return sum;
 };
 
-export const checkedArrayLength = (arr) =>
+export const checkedArrayLength = (arr: Array<TIngrediens>) =>
   arr.length - 6 > 0 ? `${arr.length - 6}` : null;
 
-export const countIngredients = (arr, value) => {
-  let result = {};
-  let name = null;
-  if (Array.isArray(arr)) {
-    arr.forEach((item) => {
-      name = item.name;
-      if (name in result) {
-        result[name]++;
-      } else {
-        result[name] = 1;
-      }
-    });
-  }
+export const countIngredients = (arr: Array<TIngrediens>, value: string) => {
+  let result:any = {}; //Не могу победить в этой игре
+  let name: string = '';
+  arr.forEach((item) => {
+    name = item.name;
+    if (name in result) {
+      result[name]++;
+    } else {
+      result[name] = 1;
+    }
+  });
   return value in result ? result[value] : null;
 };

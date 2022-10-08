@@ -3,7 +3,7 @@ import {
     GET_INGREDIENTS_SUCCESS,
     GET_INGREDIENTS_FAILED,
 } from "../action-types";
-import { TIngrediensActions } from "../actions/ingredients";
+import { TIngrediensActions } from "../actions";
 
 import {TIngrediens} from '../types/data';
 

@@ -43,10 +43,6 @@ const getIngrediensFailedAction = ():IGetIngrediensFailed => ({
 export const getIngredients:AppThunk = () => (dispatch:AppDispatch) => {
     dispatch(getIngrediensAction());
     Api.getIngredientsDataFromServer()
-        .then((res) => {
-            dispatch(getIngrediensSuccessAction(res.data));
-        })
-        .catch((_) => {
-            dispatch(getIngrediensFailedAction());
-        });
+        .then((res) => dispatch(getIngrediensSuccessAction(res.data)))
+        .catch((_) => dispatch(getIngrediensFailedAction()));
 };

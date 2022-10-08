@@ -1,5 +1,5 @@
 import { ADD_ITEM, REMOVE_ITEM, MOVE_ITEM, RESET_ITEM } from "../action-types";
-import { TConstructorActions } from "../actions/constructor";
+import { TConstructorActions } from "../actions";
 import { TIngrediens } from "../types/data";
 import update from "immutability-helper";
 

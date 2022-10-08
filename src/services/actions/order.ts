@@ -11,6 +11,7 @@ interface ICreateOrderRequest {
 }
 interface ICreateOrderSuccess {
     readonly type:typeof CREATE_ORDER_SUCCESS;
+    readonly payload:number;
     
 }
 interface ICreateOrderFailed {
@@ -19,21 +20,24 @@ interface ICreateOrderFailed {
 
 export type TOrdersActions = ICreateOrderRequest|ICreateOrderSuccess|ICreateOrderFailed;
 
+//getIngrediensAction
+
+const createOrderRequestAction = ():ICreateOrderRequest => ({
+    type:CREATE_ORDER_REQUEST
+})
+
+const createOrderSuccessAction = (orderNumber:number):ICreateOrderSuccess => ({
+    type:CREATE_ORDER_SUCCESS,
+    payload:orderNumber
+})
+
+const createOrderSuccessFailed = ():ICreateOrderFailed => ({
+    type:CREATE_ORDER_FAILED
+})
 
 export const getOrder:AppThunk = (id:string) => (dispatch:AppDispatch) => {
-    dispatch({
-        type: CREATE_ORDER_REQUEST,
-    });
+    dispatch(createOrderRequestAction());
     Api.getOrderDataFromServer(id)
-        .then((res) => {
-            dispatch({
-                type: CREATE_ORDER_SUCCESS,
-                payload: res.order.number,
-            });
-        })
-        .catch((_) => {
-            dispatch({
-                type: CREATE_ORDER_FAILED,
-            });
-        });
+        .then((res) => dispatch(createOrderSuccessAction(res.order.number)))
+        .catch((_) => dispatch(createOrderSuccessFailed()));
 };
