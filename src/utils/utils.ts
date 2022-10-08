@@ -1,40 +1,40 @@
-export const setCookie = (name, value, props) => {
+export const getCookie = (name: string): string | undefined => {
+  const matches = document.cookie.match(
+    new RegExp('(?:^|; )' + name.replace(/([$?*|{}\]\\^])/g, '\\$1') + '=([^;]*)')
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+export const setCookie =(
+  name: string,
+  value: string,
+  props: { [key: string]: any } & { expires?: number | Date | string } = {}
+) => {
   props = props || {};
   let exp = props.expires;
-  if (typeof exp == "number" && exp) {
+  if (typeof exp == 'number' && exp) {
     const d = new Date();
     d.setTime(d.getTime() + exp * 1000);
     exp = props.expires = d;
   }
-  if (exp && exp.toUTCString) {
-    props.expires = exp.toUTCString();
+  if (exp && (exp as Date).toUTCString) {
+    props.expires = (exp as Date).toUTCString();
   }
   value = encodeURIComponent(value);
-  let updatedCookie = name + "=" + value;
+  let updatedCookie = name + '=' + value;
   for (const propName in props) {
-    updatedCookie += "; " + propName;
+    updatedCookie += '; ' + propName;
     const propValue = props[propName];
     if (propValue !== true) {
-      updatedCookie += "=" + propValue;
+      updatedCookie += '=' + propValue;
     }
   }
   document.cookie = updatedCookie;
-};
+}
 
-export const getCookie = (name) => {
-  const matches = document.cookie.match(
-    new RegExp(
-      "(?:^|; )" +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-        "=([^;]*)"
-    )
-  );
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-};
-
-export const deleteCookie = (name) => {
-  setCookie(name, null, { expires: -1 });
-};
+export const deleteCookie = (name: string) => {
+  setCookie(name, '', { expires: -1 });
+}
 
 export const convertedDate = (date) => {
   let options = {
@@ -48,7 +48,7 @@ export const convertedDate = (date) => {
   return new Date(date).toLocaleDateString("ru", options);
 };
 
-export const checkedOrderStatus = (status) =>
+export const checkedOrderStatus = (status:string) =>
   status === "done" ? "Выполнен" : status === "pending" ? "Готовится" : "";
 
 export const sumIngredients = (arr) => {

@@ -13,24 +13,37 @@ import {
   WS_AUTH_SEND_ORDERS,
 } from "../services/action-types";
 
-const config = {
+type TConfig = {
+  baseUrl:string;
+  headers:{
+    "Content-Type":string;
+  }
+}
+
+const config:TConfig = {
   baseUrl: "https://norma.nomoreparties.space/api",
   headers: {
     "Content-Type": "application/json",
   },
 };
 
-export const obj = {
+type TFillings = {
+  bun:string;
+  sauce:string;
+  main:string;
+}
+
+export const obj:TFillings = {
   bun: "Булки",
   sauce: "Соусы",
   main: "Начинки",
 };
 
 //Получение всех заказов
-const wsUrlAllOrders = "wss://norma.nomoreparties.space/orders/all";
+const wsUrlAllOrders:string = "wss://norma.nomoreparties.space/orders/all";
 
 //Получение опредленного заказа
-const wsUrlUserOrders = "wss://norma.nomoreparties.space/orders";
+const wsUrlUserOrders:string = "wss://norma.nomoreparties.space/orders";
 
 const wsActions = {
   wsInit: WS_CONNECTION_START,

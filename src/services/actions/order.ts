@@ -4,8 +4,23 @@ import {
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAILED,
 } from "../action-types";
+import {AppThunk, AppDispatch} from '../types/index';
 
-export const getOrder = (id) => (dispatch) => {
+interface ICreateOrderRequest {
+    readonly type:typeof CREATE_ORDER_REQUEST;
+}
+interface ICreateOrderSuccess {
+    readonly type:typeof CREATE_ORDER_SUCCESS;
+    
+}
+interface ICreateOrderFailed {
+    readonly type:typeof CREATE_ORDER_FAILED;
+}
+
+export type TOrdersActions = ICreateOrderRequest|ICreateOrderSuccess|ICreateOrderFailed;
+
+
+export const getOrder:AppThunk = (id:string) => (dispatch:AppDispatch) => {
     dispatch({
         type: CREATE_ORDER_REQUEST,
     });

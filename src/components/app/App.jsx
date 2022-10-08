@@ -10,7 +10,7 @@ import Modal from "../modal/modal.jsx";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../hooks/hooks";
 import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types/detailsTypes";
 import { RESET_ITEM } from "../../services/action-types";
 import {
