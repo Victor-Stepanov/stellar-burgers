@@ -26,9 +26,11 @@ import {
 	RESET_PASSWORD_SUCCESS,
 	USER_REGISTER_SUCCESS,
 } from "../action-types";
+import {TFormValues} from '../types/data';
+import {AppThunk, AppDispatch} from '../types/index';
 
 //Данные регистрации
-export const sendUserData = (form) => (dispatch) => {
+export const sendUserData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_REGISTER_REQUEST,
 	});
@@ -52,7 +54,7 @@ export const sendUserData = (form) => (dispatch) => {
 };
 
 //Данные авторизации
-export const sendLoginData = (form) => (dispatch) => {
+export const sendLoginData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_LOGIN_REQUEST,
 	});
@@ -75,7 +77,7 @@ export const sendLoginData = (form) => (dispatch) => {
 };
 
 //Выход с учетной записи
-export const sendLogoutData = () => (dispatch) => {
+export const sendLogoutData:AppThunk = () => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_LOGOUT_REQUEST,
 	});
@@ -95,7 +97,7 @@ export const sendLogoutData = () => (dispatch) => {
 		});
 };
 
-export const sendEmailResetValue = (form) => (dispatch) => {
+export const sendEmailResetValue:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: FORGOUT_PASSWORD_REQUEST,
 	});
@@ -114,7 +116,7 @@ export const sendEmailResetValue = (form) => (dispatch) => {
 		});
 };
 
-export const sendUpdateUserData = (form) => (dispatch) => {
+export const sendUpdateUserData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: UPDATE_USER_REQUEST,
 	});
@@ -133,7 +135,7 @@ export const sendUpdateUserData = (form) => (dispatch) => {
 		});
 };
 
-export const sendNewPassword = (form) => (dispatch) => {
+export const sendNewPassword:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: RESET_PASSWORD_REQUEST,
 	});
@@ -152,7 +154,7 @@ export const sendNewPassword = (form) => (dispatch) => {
 		});
 };
 
-export const sendUpdateToken = () => (dispatch) => {
+export const sendUpdateToken:AppThunk = () => (dispatch:AppDispatch) => {
 	dispatch({
 		type: TOKEN_UPDATE_REQUEST,
 	});
@@ -173,7 +175,7 @@ export const sendUpdateToken = () => (dispatch) => {
 		});
 };
 
-export const getUserInfo = () => (dispatch) => {
+export const getUserInfo:AppThunk = () => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_INFO_REQUEST,
 	});

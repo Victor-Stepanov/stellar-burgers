@@ -13,3 +13,9 @@ export type TIngrediens = {
     readonly __v: number;
     id?:string;
 }
+
+export type TFormValues = {
+    readonly name?:string;
+    readonly email?:string;
+    readonly password?:string;
+}

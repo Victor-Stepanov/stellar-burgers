@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { TIngrediensActions, TConstructorActions, TOrdersActions, TDetailsActions } from "../actions";
+import { TIngrediensActions, TConstructorActions, TOrdersActions, TDetailsActions, TUserActions } from "../actions";
 import { Action, ActionCreator, Dispatch  } from "redux";
 import { store } from "../store";
 
