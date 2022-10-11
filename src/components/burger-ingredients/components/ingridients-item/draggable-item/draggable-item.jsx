@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector} from "../../../../../hooks/hooks";
 import React, { useMemo } from "react";
 import styles from "../ingridients-item.module.css";
 import { ingredientPropType } from '../../../../../utils/prop-types.js';

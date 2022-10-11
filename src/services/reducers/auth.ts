@@ -25,7 +25,48 @@ import {
 	USER_REGISTER_SUCCESS,
 } from "../action-types";
 
-const initialUserState = {
+import {TUserActions} from '../actions';
+import {TUser} from '../types/data';
+
+type TInitialState ={
+	user: TUser|null;
+
+	userRequest: boolean;
+	userError: boolean;
+
+	loginRequest: boolean;
+	loginSuccess: boolean;
+	loginFailed: boolean;
+
+	logoutRequest: boolean;
+	logoutSuccess: boolean;
+	logoutFailed: boolean;
+
+	forgoutRequest: boolean;
+	forgoutSuccess: boolean;
+	forgoutFailed: boolean;
+
+	resetRequest: boolean;
+	resetSuccess: boolean;
+	resetFailed: boolean;
+
+	userInfoRequest: boolean;
+	userInfoSuccess: boolean;
+	userInfoFailed: boolean;
+
+	tokenRequest: boolean;
+	tokenSuccess: boolean;
+	tokenFailed: boolean;
+
+	userUpdateRequest: boolean;
+	userUpdateSuccess: boolean;
+	userUpdateFailed: boolean;
+
+	success:boolean;
+
+}
+
+const initialUserState:TInitialState = {
 	user: null,
 
 	userRequest: false,
@@ -58,9 +99,11 @@ const initialUserState = {
 	userUpdateRequest: false,
 	userUpdateSuccess: false,
 	userUpdateFailed: false,
+
+	success:false
 };
 
-export const userReducer = (state = initialUserState, action) => {
+export const userReducer = (state = initialUserState, action:TUserActions):TInitialState => {
 	switch (action.type) {
 		case USER_REGISTER_REQUEST: {
 			return {
@@ -135,6 +178,7 @@ export const userReducer = (state = initialUserState, action) => {
 		}
 		case UPDATE_USER_REQUEST: {
 			return {
+				...state,
 				userUpdateRequest: true,
 				userUpdateSuccess: false,
 				userUpdateFailed: false,
@@ -171,7 +215,7 @@ export const userReducer = (state = initialUserState, action) => {
 				forgoutRequest: false,
 				forgoutSuccess: true,
 				forgoutFailed: false,
-				success: action.success,
+				success: action.payload.success,
 			};
 		}
 		case FORGOUT_PASSWORD_FAILED: {
@@ -196,7 +240,7 @@ export const userReducer = (state = initialUserState, action) => {
 				resetRequest: false,
 				resetSuccess: true,
 				resetFailed: false,
-				success: action.success,
+				success: action.payload.success,
 			};
 		}
 		case RESET_PASSWORD_FAILED: {

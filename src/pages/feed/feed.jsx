@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from './feed.module.css';
-import { useDispatch} from "react-redux";
+import {useDispatch } from "../../hooks/hooks";
 import { wsConnectionOpen, wsConnectionClosed } from '../../services/action-types';
 import { Orders } from "../../components/orders/orders";
 import { OrdersStats } from "../../components/orders-stats/orders-stats";

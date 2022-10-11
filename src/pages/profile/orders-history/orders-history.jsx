@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from './orders-history.module.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../../hooks/hooks";
 import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/action-types';
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";

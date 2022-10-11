@@ -26,23 +26,20 @@ interface IGetIngrediensFailed {
 export type TIngrediensActions = IGetIngrediensRequest|IGetIngrediensSuccess|IGetIngrediensFailed;
 // --------------------------------------------------------------
 
-// Генераторы экшенов
-const getIngrediensAction = ():IGetIngrediensRequest => ({
-    type:GET_INGREDIENTS_REQUEST
-})
-
-const getIngrediensSuccessAction = (ingredients:ReadonlyArray<TIngrediens>):IGetIngrediensSuccess => ({
-    type:GET_INGREDIENTS_SUCCESS,
-    ingredients
-})
-
-const getIngrediensFailedAction = ():IGetIngrediensFailed => ({
-    type:GET_INGREDIENTS_FAILED
-})
-
 export const getIngredients:AppThunk = () => (dispatch:AppDispatch) => {
-    dispatch(getIngrediensAction());
+    dispatch({
+        type: GET_INGREDIENTS_REQUEST,
+    });
     Api.getIngredientsDataFromServer()
-        .then((res) => dispatch(getIngrediensSuccessAction(res.data)))
-        .catch((_) => dispatch(getIngrediensFailedAction()));
+        .then((res) => {
+            dispatch({
+                type: GET_INGREDIENTS_SUCCESS,
+                ingredients: res.data,
+            });
+        })
+        .catch((_) => {
+            dispatch({
+                type: GET_INGREDIENTS_FAILED,
+            });
+        });
 };

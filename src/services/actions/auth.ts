@@ -26,10 +26,39 @@ import {
 	RESET_PASSWORD_SUCCESS,
 	USER_REGISTER_SUCCESS,
 } from "../action-types";
-import {TFormValues} from '../types/data';
+import {TFormValues, TUser,TSameResponce} from '../types/data';
 import {AppThunk, AppDispatch} from '../types/index';
 
+//Union
+export type TUserActions =
+    | TUserRegisterActions
+    | TUserLoginActions
+    | TUserLogoutActions
+    | TForgoutActions
+    | TUpdateUserActions
+    | TResetPasswordActions
+    | TTokenUpdateActions
+    | TUserInfoActions;
+
 //Данные регистрации
+interface IUserRegisterRequest {
+    readonly type: typeof USER_REGISTER_REQUEST;
+}
+
+interface IUserRegisterSuccess {
+    readonly type: typeof USER_REGISTER_SUCCESS;
+	readonly payload:TUser;
+}
+interface IUserRegisterFailed {
+    readonly type: typeof USER_REGISTER_FAILED;
+}
+
+type TUserRegisterActions =
+    | IUserRegisterRequest
+    | IUserRegisterSuccess
+    | IUserRegisterFailed;
+
+
 export const sendUserData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_REGISTER_REQUEST,
@@ -54,6 +83,24 @@ export const sendUserData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch
 };
 
 //Данные авторизации
+interface IUserLoginRequest {
+    readonly type: typeof USER_LOGIN_REQUEST;
+}
+
+interface IUserLoginSuccess {
+    readonly type: typeof USER_LOGIN_SUCCESS;
+	readonly payload:TUser;
+}
+interface IUserLoginFailed {
+    readonly type: typeof USER_LOGIN_FAILED;
+}
+
+type TUserLoginActions =
+    | IUserLoginRequest
+    | IUserLoginSuccess
+    | IUserLoginFailed;
+
+
 export const sendLoginData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_LOGIN_REQUEST,
@@ -77,6 +124,21 @@ export const sendLoginData:AppThunk = (form:TFormValues) => (dispatch:AppDispatc
 };
 
 //Выход с учетной записи
+interface IUserLogoutRequest {
+    readonly type: typeof USER_LOGOUT_REQUEST;
+}
+interface IUserLogoutSuccess {
+    readonly type: typeof USER_LOGOUT_SUCCESS;
+}
+interface IUserLogoutFailed {
+    readonly type: typeof USER_LOGOUT_FAILED;
+}
+type TUserLogoutActions =
+    | IUserLogoutRequest
+    | IUserLogoutSuccess
+    | IUserLogoutFailed;
+
+
 export const sendLogoutData:AppThunk = () => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_LOGOUT_REQUEST,
@@ -97,6 +159,26 @@ export const sendLogoutData:AppThunk = () => (dispatch:AppDispatch) => {
 		});
 };
 
+//sendEmailResetValue
+interface IForgoutPasswordRequest {
+    readonly type: typeof FORGOUT_PASSWORD_REQUEST;
+}
+
+interface IForgoutPasswordSuccess {
+    readonly type: typeof FORGOUT_PASSWORD_SUCCESS;
+	readonly payload:TSameResponce;
+}
+
+interface IForgoutPasswordFailed {
+    readonly type: typeof FORGOUT_PASSWORD_FAILED;
+}
+
+type TForgoutActions =
+    | IForgoutPasswordRequest
+    | IForgoutPasswordSuccess
+    | IForgoutPasswordFailed;
+
+
 export const sendEmailResetValue:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: FORGOUT_PASSWORD_REQUEST,
@@ -105,7 +187,7 @@ export const sendEmailResetValue:AppThunk = (form:TFormValues) => (dispatch:AppD
 		.then((res) => {
 			dispatch({
 				type: FORGOUT_PASSWORD_SUCCESS,
-				success: res.success,
+				payload: res,
 			});
 		})
 		.catch((err) => {
@@ -115,6 +197,23 @@ export const sendEmailResetValue:AppThunk = (form:TFormValues) => (dispatch:AppD
 			});
 		});
 };
+
+//sendUpdateUserData UPDATE_USER_FAILED
+interface IUpdateUserRequest {
+    readonly type: typeof UPDATE_USER_REQUEST;
+}
+interface IUpdateUserSuccess {
+    readonly type: typeof UPDATE_USER_SUCCESS;
+	readonly payload:TUser;
+}
+interface IUpdateUserFailed {
+    readonly type: typeof UPDATE_USER_FAILED;
+}
+
+type TUpdateUserActions =
+    | IUpdateUserRequest
+    | IUpdateUserSuccess
+    | IUpdateUserFailed;
 
 export const sendUpdateUserData:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
@@ -135,6 +234,25 @@ export const sendUpdateUserData:AppThunk = (form:TFormValues) => (dispatch:AppDi
 		});
 };
 
+//sendNewPassword RESET_PASSWORD_FAILED
+
+interface IResetPasswordRequest {
+    readonly type: typeof RESET_PASSWORD_REQUEST;
+}
+interface IResetPasswordSuccess {
+    readonly type: typeof RESET_PASSWORD_SUCCESS;
+	readonly payload:TSameResponce;
+}
+interface IResetPasswordFailed {
+    readonly type: typeof RESET_PASSWORD_FAILED;
+}
+
+type TResetPasswordActions =
+    | IResetPasswordRequest
+    | IResetPasswordSuccess
+    | IResetPasswordFailed;
+
+
 export const sendNewPassword:AppThunk = (form:TFormValues) => (dispatch:AppDispatch) => {
 	dispatch({
 		type: RESET_PASSWORD_REQUEST,
@@ -143,7 +261,7 @@ export const sendNewPassword:AppThunk = (form:TFormValues) => (dispatch:AppDispa
 		.then((res) => {
 			dispatch({
 				type: RESET_PASSWORD_SUCCESS,
-				success: res.success,
+				payload: res,
 			});
 		})
 		.catch((err) => {
@@ -153,6 +271,22 @@ export const sendNewPassword:AppThunk = (form:TFormValues) => (dispatch:AppDispa
 			});
 		});
 };
+
+//sendUpdateToken TOKEN_UPDATE_FAILED
+interface ITokenUpdateRequest {
+    readonly type: typeof TOKEN_UPDATE_REQUEST;
+}
+interface ITokenUpdateSuccess {
+    readonly type: typeof TOKEN_UPDATE_SUCCESS;
+}
+interface ITokenUpdateFailed {
+    readonly type: typeof TOKEN_UPDATE_FAILED;
+}
+type TTokenUpdateActions =
+    | ITokenUpdateRequest
+    | ITokenUpdateSuccess
+    | ITokenUpdateFailed;
+
 
 export const sendUpdateToken:AppThunk = () => (dispatch:AppDispatch) => {
 	dispatch({
@@ -175,6 +309,21 @@ export const sendUpdateToken:AppThunk = () => (dispatch:AppDispatch) => {
 		});
 };
 
+//getUserInfo USER_INFO_REQUEST
+
+interface IUserInfoRequest {
+    readonly type: typeof USER_INFO_REQUEST;
+}
+interface IUserInfoSuccess {
+    readonly type: typeof USER_INFO_SUCCESS;
+	readonly payload:TUser;
+}
+interface IUserInfoFailed {
+    readonly type: typeof USER_INFO_FAILED;
+}
+
+type TUserInfoActions = IUserInfoRequest | IUserInfoSuccess | IUserInfoFailed;
+
 export const getUserInfo:AppThunk = () => (dispatch:AppDispatch) => {
 	dispatch({
 		type: USER_INFO_REQUEST,
@@ -192,3 +341,5 @@ export const getUserInfo:AppThunk = () => (dispatch:AppDispatch) => {
 			});
 		});
 };
+
+

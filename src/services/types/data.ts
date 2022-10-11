@@ -11,11 +11,26 @@ export type TIngrediens = {
     readonly image_mobile: number;
     readonly image_large: number;
     readonly __v: number;
-    id?:string;
+    id?: string;
 }
 
 export type TFormValues = {
-    readonly name?:string;
-    readonly email?:string;
-    readonly password?:string;
+    readonly name?: string;
+    readonly email?: string;
+    readonly password?: string;
+}
+
+export type TUser = {
+    readonly success: boolean;
+    readonly user?: {
+        readonly email: string,
+        readonly name: string
+    };
+    readonly accessToken?: string;
+    readonly refreshToken?: string;
+}
+
+export type TSameResponce = {
+    readonly success: boolean;
+    readonly message: string;
 }

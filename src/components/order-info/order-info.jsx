@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useParams, useRouteMatch } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../hooks/hooks";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import styles from './not-found.module.css';
 import notf from '../../images/notf.svg';
-import { useSelector } from "react-redux";
+import { useSelector} from "../../hooks/hooks";
 
 
 export const NotFound404 = () => {

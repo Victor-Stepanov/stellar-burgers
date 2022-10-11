@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector} from "../../hooks/hooks";
 import styles from './orders-stats.module.css';
 
 

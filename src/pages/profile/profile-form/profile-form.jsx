@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../../hooks/hooks";
 import { sendUpdateUserData } from "../../../services/actions/auth";
 import {
 	Button,

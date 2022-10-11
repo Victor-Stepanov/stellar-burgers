@@ -1,6 +1,6 @@
 import React from 'react';
 import IngredientDetailsStyle from './ingredient-details.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector} from "../../hooks/hooks";
 import { useParams } from 'react-router';
 
 const IngredientDetails = ({title}) => {

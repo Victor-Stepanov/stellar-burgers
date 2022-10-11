@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useSelector} from "../../../hooks/hooks";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './order-item.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, checkedArrayLength } from "../../../utils/utils";

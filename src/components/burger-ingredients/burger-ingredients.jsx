@@ -2,7 +2,7 @@ import React, {useMemo } from 'react';
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import TabsMenu from '../burger-ingredients/components/tabs-menu/tabs-menu.jsx';
 import IngridientsItem from '../burger-ingredients/components/ingridients-item/ingridients-item.jsx';
-import { useSelector} from 'react-redux';
+import { useSelector} from "../../hooks/hooks";
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 

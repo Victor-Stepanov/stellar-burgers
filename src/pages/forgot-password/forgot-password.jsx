@@ -2,7 +2,7 @@ import React, {useCallback} from "react";
 import styles from './forgot-password.module.css';
 import { Link, Redirect } from 'react-router-dom'
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../hooks/hooks";
 import { sendEmailResetValue } from '../../services/actions/auth';
 import useForm from '../../hooks/useForm';
 

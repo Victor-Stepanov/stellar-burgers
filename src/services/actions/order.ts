@@ -22,22 +22,22 @@ export type TOrdersActions = ICreateOrderRequest|ICreateOrderSuccess|ICreateOrde
 
 //getIngrediensAction
 
-const createOrderRequestAction = ():ICreateOrderRequest => ({
-    type:CREATE_ORDER_REQUEST
-})
 
-const createOrderSuccessAction = (orderNumber:number):ICreateOrderSuccess => ({
-    type:CREATE_ORDER_SUCCESS,
-    payload:orderNumber
-})
-
-const createOrderSuccessFailed = ():ICreateOrderFailed => ({
-    type:CREATE_ORDER_FAILED
-})
 
 export const getOrder:AppThunk = (id:string) => (dispatch:AppDispatch) => {
-    dispatch(createOrderRequestAction());
+    dispatch({
+        type: CREATE_ORDER_REQUEST,
+    });
     Api.getOrderDataFromServer(id)
-        .then((res) => dispatch(createOrderSuccessAction(res.order.number)))
-        .catch((_) => dispatch(createOrderSuccessFailed()));
+        .then((res) => {
+            dispatch({
+                type: CREATE_ORDER_SUCCESS,
+                payload: res.order.number,
+            });
+        })
+        .catch((_) => {
+            dispatch({
+                type: CREATE_ORDER_FAILED,
+            });
+        });
 };
