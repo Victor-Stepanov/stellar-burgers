@@ -13,7 +13,7 @@ import {
   WS_AUTH_SEND_ORDERS,
 } from "../services/action-types";
 
-type TConfig = {
+export type TConfig = {
   baseUrl:string;
   headers:{
     "Content-Type":string;
