@@ -50,13 +50,3 @@ export type TFeedResponce = {
     readonly total: number
     readonly totalToday: number;
   }
-
-  export type TWebSocketActions = {
-    readonly wsInit?:string;
-    readonly  wsInitWithToken?:string;
-    readonly wsSendMessage:string;
-    readonly onOpen:string;
-    readonly onClose:string; 
-    readonly onError:string;
-    readonly onMessage:string;
-  }

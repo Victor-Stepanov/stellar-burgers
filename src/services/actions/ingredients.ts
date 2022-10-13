@@ -43,4 +43,3 @@ export const getIngredients:AppThunk = () => (dispatch:AppDispatch) => {
             });
         });
 };
-console.log(Api.getIngredientsDataFromServer())
