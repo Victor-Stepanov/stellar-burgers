@@ -12,6 +12,7 @@ import {
   WS_AUTH_GET_ORDERS,
   WS_AUTH_SEND_ORDERS,
 } from "../services/action-types";
+import { TWsActions } from "../services/types/data";
 
 export type TConfig = {
   baseUrl:string;
@@ -45,7 +46,7 @@ const wsUrlAllOrders:string = "wss://norma.nomoreparties.space/orders/all";
 //Получение опредленного заказа
 const wsUrlUserOrders:string = "wss://norma.nomoreparties.space/orders";
 
-const wsActions = {
+const wsActions:TWsActions = {
   wsInit: WS_CONNECTION_START,
   wsSendMessage: WS_SEND_ORDERS,
   onOpen: WS_CONNECTION_SUCCESS,
@@ -54,7 +55,7 @@ const wsActions = {
   onMessage: WS_GET_ORDERS,
 };
 
-const wsActionsAuth = {
+const wsActionsAuth:TWsActions = {
   wsInitWithToken: WS_AUTH_CONNECTION_START,
   wsSendMessage: WS_AUTH_SEND_ORDERS,
   onOpen: WS_AUTH_CONNECTION_SUCCESS,

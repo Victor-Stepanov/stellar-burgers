@@ -34,3 +34,29 @@ export type TSameResponce = {
     readonly success: boolean;
     readonly message: string;
 }
+
+export type TFeed = {
+    ingredients:Array<string>;
+    _id:string;
+    status:string;
+    number:number;
+    createdAt:string;
+    updatedAt:string;
+}
+
+export type TFeedResponce = {
+    success: boolean;
+    orders:Array<TFeed>; 
+    total: number
+    totalToday: number;
+  }
+
+  export type TWsActions = {
+    wsInit?:string;
+    wsInitWithToken?:string;
+    wsSendMessage:string;
+    onOpen:string;
+    onClose:string; 
+    onError:string;
+    onMessage:string;
+  }

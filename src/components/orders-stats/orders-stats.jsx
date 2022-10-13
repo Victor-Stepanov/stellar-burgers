@@ -1,17 +1,17 @@
 import React from "react";
-import { useSelector} from "../../hooks/hooks";
+import { useAppSelector} from "../../hooks/hooks";
 import styles from './orders-stats.module.css';
 
 
 export const OrdersStats = () => {
 	//Все заказы
-	const { orders } = useSelector(store => store.ws);
+	const { orders } = useAppSelector(store => store.ws);
 	//Готовые:
 	const doneStatus = orders.filter((order) => order.status === 'done').filter((order, index) => index < 10);
 	//В работе
 	const inWorkStatus = orders.filter((order) => order.status !== 'done').filter((order, index) => index < 10);
 	//Total && totalToday
-	const { total, totalToday } = useSelector(store => store.ws);
+	const { total, totalToday } = useAppSelector(store => store.ws);
 	return (
 		<div className={styles.OrdersStats}>
 			<ul className={`${styles.OrdersBoard}`}>

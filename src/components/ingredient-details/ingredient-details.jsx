@@ -1,10 +1,10 @@
 import React from 'react';
 import IngredientDetailsStyle from './ingredient-details.module.css';
-import { useSelector} from "../../hooks/hooks";
+import { useAppSelector} from "../../hooks/hooks";
 import { useParams } from 'react-router';
 
 const IngredientDetails = ({title}) => {
-    const { ingredients } = useSelector(store => store.ingredientsData);
+    const { ingredients } = useAppSelector(store => store.ingredientsData);
     const { id } = useParams();
 
     const ingredient = ingredients.find((item) => item._id === id);

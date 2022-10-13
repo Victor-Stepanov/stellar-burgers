@@ -4,12 +4,12 @@ import {DragIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger
 import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd'
 import {moveItem} from '../../../../services/actions/constructor';
-import {useDispatch } from "../../../../hooks/hooks";
+import {useAppDispatch} from "../../../../hooks/hooks";
 
 
 const IngridientsItem = ({ item, removeItem, index }) => {
     const { id } = item;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const ref = useRef(null)
 
     const [{ isDragging }, dragRef] = useDrag({

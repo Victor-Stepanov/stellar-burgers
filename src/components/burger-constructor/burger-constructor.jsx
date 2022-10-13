@@ -4,7 +4,7 @@ import IngridientsItem from '../burger-constructor/components/ingridients-item/i
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from "../../hooks/hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { useDrop } from "react-dnd";
 import { addItem, removeItem } from '../../services/actions/constructor';
 import { getOrder } from '../../services/actions/order';
@@ -12,8 +12,8 @@ import { getOrder } from '../../services/actions/order';
 
 
 const BurgerConstructor = ({ openOrderModal }) => {
-    const dispatch = useDispatch()
-    const { element, bun } = useSelector((state) => state.constructorData) // получаем элементы из хранилища
+    const dispatch = useAppDispatch()
+    const { element, bun } = useAppSelector((state) => state.constructorData) // получаем элементы из хранилища
     
     const [total, setTotal] = useState(0);
     useEffect(() => {

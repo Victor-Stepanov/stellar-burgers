@@ -2,15 +2,15 @@ import React, { useCallback } from "react";
 import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from "../../hooks/hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { sendNewPassword } from '../../services/actions/auth';
 import useForm from '../../hooks/useForm';
 
 
 export const ResetPasswordPage = () => {
 
-	const dispatch = useDispatch();
-	const { resetSuccess, forgoutSuccess } = useSelector(store => store.userData);
+	const dispatch = useAppDispatch();
+	const { resetSuccess, forgoutSuccess } = useAppSelector(store => store.userData);
 
 	const { values, handleChange } = useForm({ email: '', code: '' });
 

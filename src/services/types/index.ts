@@ -1,11 +1,12 @@
 import { ThunkAction } from "redux-thunk";
-import { TIngrediensActions, TConstructorActions, TOrdersActions, TDetailsActions, TUserActions } from "../actions";
+import { TIngrediensActions, TConstructorActions, TOrdersActions, TDetailsActions, TUserActions, TWsActions, TWsAuthActions } from "../actions";
 import { Action, ActionCreator, Dispatch  } from "redux";
-import { store } from "../store";
 
-export type RootState = ReturnType<typeof store.getState>;
+import { rootReducer } from "../reducers";
+
+export type RootState = ReturnType<typeof rootReducer>;
 //Типизация всех экшенов приложения
-type TApplicationActions = TIngrediensActions|TConstructorActions|TOrdersActions|TDetailsActions|TUserActions;
+type TApplicationActions = TIngrediensActions|TConstructorActions|TOrdersActions|TDetailsActions|TUserActions|TWsActions|TWsAuthActions;
 
 // Типизация thunk 
 export type AppThunk<TReturn = void> = ActionCreator<
@@ -13,5 +14,4 @@ export type AppThunk<TReturn = void> = ActionCreator<
 >; 
 
 //Dispatch
-
 export type AppDispatch = Dispatch<TApplicationActions>;
