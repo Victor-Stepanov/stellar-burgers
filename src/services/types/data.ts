@@ -36,27 +36,27 @@ export type TSameResponce = {
 }
 
 export type TFeed = {
-    ingredients:Array<string>;
-    _id:string;
-    status:string;
-    number:number;
-    createdAt:string;
-    updatedAt:string;
+    readonly ingredients:Array<string>;
+    readonly _id:string;
+    readonly status:string;
+    readonly number:number;
+    readonly createdAt:string;
+    readonly updatedAt:string;
 }
 
 export type TFeedResponce = {
-    success: boolean;
-    orders:Array<TFeed>; 
-    total: number
-    totalToday: number;
+    readonly success: boolean;
+    readonly orders:Array<TFeed>; 
+    readonly total: number
+    readonly totalToday: number;
   }
 
-  export type TWsActions = {
-    wsInit?:string;
-    wsInitWithToken?:string;
-    wsSendMessage:string;
-    onOpen:string;
-    onClose:string; 
-    onError:string;
-    onMessage:string;
+  export type TWebSocketActions = {
+    readonly wsInit?:string;
+    readonly  wsInitWithToken?:string;
+    readonly wsSendMessage:string;
+    readonly onOpen:string;
+    readonly onClose:string; 
+    readonly onError:string;
+    readonly onMessage:string;
   }

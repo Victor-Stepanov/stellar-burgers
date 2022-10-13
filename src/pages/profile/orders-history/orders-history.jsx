@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from './orders-history.module.css';
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
-import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/action-types';
+import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/actions';
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";

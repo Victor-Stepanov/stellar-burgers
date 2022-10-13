@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch} from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
 
 export const LoginPage = () => {
-	const dispatch = useAppispatch();
+	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({email: '', password: '' });
 	const user = useAppSelector(store => store.userData.user);
 	const location = useLocation();
