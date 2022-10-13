@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import styles from './feed.module.css';
-import { useDispatch} from "react-redux";
-import { wsConnectionOpen, wsConnectionClosed } from '../../services/action-types';
+import {useAppDispatch} from "../../hooks/hooks";
+import { wsConnectionOpen, wsConnectionClosed } from '../../services/actions';
 import { Orders } from "../../components/orders/orders";
 import { OrdersStats } from "../../components/orders-stats/orders-stats";
 
 
 export const FeedPage = () => {
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
 		dispatch(wsConnectionOpen())
 		return () => {

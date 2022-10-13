@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import styles from './not-found.module.css';
 import notf from '../../images/notf.svg';
-import { useSelector } from "react-redux";
+import { useAppSelector} from "../../hooks/hooks";
 
 
-export const NotFound404 = () => {
-  const user = useSelector(store => store.userData?.user?.user)
+export const NotFound404 = ():JSX.Element => {
+
+  const user = useAppSelector(store => store.userData?.user?.user)
   
-  let title = !user ? 'Boddy':user.name;
+  let title:string = !user ? 'Boddy':user.name;
   
   return (
     <div className={styles.container}>

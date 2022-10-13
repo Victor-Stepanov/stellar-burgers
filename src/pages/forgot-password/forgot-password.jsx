@@ -2,13 +2,13 @@ import React, {useCallback} from "react";
 import styles from './forgot-password.module.css';
 import { Link, Redirect } from 'react-router-dom'
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch} from "../../hooks/hooks";
 import { sendEmailResetValue } from '../../services/actions/auth';
 import useForm from '../../hooks/useForm';
 
 export const ForgotPasswordPage = () => {
-	const { forgoutSuccess } = useSelector(store => store.userData);
-	const dispatch = useDispatch();
+	const { forgoutSuccess } = useAppSelector(store => store.userData);
+	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({ email: ''});
 
 	const forgoutPassword = useCallback(

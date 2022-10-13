@@ -1,8 +1,14 @@
+import { Middleware, MiddlewareAPI } from "redux";
+import { IWsActions} from "../../utils/const";
 import { getCookie } from "../../utils/utils";
+import { AppDispatch, RootState } from "../types";
 
-export const socketMiddleware = (wsUrl, wsActions) => {
+
+export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middleware<{}, RootState, AppDispatch> => {
 	return store => {
-		let socket = null;
+		let socket: WebSocket | null = null;
+	
+		//TODO: Add type guard
 
 		return next => action => {
 			const { dispatch } = store;

@@ -3,14 +3,14 @@ import styles from './register.module.css';
 import { Link, Redirect } from 'react-router-dom';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { sendUserData } from '../../services/actions/auth';
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
 
 export const RegisterPage = () => {
-	const { user } = useSelector(store => store.userData);
+	const { user } = useAppSelector(store => store.userData);
 	const { values, handleChange } = useForm({ name: '', email: '', password: '' });
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const userRegister = useCallback(
 		e => {

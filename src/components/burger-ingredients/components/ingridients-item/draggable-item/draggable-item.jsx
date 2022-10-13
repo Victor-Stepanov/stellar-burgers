@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useAppSelector} from "../../../../../hooks/hooks";
 import React, { useMemo } from "react";
 import styles from "../ingridients-item.module.css";
 import { ingredientPropType } from '../../../../../utils/prop-types.js';
@@ -9,7 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const DraggableItem = ({ ingredient, onClick }) => {
     const location = useLocation();
-    const { element, bun } = useSelector((state) => state.constructorData)
+    const { element, bun } = useAppSelector((state) => state.constructorData)
     const [{ isDrag }, dragRef] = useDrag({
         type: "ingredient",
         item: ingredient,

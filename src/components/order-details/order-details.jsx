@@ -1,11 +1,11 @@
 import React from 'react';
 import OrderDetailsStyle from './order-details.module.css';
 import done from '../../images/done.png';
-import { useSelector } from 'react-redux';
+import { useAppSelector} from "../../hooks/hooks";
 import Loader from '../loader/loader';
 
 const OrderDetails = () => {
-    const { number } = useSelector(store => store.orderNumberData.order)
+    const { number } = useAppSelector(store => store.orderNumberData.order)
 
     return (
         <>

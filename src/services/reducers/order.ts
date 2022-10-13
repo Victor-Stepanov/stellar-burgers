@@ -4,7 +4,17 @@ import {
     CREATE_ORDER_FAILED,
 } from "../action-types";
 
-const orderState = {
+import {TOrdersActions} from '../actions/order';
+
+type TInitialState = {
+    order:{
+        number:number|null;
+    };
+    orderRequest:boolean;
+    orderError:boolean;
+}
+
+const orderState:TInitialState = {
     order: {
         number: null,
     },
@@ -12,19 +22,17 @@ const orderState = {
     orderError: false,
 };
 
-export const orderNumberReducer = (state = orderState, action) => {
+export const orderNumberReducer = (state = orderState, action:TOrdersActions):TInitialState => {
     switch (action.type) {
         case CREATE_ORDER_REQUEST: {
             return {
                 ...state,
-                orderLoading: true,
                 orderRequest: false,
             };
         }
         case CREATE_ORDER_SUCCESS: {
             return {
                 ...state,
-                orderLoading: false,
                 orderError: false,
                 order: {
                     ...state.order,
@@ -36,7 +44,6 @@ export const orderNumberReducer = (state = orderState, action) => {
             return {
                 ...state,
                 orderError: true,
-                orderLoading: false,
             };
         }
         default:

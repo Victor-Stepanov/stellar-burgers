@@ -1,14 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { NavLink, useHistory } from "react-router-dom";
 import styles from './profile-menu.module.css';
 import { sendLogoutData } from "../../../services/actions/auth";
 
 const ProfileMenu = () => {
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const history = useHistory();
-	const { logoutSuccess } = useSelector(store => store.userData.user);
+	const { logoutSuccess } = useAppSelector(store => store.userData.user);
 
 	const logoutProfile = () => {
 		dispatch(sendLogoutData())

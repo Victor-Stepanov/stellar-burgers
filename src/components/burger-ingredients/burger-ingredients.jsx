@@ -2,13 +2,13 @@ import React, {useMemo } from 'react';
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import TabsMenu from '../burger-ingredients/components/tabs-menu/tabs-menu.jsx';
 import IngridientsItem from '../burger-ingredients/components/ingridients-item/ingridients-item.jsx';
-import { useSelector} from 'react-redux';
+import { useAppSelector} from "../../hooks/hooks";
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 
 
 const BurgerIngredients = ({ onClick }) => {
-    const { ingredients, ingredientsRequest } = useSelector(state => state.ingredientsData)
+    const { ingredients, ingredientsRequest } = useAppSelector(state => state.ingredientsData)
 
 
     const bun = useMemo(() => ingredients.filter((item) => item.type === 'bun'), [ingredients]) // Булки

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from './orders-history.module.css';
-import { useDispatch, useSelector } from "react-redux";
-import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/action-types';
+import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
+import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/actions';
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";
@@ -12,8 +12,8 @@ import Loader from "../../../components/loader/loader";
 
 
 const OrdersHistory = () => {
-	const orders = useSelector(store => store.ws.userOrders);
-	const dispatch = useDispatch();
+	const orders = useAppSelector(store => store.ws.userOrders);
+	const dispatch = useAppDispatch();
 	const location = useLocation();
 
 	useEffect(() => {

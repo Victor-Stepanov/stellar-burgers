@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector} from "../../../hooks/hooks";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './order-item.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, checkedArrayLength } from "../../../utils/utils";
 
 
 export const OrderItem = ({ order }) => {
-	const { ingredients } = useSelector(state => state?.ingredientsData);
+	const { ingredients } = useAppSelector(state => state?.ingredientsData);
 	const all = order?.ingredients; //массив ингредиентов заказа
 
 

@@ -8,8 +8,19 @@ import {
 	WS_AUTH_CONNECTION_ERROR,
 	WS_AUTH_GET_ORDERS,
 } from "../action-types";
+import { TWsActions, TWsAuthActions } from "../actions";
+import { TFeedResponce } from "../types/data";
 
-const initialState = {
+type TInitialState = {
+	wsConnected:boolean;
+	orders:TFeedResponce['orders'];
+	total:number|null;
+	totalToday:number|null;
+	wsUserConnected:boolean;
+	userOrders:TFeedResponce['orders'];
+}
+
+const initialState:TInitialState = {
 	wsConnected: false,
 	orders: [],
 	total: null,
@@ -19,7 +30,7 @@ const initialState = {
 	userOrders: [],
 };
 
-export const wsReducer = (state = initialState, action) => {
+export const wsReducer = (state = initialState, action:TWsActions|TWsAuthActions):TInitialState => {
 	switch (action.type) {
 		case WS_CONNECTION_SUCCESS: {
 			return {

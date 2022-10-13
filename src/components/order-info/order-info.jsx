@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo } from "react";
 import { useParams, useRouteMatch } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";
-import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/action-types";
+import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/actions";
 
 
 
@@ -13,11 +13,11 @@ import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsCon
 const OrderInfo = () => {
 	const { id } = useParams(); //id заказа
 	const { path } = useRouteMatch(); //получаем текущий путь
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
-	const allOrders = useSelector(store => store.ws.orders); // Все заказы
-	const { ingredients } = useSelector(store => store?.ingredientsData); // все ингредиенты
-	const { userOrders } = useSelector(store => store.ws);//Заказы пользователя
+	const allOrders = useAppSelector(store => store.ws.orders); // Все заказы
+	const { ingredients } = useAppSelector(store => store?.ingredientsData); // все ингредиенты
+	const { userOrders } = useAppSelector(store => store.ws);//Заказы пользователя
 
 	const orders = path.includes('feed') ? allOrders : userOrders; //в зависимости от пути, присваиваем нужный стор
 	const order = orders.find((item) => item._id === id); //Кликнутый

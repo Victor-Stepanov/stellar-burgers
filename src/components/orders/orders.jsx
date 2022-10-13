@@ -1,12 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector} from "../../hooks/hooks";
 import { Link, useLocation } from "react-router-dom";
 import styles from './orders.module.css';
 import { OrderItem } from "./order-item/order-item";
 
 export const Orders = () => {
 	const location = useLocation();
-	const orders = useSelector(store => store.ws.orders);
+	const orders = useAppSelector(store => store.ws.orders);
 
 	return (
 		<ul className={styles.listOrders}>

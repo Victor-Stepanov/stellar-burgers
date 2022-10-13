@@ -3,15 +3,23 @@ import {
     GET_INGREDIENTS_SUCCESS,
     GET_INGREDIENTS_FAILED,
 } from "../action-types";
+import { TIngrediensActions } from "../actions";
+
+import {TIngrediens} from '../types/data';
 
 //
-const initialState = {
+type TInitialState = {
+    ingredients:ReadonlyArray<TIngrediens>;
+    ingredientsRequest:boolean;
+    ingredientsFailed:boolean;
+}
+const initialState:TInitialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,
 };
 //
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action:TIngrediensActions):TInitialState => {
     switch (action.type) {
         case GET_INGREDIENTS_REQUEST: {
             return {

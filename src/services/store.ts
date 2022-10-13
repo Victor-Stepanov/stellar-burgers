@@ -1,5 +1,5 @@
 import { compose, createStore, applyMiddleware } from "redux";
-import { socketMiddleware } from "./middleware";
+import { socketMiddleware } from './middleware'
 import { rootReducer } from "./reducers";
 import thunk from "redux-thunk";
 import {
@@ -9,10 +9,13 @@ import {
     wsActionsAuth,
 } from "../utils/const";
 
-const composeEnhancers =
-    typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-        : compose;
+declare global {
+    interface Window {
+      __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+  };
+  
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(
     applyMiddleware(
