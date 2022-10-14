@@ -1,11 +1,11 @@
-import React from "react";
+import React, {FC} from "react";
 import { Link } from 'react-router-dom';
 import styles from './not-found.module.css';
 import notf from '../../images/notf.svg';
 import { useAppSelector} from "../../hooks/hooks";
 
 
-export const NotFound404 = ():JSX.Element => {
+export const NotFound404:FC = ():JSX.Element => {
 
   const user = useAppSelector(store => store.userData?.user?.user)
   

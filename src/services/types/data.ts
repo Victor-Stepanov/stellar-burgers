@@ -23,8 +23,8 @@ export type TFormValues = {
 export type TUser = {
     readonly success: boolean;
     readonly user?: {
-        readonly email: string,
-        readonly name: string
+        readonly email: string;
+        readonly name: string;
     };
     readonly accessToken?: string;
     readonly refreshToken?: string;
@@ -36,17 +36,17 @@ export type TSameResponce = {
 }
 
 export type TFeed = {
-    readonly ingredients:Array<string>;
-    readonly _id:string;
-    readonly status:string;
-    readonly number:number;
-    readonly createdAt:string;
-    readonly updatedAt:string;
+    readonly ingredients: Array<string>;
+    readonly _id: string;
+    readonly status: string;
+    readonly number: number;
+    readonly createdAt: string;
+    readonly updatedAt: string;
 }
 
 export type TFeedResponce = {
     readonly success: boolean;
-    readonly orders:Array<TFeed>; 
+    readonly orders: Array<TFeed>;
     readonly total: number
     readonly totalToday: number;
-  }
+}

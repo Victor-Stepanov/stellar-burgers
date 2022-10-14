@@ -77,3 +77,13 @@ export interface IWsActions {
 //export type TTypeGuardActions = TWsActions|TWsAuthActions;
 
 export { config, wsUrlAllOrders, wsUrlUserOrders, wsActions, wsActionsAuth };
+
+
+
+let onj = {
+  key: 'ac3df4', // not with HashHistory!
+  pathname: '/somewhere',
+  search: '?some=search-string',
+  hash: '#howdy',
+  state: ''
+}

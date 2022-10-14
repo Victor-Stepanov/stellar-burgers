@@ -1,14 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { NavLink, useHistory } from "react-router-dom";
 import styles from './profile-menu.module.css';
 import { sendLogoutData } from "../../../services/actions/auth";
 
-const ProfileMenu = () => {
+const ProfileMenu:FC = ():JSX.Element => {
 
 	const dispatch = useAppDispatch();
 	const history = useHistory();
-	const { logoutSuccess } = useAppSelector(store => store.userData.user);
+	
+	const { logoutSuccess } = useAppSelector(store => store.userData);
 
 	const logoutProfile = () => {
 		dispatch(sendLogoutData())

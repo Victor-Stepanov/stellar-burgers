@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { FC, FormEvent, useCallback } from "react";
 import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Redirect } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { sendNewPassword } from '../../services/actions/auth';
 import useForm from '../../hooks/useForm';
 
 
-export const ResetPasswordPage = () => {
+export const ResetPasswordPage:FC = ():JSX.Element => {
 
 	const dispatch = useAppDispatch();
 	const { resetSuccess, forgoutSuccess } = useAppSelector(store => store.userData);
@@ -15,7 +15,7 @@ export const ResetPasswordPage = () => {
 	const { values, handleChange } = useForm({ email: '', code: '' });
 
 	const resetValue = useCallback(
-		e => {
+		(e:FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendNewPassword(values))
 		},
@@ -40,7 +40,7 @@ export const ResetPasswordPage = () => {
 			<h2 className="text text_type_main-medium">Восстановление пароля</h2>
 			<form className={styles.form} onSubmit={resetValue}>
 				<div className="pt-6">
-					<PasswordInput type={'password'} placeholder={"Введите новый пароль"} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.password} name={'password'} />
+					<PasswordInput size={'default'} onChange={handleChange} value={values.password} name={'password'} />
 				</div>
 				<div className="pt-6 pb-6">
 					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.code} name={'name'} />

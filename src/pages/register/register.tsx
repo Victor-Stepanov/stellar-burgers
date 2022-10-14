@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, FC, FormEvent } from "react";
 import styles from './register.module.css';
 import { Link, Redirect } from 'react-router-dom';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -6,14 +6,14 @@ import { sendUserData } from '../../services/actions/auth';
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
 
-export const RegisterPage = () => {
+export const RegisterPage:FC = ():JSX.Element => {
 	const { user } = useAppSelector(store => store.userData);
 	const { values, handleChange } = useForm({ name: '', email: '', password: '' });
 
 	const dispatch = useAppDispatch();
 
 	const userRegister = useCallback(
-		e => {
+		(e:FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendUserData(values));
 		},
