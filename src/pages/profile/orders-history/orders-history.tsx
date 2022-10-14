@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import styles from './orders-history.module.css';
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/actions';
@@ -11,7 +11,7 @@ import Loader from "../../../components/loader/loader";
 
 
 
-const OrdersHistory = () => {
+const OrdersHistory:FC = ():JSX.Element => {
 	const orders = useAppSelector(store => store.ws.userOrders);
 	const dispatch = useAppDispatch();
 	const location = useLocation();

@@ -22,12 +22,12 @@ export type TFormValues = {
 
 export type TUser = {
     readonly success: boolean;
-    readonly user?: {
+    readonly user: {
         readonly email: string;
         readonly name: string;
     };
-    readonly accessToken?: string;
-    readonly refreshToken?: string;
+    readonly accessToken: string;
+    readonly refreshToken: string;
 }
 
 export type TSameResponce = {

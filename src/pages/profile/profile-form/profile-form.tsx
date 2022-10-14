@@ -14,7 +14,7 @@ import styles from "./profile-form.module.css";
 export const ProfileForm = () => {
 
 	const dispatch = useAppDispatch();
-	const { user } = useAppSelector((store) => store?.userData?.user);
+	const { user } = useAppSelector((store) => store?.userData);
 	const { values, handleChange, setValues } = useForm({ name: user?.name, email: user?.email, password: '' });
 
 	const resetFormValue = () => {
