@@ -29,7 +29,7 @@ import {TUserActions} from '../actions';
 import {TUser} from '../types/data';
 
 type TInitialState ={
-	user: TUser|null;
+	user: TUser;
 
 	userRequest: boolean;
 	userError: boolean;
@@ -67,7 +67,10 @@ type TInitialState ={
 }
 
 const initialUserState:TInitialState = {
-	user: null,
+	user: {
+		name:'',
+		email:''
+	},
 
 	userRequest: false,
 	userError: false,
@@ -116,7 +119,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 				...state,
 				userError: false,
 				userRequest: false,
-				user: action.payload,
+				user: action.payload.user,
 			};
 		}
 		case USER_REGISTER_FAILED: {
@@ -140,7 +143,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 				loginRequest: false,
 				loginSuccess: true,
 				loginFailed: false,
-				user: action.payload,
+				user: action.payload.user,
 			};
 		}
 		case USER_LOGIN_FAILED: {
@@ -163,7 +166,10 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 			return {
 				...state,
 				logoutRequest: false,
-				user: null,
+				user: {
+					name:'',
+					email:''
+				},
 				logoutSuccess: true,
 				logoutFailed: false,
 			};
@@ -187,7 +193,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 		case UPDATE_USER_SUCCESS: {
 			return {
 				...state,
-				user: action.payload,
+				user: action.payload.user,
 				userUpdateRequest: false,
 				userUpdateSuccess: true,
 				userUpdateFailed: false,
@@ -262,7 +268,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 		case USER_INFO_SUCCESS: {
 			return {
 				...state,
-				user: action.payload,
+				user: action.payload.user,
 				userInfoRequest: false,
 				userInfoSuccess: true,
 				userInfoFailed: false,

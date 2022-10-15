@@ -7,7 +7,7 @@ import { useAppSelector} from "../../hooks/hooks";
 
 export const NotFound404:FC = ():JSX.Element => {
 
-  const user = useAppSelector(store => store.userData?.user?.user)
+  const user = useAppSelector(store => store.userData?.user)
   
   let title:string = !user ? 'Boddy':user.name;
   
