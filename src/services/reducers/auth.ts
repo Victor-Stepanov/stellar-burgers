@@ -25,11 +25,11 @@ import {
 	USER_REGISTER_SUCCESS,
 } from "../action-types";
 
-import {TUserActions} from '../actions';
-import {TUser} from '../types/data';
+import { TUserActions } from "../actions";
+import { TUser } from "../types/data";
 
-type TInitialState ={
-	user: TUser|null;
+type TInitialState = {
+	user: TUser;
 
 	userRequest: boolean;
 	userError: boolean;
@@ -62,12 +62,14 @@ type TInitialState ={
 	userUpdateSuccess: boolean;
 	userUpdateFailed: boolean;
 
-	success:boolean;
+	success: boolean;
+};
 
-}
-
-const initialUserState:TInitialState = {
-	user: null,
+const initialUserState: TInitialState = {
+	user: {
+		name: "",
+		email: "",
+	},
 
 	userRequest: false,
 	userError: false,
@@ -100,10 +102,13 @@ const initialUserState:TInitialState = {
 	userUpdateSuccess: false,
 	userUpdateFailed: false,
 
-	success:false
+	success: false,
 };
 
-export const userReducer = (state = initialUserState, action:TUserActions):TInitialState => {
+export const userReducer = (
+	state = initialUserState,
+	action: TUserActions
+): TInitialState => {
 	switch (action.type) {
 		case USER_REGISTER_REQUEST: {
 			return {
@@ -116,7 +121,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 				...state,
 				userError: false,
 				userRequest: false,
-				user: action.payload,
+				user: action.payload.user,
 			};
 		}
 		case USER_REGISTER_FAILED: {
@@ -140,7 +145,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 				loginRequest: false,
 				loginSuccess: true,
 				loginFailed: false,
-				user: action.payload,
+				user: action.payload.user,
 			};
 		}
 		case USER_LOGIN_FAILED: {
@@ -163,7 +168,10 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 			return {
 				...state,
 				logoutRequest: false,
-				user: null,
+				user: {
+					name: "",
+					email: "",
+				},
 				logoutSuccess: true,
 				logoutFailed: false,
 			};
@@ -187,7 +195,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 		case UPDATE_USER_SUCCESS: {
 			return {
 				...state,
-				user: action.payload,
+				user: action.payload.user,
 				userUpdateRequest: false,
 				userUpdateSuccess: true,
 				userUpdateFailed: false,
@@ -262,7 +270,7 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 		case USER_INFO_SUCCESS: {
 			return {
 				...state,
-				user: action.payload,
+				user: action.payload.user,
 				userInfoRequest: false,
 				userInfoSuccess: true,
 				userInfoFailed: false,

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { FC, FormEvent, useCallback, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { sendUpdateUserData } from "../../../services/actions/auth";
 import {
@@ -9,27 +9,32 @@ import {
 import useForm from "../../../hooks/useForm";
 import styles from "./profile-form.module.css";
 
-
-
-export const ProfileForm = () => {
-
+export const ProfileForm: FC = (): JSX.Element => {
 	const dispatch = useAppDispatch();
-	const { user } = useAppSelector((store) => store.userData.user);
-	const { values, handleChange, setValues } = useForm({ name: user.name, email: user.email, password: '' });
+	const { user } = useAppSelector((store) => store.userData);
+	const { values, handleChange, setValues } = useForm({
+		name: "",
+		email: "",
+		password: "",
+	});
+
+	useEffect(() => {
+		if (user) {
+			setValues({ name: user.name, email: user.email, password: "" });
+		}
+	}, [user]);
 
 	const resetFormValue = () => {
-		setValues({ name: user.name, email: user.email, password: '' })
-	}
-
+		setValues({ name: user.name, email: user.email, password: "" });
+	};
 
 	const userUpdateDate = useCallback(
-		e => {
+		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendUpdateUserData(values));
 		},
 		[values, dispatch]
 	);
-
 
 	return (
 		<form className={styles.form} onSubmit={userUpdateDate}>
@@ -73,5 +78,5 @@ export const ProfileForm = () => {
 				</Button>
 			</div>
 		</form>
-	)
-}
+	);
+};

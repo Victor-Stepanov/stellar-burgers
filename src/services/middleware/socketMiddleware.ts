@@ -1,38 +1,48 @@
 import { Middleware, MiddlewareAPI } from "redux";
-import { IWsActions} from "../../utils/const";
+import { IWsActions } from "../../utils/const";
 import { getCookie } from "../../utils/utils";
 import { AppDispatch, RootState } from "../types";
 
-
-export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middleware<{}, RootState, AppDispatch> => {
-	return store => {
+export const socketMiddleware = (
+	wsUrl: string,
+	wsActions: IWsActions
+): Middleware<{}, RootState, AppDispatch> => {
+	return (store) => {
 		let socket: WebSocket | null = null;
-	
+
 		//TODO: Add type guard
 
-		return next => action => {
+		return (next) => (action) => {
 			const { dispatch } = store;
 			const { type, payload } = action;
-			const token = getCookie('token');
-			const { wsInit, wsInitWithToken, wsSendMessage, onOpen, onClose, onError, onMessage } = wsActions;
+			const token = getCookie("token");
+			const {
+				wsInit,
+				wsInitWithToken,
+				wsSendMessage,
+				onOpen,
+				onClose,
+				onError,
+				onMessage,
+			} = wsActions;
 
 			if (type === wsInit) {
 				socket = new WebSocket(wsUrl);
 			}
 			if (type === wsInitWithToken) {
-				socket = new WebSocket(`${wsUrl}?token=${token}`)
+				socket = new WebSocket(`${wsUrl}?token=${token}`);
 			}
 
 			if (socket) {
-				socket.onopen = event => {
+				socket.onopen = (event) => {
 					dispatch({ type: onOpen, payload: event });
 				};
 
-				socket.onerror = event => {
+				socket.onerror = (event) => {
 					dispatch({ type: onError, payload: event });
 				};
 
-				socket.onmessage = event => {
+				socket.onmessage = (event) => {
 					const { data } = event;
 					const parsedData = JSON.parse(data);
 					const { success, ...restParsedData } = parsedData;
@@ -40,7 +50,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
 					dispatch({ type: onMessage, payload: restParsedData });
 				};
 
-				socket.onclose = event => {
+				socket.onclose = (event) => {
 					dispatch({ type: onClose, payload: event });
 				};
 

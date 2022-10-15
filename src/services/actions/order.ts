@@ -4,27 +4,27 @@ import {
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAILED,
 } from "../action-types";
-import {AppThunk, AppDispatch} from '../types/index';
+import { AppThunk, AppDispatch } from "../types/index";
 
 interface ICreateOrderRequest {
-    readonly type:typeof CREATE_ORDER_REQUEST;
+    readonly type: typeof CREATE_ORDER_REQUEST;
 }
 interface ICreateOrderSuccess {
-    readonly type:typeof CREATE_ORDER_SUCCESS;
-    readonly payload:number;
-    
+    readonly type: typeof CREATE_ORDER_SUCCESS;
+    readonly payload: number;
 }
 interface ICreateOrderFailed {
-    readonly type:typeof CREATE_ORDER_FAILED;
+    readonly type: typeof CREATE_ORDER_FAILED;
 }
 
-export type TOrdersActions = ICreateOrderRequest|ICreateOrderSuccess|ICreateOrderFailed;
+export type TOrdersActions =
+    | ICreateOrderRequest
+    | ICreateOrderSuccess
+    | ICreateOrderFailed;
 
 //getIngrediensAction
 
-
-
-export const getOrder:AppThunk = (id:string) => (dispatch:AppDispatch) => {
+export const getOrder: AppThunk = (id: string) => (dispatch: AppDispatch) => {
     dispatch({
         type: CREATE_ORDER_REQUEST,
     });

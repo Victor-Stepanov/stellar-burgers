@@ -5,21 +5,24 @@ import {
 } from "../action-types";
 import { TIngrediensActions } from "../actions";
 
-import {TIngrediens} from '../types/data';
+import { TIngrediens } from "../types/data";
 
 //
 type TInitialState = {
-    ingredients:ReadonlyArray<TIngrediens>;
-    ingredientsRequest:boolean;
-    ingredientsFailed:boolean;
-}
-const initialState:TInitialState = {
+    ingredients: ReadonlyArray<TIngrediens>;
+    ingredientsRequest: boolean;
+    ingredientsFailed: boolean;
+};
+const initialState: TInitialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,
 };
 //
-export const ingredientsReducer = (state = initialState, action:TIngrediensActions):TInitialState => {
+export const ingredientsReducer = (
+    state = initialState,
+    action: TIngrediensActions
+): TInitialState => {
     switch (action.type) {
         case GET_INGREDIENTS_REQUEST: {
             return {

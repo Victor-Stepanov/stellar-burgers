@@ -12,15 +12,15 @@ import { TWsActions, TWsAuthActions } from "../actions";
 import { TFeedResponce } from "../types/data";
 
 type TInitialState = {
-	wsConnected:boolean;
-	orders:TFeedResponce['orders'];
-	total:number|null;
-	totalToday:number|null;
-	wsUserConnected:boolean;
-	userOrders:TFeedResponce['orders'];
-}
+	wsConnected: boolean;
+	orders: TFeedResponce["orders"];
+	total: number | null;
+	totalToday: number | null;
+	wsUserConnected: boolean;
+	userOrders: TFeedResponce["orders"];
+};
 
-const initialState:TInitialState = {
+const initialState: TInitialState = {
 	wsConnected: false,
 	orders: [],
 	total: null,
@@ -30,7 +30,10 @@ const initialState:TInitialState = {
 	userOrders: [],
 };
 
-export const wsReducer = (state = initialState, action:TWsActions|TWsAuthActions):TInitialState => {
+export const wsReducer = (
+	state = initialState,
+	action: TWsActions | TWsAuthActions
+): TInitialState => {
 	switch (action.type) {
 		case WS_CONNECTION_SUCCESS: {
 			return {

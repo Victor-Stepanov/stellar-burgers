@@ -1,21 +1,21 @@
-import React from "react";
+import React, { FC } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { NavLink, useHistory } from "react-router-dom";
-import styles from './profile-menu.module.css';
+import styles from "./profile-menu.module.css";
 import { sendLogoutData } from "../../../services/actions/auth";
 
-const ProfileMenu = () => {
-
+const ProfileMenu: FC = (): JSX.Element => {
 	const dispatch = useAppDispatch();
 	const history = useHistory();
-	const { logoutSuccess } = useAppSelector(store => store.userData.user);
+
+	const { logoutSuccess } = useAppSelector((store) => store.userData);
 
 	const logoutProfile = () => {
-		dispatch(sendLogoutData())
+		dispatch(sendLogoutData());
 		if (logoutSuccess) {
-			history.replace({ pathname: '/login' });
+			history.replace({ pathname: "/login" });
 		}
-	}
+	};
 
 	return (
 		<menu className={`${styles.list} mr-15`}>
@@ -44,7 +44,12 @@ const ProfileMenu = () => {
 				</NavLink>
 			</li>
 			<li>
-				<button className={`text text_type_main-medium ${styles.button}`} onClick={logoutProfile}>Выход</button>
+				<button
+					className={`text text_type_main-medium ${styles.button}`}
+					onClick={logoutProfile}
+				>
+					Выход
+				</button>
 			</li>
 			<p
 				className={`mt-20 text text_type_main-default text_color_inactive ${styles.text}`}
@@ -52,7 +57,7 @@ const ProfileMenu = () => {
 				В этом разделе вы можете изменить свои персональные данные
 			</p>
 		</menu>
-	)
-}
+	);
+};
 
 export default ProfileMenu;

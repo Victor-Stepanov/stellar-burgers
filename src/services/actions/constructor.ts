@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { ADD_ITEM, REMOVE_ITEM, MOVE_ITEM, RESET_ITEM } from "../action-types";
-import { TIngrediens } from '../types/data';
+import { TIngrediens } from "../types/data";
 //Типизация экшенов
 interface IAddItem {
     readonly type: typeof ADD_ITEM;
@@ -19,7 +19,11 @@ interface IResetItem {
     readonly type: typeof RESET_ITEM;
 }
 
-export type TConstructorActions = IAddItem | IRemoveItem | IMoveItem | IResetItem;
+export type TConstructorActions =
+    | IAddItem
+    | IRemoveItem
+    | IMoveItem
+    | IResetItem;
 
 export const addItem = (item: TIngrediens): IAddItem => {
     return {
