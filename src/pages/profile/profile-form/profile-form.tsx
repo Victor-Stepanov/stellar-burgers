@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback, useEffect } from "react";
+import React, { FC, FormEvent, useCallback, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { sendUpdateUserData } from "../../../services/actions/auth";
 import {
@@ -11,14 +11,14 @@ import styles from "./profile-form.module.css";
 
 
 
-export const ProfileForm = () => {
+export const ProfileForm: FC = (): JSX.Element => {
 
 	const dispatch = useAppDispatch();
 	const { user } = useAppSelector((store) => store.userData);
 	const { values, handleChange, setValues } = useForm({ name: '', email: '', password: '' });
 
 	useEffect(() => {
-		if(user){
+		if (user) {
 			setValues({ name: user.name, email: user.email, password: '' })
 		}
 	}, [user])
@@ -29,7 +29,7 @@ export const ProfileForm = () => {
 
 
 	const userUpdateDate = useCallback(
-		(e:FormEvent<HTMLFormElement>) => {
+		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendUpdateUserData(values));
 		},

@@ -3,24 +3,23 @@ import styles from './login.module.css';
 import { Redirect, Link, useLocation } from 'react-router-dom';
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { sendLoginData } from '../../services/actions/auth';
-import { useAppSelector, useAppDispatch} from "../../hooks/hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
-import { getCookie } from "../../utils/utils";
 
 interface LocationState {
 	from: {
-	  pathname: string;
+		pathname: string;
 	};
-  }
+}
 
 export const LoginPage = () => {
 	const dispatch = useAppDispatch();
-	const { values, handleChange } = useForm({email: '', password: '' });
-	const {name, email} = useAppSelector(store => store.userData.user)
+	const { values, handleChange } = useForm({ email: '', password: '' });
+	const { name, email } = useAppSelector(store => store.userData.user)
 	const location = useLocation<LocationState>();
 
 	const userLogin = useCallback(
-		(e:FormEvent<HTMLFormElement>) => {
+		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendLoginData(values))
 		},

@@ -6,14 +6,14 @@ import { sendUserData } from '../../services/actions/auth';
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
 
-export const RegisterPage:FC = ():JSX.Element => {
+export const RegisterPage: FC = (): JSX.Element => {
 	const { name, email } = useAppSelector(store => store.userData.user);
 	const { values, handleChange } = useForm({ name: '', email: '', password: '' });
 
 	const dispatch = useAppDispatch();
 
 	const userRegister = useCallback(
-		(e:FormEvent<HTMLFormElement>) => {
+		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendUserData(values));
 		},

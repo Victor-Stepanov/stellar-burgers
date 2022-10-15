@@ -11,7 +11,7 @@ import Loader from "../../../components/loader/loader";
 
 
 
-const OrdersHistory:FC = ():JSX.Element => {
+const OrdersHistory: FC = (): JSX.Element => {
 	const orders = useAppSelector(store => store.ws.userOrders);
 	const dispatch = useAppDispatch();
 	const location = useLocation();

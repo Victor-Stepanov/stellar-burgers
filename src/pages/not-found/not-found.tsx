@@ -1,21 +1,20 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import { Link } from 'react-router-dom';
 import styles from './not-found.module.css';
 import notf from '../../images/notf.svg';
-import { useAppSelector} from "../../hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
 
 
-export const NotFound404:FC = ():JSX.Element => {
+export const NotFound404: FC = (): JSX.Element => {
 
-  const user = useAppSelector(store => store.userData?.user)
-  
-  let title:string = !user ? 'Boddy':user.name;
-  
+  const { name } = useAppSelector(store => store.userData?.user)
+  let title: string = !name ? 'Boddy' : name;
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <p className={styles.subtitle}>Error 404</p>
-        <h3 className={styles.title}>{`Hey ${title}` }</h3>
+        <h3 className={styles.title}>{`Hey ${title}`}</h3>
         <p className={styles.description}>
           We can’t seem to find
           the page you are looking for.

@@ -7,21 +7,21 @@ import { sendNewPassword } from '../../services/actions/auth';
 import useForm from '../../hooks/useForm';
 
 
-export const ResetPasswordPage:FC = ():JSX.Element => {
+export const ResetPasswordPage: FC = (): JSX.Element => {
 
 	const dispatch = useAppDispatch();
 	const { resetSuccess, forgoutSuccess } = useAppSelector(store => store.userData);
 
 	const { values, handleChange } = useForm({ password: '', token: '' });
-	
+
 	const resetValue = useCallback(
-		(e:FormEvent<HTMLFormElement>) => {
+		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendNewPassword(values))
 		},
 		[values, dispatch]
 	);
-	
+
 	if (!forgoutSuccess) {
 		return <Redirect to={{
 			pathname: '/forgot-password'

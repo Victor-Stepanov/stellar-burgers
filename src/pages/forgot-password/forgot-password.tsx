@@ -1,18 +1,18 @@
-import React, {useCallback, FC, FormEvent} from "react";
+import React, { useCallback, FC, FormEvent } from "react";
 import styles from './forgot-password.module.css';
 import { Link, Redirect } from 'react-router-dom'
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useAppSelector, useAppDispatch} from "../../hooks/hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { sendEmailResetValue } from '../../services/actions/auth';
 import useForm from '../../hooks/useForm';
 
-export const ForgotPasswordPage:FC = ():JSX.Element => {
+export const ForgotPasswordPage: FC = (): JSX.Element => {
 	const { forgoutSuccess } = useAppSelector(store => store.userData);
 	const dispatch = useAppDispatch();
-	const { values, handleChange } = useForm({ email: ''});
+	const { values, handleChange } = useForm({ email: '' });
 
 	const forgoutPassword = useCallback(
-		(e:FormEvent<HTMLFormElement>) => {
+		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			dispatch(sendEmailResetValue(values))
 		},
