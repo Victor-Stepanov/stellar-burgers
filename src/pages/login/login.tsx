@@ -16,7 +16,7 @@ interface LocationState {
 export const LoginPage = () => {
 	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({email: '', password: '' });
-	const token  = getCookie('token')
+	const {name, email} = useAppSelector(store => store.userData.user)
 	const location = useLocation<LocationState>();
 
 	const userLogin = useCallback(
@@ -28,7 +28,7 @@ export const LoginPage = () => {
 	);
 
 	//После авторизации перенаправление на главную старницу
-	if (token) {
+	if (name.length > 0 && email.length > 0) {
 		return (
 			<Redirect to={location?.state?.from || '/'}
 			/>

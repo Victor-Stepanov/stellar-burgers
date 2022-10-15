@@ -39,13 +39,14 @@ function App() {
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
     const { orderRequest } = useAppSelector((store) => store.orderNumberData);
     const dispatch = useAppDispatch();
+    const {name, email} = useAppSelector(store => store.userData.user)
     const token = getCookie("token");
     const refreshToken = localStorage.getItem("refreshToken"); // token - для обновления токена, если он умер
     const location = useLocation();
     const history = useHistory();
 
     const openOrderDetailsModal = () =>
-    token ? setIsOrderDetailsOpened(true) : history.replace("/login");
+    name.length > 0 && email.length > 0 ? setIsOrderDetailsOpened(true) : history.replace("/login");
 
     const openIngredientsModal = () => {
         setIsIngredientsOpened(true);
