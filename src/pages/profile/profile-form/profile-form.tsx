@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback } from "react";
+import React, { FormEvent, useCallback, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { sendUpdateUserData } from "../../../services/actions/auth";
 import {
@@ -15,7 +15,13 @@ export const ProfileForm = () => {
 
 	const dispatch = useAppDispatch();
 	const { user } = useAppSelector((store) => store.userData);
-	const { values, handleChange, setValues } = useForm({ name: user.name, email: user.email, password: '' });
+	const { values, handleChange, setValues } = useForm({ name: '', email: '', password: '' });
+
+	useEffect(() => {
+		if(user){
+			setValues({ name: user.name, email: user.email, password: '' })
+		}
+	}, [user])
 
 	const resetFormValue = () => {
 		setValues({ name: user.name, email: user.email, password: '' })
