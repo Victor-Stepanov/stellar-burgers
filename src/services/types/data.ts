@@ -1,3 +1,4 @@
+
 export type TIngrediens = {
     readonly _id: string;
     readonly name: string;
@@ -14,25 +15,50 @@ export type TIngrediens = {
     id?: string;
 }
 
+export type TIngrediensResponce = {
+    readonly success: boolean;
+    readonly data:Array<TIngrediens>;
+}
+
+
+export type TOrderRespnoce = {
+    readonly name: string;
+    readonly success: boolean;
+    readonly order:{
+        number:number
+    }
+
+}
+
 export type TFormValues = {
-    readonly name?: string;
-    readonly email?: string;
-    readonly password?: string;
+    readonly name: string;
+    readonly email: string;
+    readonly password: string;
+    readonly code?:string;
 }
 
 export type TUser = {
+    readonly email: string;
+    readonly name: string;
+}
+
+export type TUserResponce = {
     readonly success: boolean;
-    readonly user: {
-        readonly email: string;
-        readonly name: string;
-    };
+    readonly user: TUser;
     readonly accessToken: string;
     readonly refreshToken: string;
 }
 
+//sendForgoutPasswordRequest, sendForgoutPasswordRequest
 export type TSameResponce = {
     readonly success: boolean;
     readonly message: string;
+}
+
+export type TTokenUpdate = {
+    readonly success: boolean;
+    readonly accessToken: string;
+    readonly refreshToken: string;
 }
 
 export type TFeed = {

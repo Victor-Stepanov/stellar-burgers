@@ -1,5 +1,5 @@
 import { config, TConfig} from "./const";
-import { TFormValues } from "../services/types/data";
+import { TFormValues, TIngrediensResponce, TUserResponce,TSameResponce, TOrderRespnoce, TTokenUpdate } from "../services/types/data";
 import { getCookie } from "./utils";
 
 class Api {
@@ -13,13 +13,13 @@ class Api {
 	}
 
 	// Проверяем статус запроса
-	private checkStatus(res:Response) {
+	private checkStatus<T>(res:Response):Promise<T> {
 		return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 	}
 	//Получаем ингридиенты с сервера
 	async getIngredientsDataFromServer() {
 		const responce = await fetch(`${this.url}/ingredients`);
-		return this.checkStatus(responce);
+		return this.checkStatus<TIngrediensResponce>(responce);
 	}
 	//Получаем номер заказа
 	async getOrderDataFromServer(id:string) {
@@ -33,7 +33,7 @@ class Api {
 				ingredients: id,
 			}),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TOrderRespnoce>(responce);
 	}
 
 	//Запрос на регистрацию пользователя auth/register
@@ -43,7 +43,7 @@ class Api {
 			headers: this.headers,
 			body: JSON.stringify(form),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TUserResponce>(responce);
 	}
 
 	//Запрос на авторизацию пользователя auth/login
@@ -53,7 +53,7 @@ class Api {
 			headers: this.headers,
 			body: JSON.stringify(form),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TUserResponce>(responce);
 	}
 
 	//Запрос на деавторизацию пользователя auth/logout
@@ -65,7 +65,7 @@ class Api {
 				token: localStorage.getItem("refreshToken"),
 			}),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TSameResponce>(responce);
 	}
 
 	//Запрос на восстановление пароля /password-reset
@@ -75,7 +75,7 @@ class Api {
 			headers: this.headers,
 			body: JSON.stringify(form),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TSameResponce>(responce);
 	}
 
 	//Запрос на сброс пароля /password-reset/reset
@@ -85,7 +85,7 @@ class Api {
 			headers: this.headers,
 			body: JSON.stringify(form),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TSameResponce>(responce);
 	}
 
 	//Запрос на обновление данных пользователя auth/use
@@ -98,7 +98,7 @@ class Api {
 			},
 			body: JSON.stringify(form),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TUserResponce>(responce);
 	}
 
 	//запрос на обновление accessToken
@@ -110,7 +110,7 @@ class Api {
 				token: localStorage.getItem("refreshToken"),
 			}),
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TTokenUpdate>(responce);
 	}
 
 	//Запрос на получение данных пользователя auth/user
@@ -122,7 +122,7 @@ class Api {
 				Authorization: "Bearer " + getCookie("token"),
 			},
 		});
-		return this.checkStatus(responce);
+		return this.checkStatus<TUserResponce>(responce);
 	}
 }
 

@@ -26,7 +26,7 @@ import {
 	RESET_PASSWORD_SUCCESS,
 	USER_REGISTER_SUCCESS,
 } from "../action-types";
-import {TFormValues, TUser,TSameResponce} from '../types/data';
+import {TFormValues, TUser,TSameResponce, TUserResponce} from '../types/data';
 import {AppThunk, AppDispatch} from '../types/index';
 
 //Union
@@ -47,7 +47,7 @@ interface IUserRegisterRequest {
 
 interface IUserRegisterSuccess {
     readonly type: typeof USER_REGISTER_SUCCESS;
-	readonly payload:TUser;
+	readonly payload:TUserResponce;
 }
 interface IUserRegisterFailed {
     readonly type: typeof USER_REGISTER_FAILED;
@@ -89,7 +89,7 @@ interface IUserLoginRequest {
 
 interface IUserLoginSuccess {
     readonly type: typeof USER_LOGIN_SUCCESS;
-	readonly payload:TUser;
+	readonly payload:TUserResponce;
 }
 interface IUserLoginFailed {
     readonly type: typeof USER_LOGIN_FAILED;
@@ -204,7 +204,7 @@ interface IUpdateUserRequest {
 }
 interface IUpdateUserSuccess {
     readonly type: typeof UPDATE_USER_SUCCESS;
-	readonly payload:TUser;
+	readonly payload:TUserResponce;
 }
 interface IUpdateUserFailed {
     readonly type: typeof UPDATE_USER_FAILED;
@@ -316,7 +316,7 @@ interface IUserInfoRequest {
 }
 interface IUserInfoSuccess {
     readonly type: typeof USER_INFO_SUCCESS;
-	readonly payload:TUser;
+	readonly payload:TUserResponce;
 }
 interface IUserInfoFailed {
     readonly type: typeof USER_INFO_FAILED;
