@@ -1,29 +1,27 @@
 import React, { FC, useEffect } from "react";
-import styles from './orders-history.module.css';
+import styles from "./orders-history.module.css";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
-import { wsAuthConnectionOpen, wsAuthConnectionClosed } from '../../../services/actions';
+import {
+	wsAuthConnectionOpen,
+	wsAuthConnectionClosed,
+} from "../../../services/actions";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";
 import ProfileMenu from "../profile-menu/profile-menu";
 import Loader from "../../../components/loader/loader";
 
-
-
-
 const OrdersHistory: FC = (): JSX.Element => {
-	const orders = useAppSelector(store => store.ws.userOrders);
+	const orders = useAppSelector((store) => store.ws.userOrders);
 	const dispatch = useAppDispatch();
 	const location = useLocation();
 
 	useEffect(() => {
-		dispatch(wsAuthConnectionOpen())
+		dispatch(wsAuthConnectionOpen());
 		return () => {
-			dispatch(wsAuthConnectionClosed())
-		}
-	}, [dispatch])
-
-
+			dispatch(wsAuthConnectionClosed());
+		};
+	}, [dispatch]);
 
 	return (
 		<>
@@ -32,20 +30,24 @@ const OrdersHistory: FC = (): JSX.Element => {
 				<ProfileMenu />
 				<ul className={styles.listOrders}>
 					<div className={styles.scroll}>
-						{orders && orders.map((order, index) => (
-							<Link key={order._id} className={styles.orderLink}
-								to={{
-									pathname: `/profile/orders/${order._id}`,
-									state: { background: location }
-								}}>
-								<OrderItem order={order} />
-							</Link>
-						))}
+						{orders &&
+							orders.map((order, index) => (
+								<Link
+									key={order._id}
+									className={styles.orderLink}
+									to={{
+										pathname: `/profile/orders/${order._id}`,
+										state: { background: location },
+									}}
+								>
+									<OrderItem order={order} />
+								</Link>
+							))}
 					</div>
 				</ul>
 			</div>
 		</>
-	)
-}
+	);
+};
 
 export default OrdersHistory;

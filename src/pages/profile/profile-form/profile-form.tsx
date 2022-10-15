@@ -9,24 +9,24 @@ import {
 import useForm from "../../../hooks/useForm";
 import styles from "./profile-form.module.css";
 
-
-
 export const ProfileForm: FC = (): JSX.Element => {
-
 	const dispatch = useAppDispatch();
 	const { user } = useAppSelector((store) => store.userData);
-	const { values, handleChange, setValues } = useForm({ name: '', email: '', password: '' });
+	const { values, handleChange, setValues } = useForm({
+		name: "",
+		email: "",
+		password: "",
+	});
 
 	useEffect(() => {
 		if (user) {
-			setValues({ name: user.name, email: user.email, password: '' })
+			setValues({ name: user.name, email: user.email, password: "" });
 		}
-	}, [user])
+	}, [user]);
 
 	const resetFormValue = () => {
-		setValues({ name: user.name, email: user.email, password: '' })
-	}
-
+		setValues({ name: user.name, email: user.email, password: "" });
+	};
 
 	const userUpdateDate = useCallback(
 		(e: FormEvent<HTMLFormElement>) => {
@@ -35,7 +35,6 @@ export const ProfileForm: FC = (): JSX.Element => {
 		},
 		[values, dispatch]
 	);
-
 
 	return (
 		<form className={styles.form} onSubmit={userUpdateDate}>
@@ -79,5 +78,5 @@ export const ProfileForm: FC = (): JSX.Element => {
 				</Button>
 			</div>
 		</form>
-	)
-}
+	);
+};

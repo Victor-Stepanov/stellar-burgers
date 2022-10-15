@@ -7,11 +7,11 @@ import { NotFound404 } from "./not-found/not-found";
 import { FeedPage } from "./feed/feed";
 
 export {
-	LoginPage,
-	ProfilePage,
-	RegisterPage,
-	ForgotPasswordPage,
-	ResetPasswordPage,
-	FeedPage,
-	NotFound404,
+  LoginPage,
+  ProfilePage,
+  RegisterPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  FeedPage,
+  NotFound404,
 };

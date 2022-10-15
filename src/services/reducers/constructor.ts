@@ -3,16 +3,19 @@ import { TConstructorActions } from "../actions";
 import { TIngrediens } from "../types/data";
 import update from "immutability-helper";
 
-type TInitialState ={
-    bun:TIngrediens | [];
-    element:Array<TIngrediens> | [];
-}
-const initialConstructorState:TInitialState = {
+type TInitialState = {
+    bun: TIngrediens | [];
+    element: Array<TIngrediens> | [];
+};
+const initialConstructorState: TInitialState = {
     bun: [],
     element: [],
 };
 
-export const constructorReducer = (state = initialConstructorState, action:TConstructorActions):TInitialState => {
+export const constructorReducer = (
+    state = initialConstructorState,
+    action: TConstructorActions
+): TInitialState => {
     switch (action.type) {
         case ADD_ITEM: {
             if (action.payload.type === "bun") {

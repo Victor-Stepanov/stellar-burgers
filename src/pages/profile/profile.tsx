@@ -9,5 +9,4 @@ export const ProfilePage: FC = (): JSX.Element => (
 		<ProfileMenu />
 		<ProfileForm />
 	</div>
-)
-
+);

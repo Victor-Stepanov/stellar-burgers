@@ -1,20 +1,18 @@
 import React, { useEffect, FC } from "react";
-import styles from './feed.module.css';
+import styles from "./feed.module.css";
 import { useAppDispatch } from "../../hooks/hooks";
-import { wsConnectionOpen, wsConnectionClosed } from '../../services/actions';
+import { wsConnectionOpen, wsConnectionClosed } from "../../services/actions";
 import { Orders } from "../../components/orders/orders";
 import { OrdersStats } from "../../components/orders-stats/orders-stats";
 
-
 export const FeedPage: FC = (): JSX.Element => {
-
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		dispatch(wsConnectionOpen())
+		dispatch(wsConnectionOpen());
 		return () => {
-			dispatch(wsConnectionClosed())
-		}
-	}, [dispatch])
+			dispatch(wsConnectionClosed());
+		};
+	}, [dispatch]);
 
 	return (
 		<section className={styles.section}>
@@ -23,6 +21,6 @@ export const FeedPage: FC = (): JSX.Element => {
 				<Orders />
 				<OrdersStats />
 			</div>
-		</section >
-	)
-}
+		</section>
+	);
+};

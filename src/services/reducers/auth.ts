@@ -25,10 +25,10 @@ import {
 	USER_REGISTER_SUCCESS,
 } from "../action-types";
 
-import {TUserActions} from '../actions';
-import {TUser} from '../types/data';
+import { TUserActions } from "../actions";
+import { TUser } from "../types/data";
 
-type TInitialState ={
+type TInitialState = {
 	user: TUser;
 
 	userRequest: boolean;
@@ -62,14 +62,13 @@ type TInitialState ={
 	userUpdateSuccess: boolean;
 	userUpdateFailed: boolean;
 
-	success:boolean;
+	success: boolean;
+};
 
-}
-
-const initialUserState:TInitialState = {
+const initialUserState: TInitialState = {
 	user: {
-		name:'',
-		email:''
+		name: "",
+		email: "",
 	},
 
 	userRequest: false,
@@ -103,10 +102,13 @@ const initialUserState:TInitialState = {
 	userUpdateSuccess: false,
 	userUpdateFailed: false,
 
-	success:false
+	success: false,
 };
 
-export const userReducer = (state = initialUserState, action:TUserActions):TInitialState => {
+export const userReducer = (
+	state = initialUserState,
+	action: TUserActions
+): TInitialState => {
 	switch (action.type) {
 		case USER_REGISTER_REQUEST: {
 			return {
@@ -167,8 +169,8 @@ export const userReducer = (state = initialUserState, action:TUserActions):TInit
 				...state,
 				logoutRequest: false,
 				user: {
-					name:'',
-					email:''
+					name: "",
+					email: "",
 				},
 				logoutSuccess: true,
 				logoutFailed: false,

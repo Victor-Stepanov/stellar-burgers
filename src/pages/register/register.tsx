@@ -1,14 +1,22 @@
 import React, { useCallback, FC, FormEvent } from "react";
-import styles from './register.module.css';
-import { Link, Redirect } from 'react-router-dom';
-import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { sendUserData } from '../../services/actions/auth';
+import styles from "./register.module.css";
+import { Link, Redirect } from "react-router-dom";
+import {
+	Input,
+	PasswordInput,
+	Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import { sendUserData } from "../../services/actions/auth";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-import useForm from '../../hooks/useForm';
+import useForm from "../../hooks/useForm";
 
 export const RegisterPage: FC = (): JSX.Element => {
-	const { name, email } = useAppSelector(store => store.userData.user);
-	const { values, handleChange } = useForm({ name: '', email: '', password: '' });
+	const { name, email } = useAppSelector((store) => store.userData.user);
+	const { values, handleChange } = useForm({
+		name: "",
+		email: "",
+		password: "",
+	});
 
 	const dispatch = useAppDispatch();
 
@@ -23,9 +31,10 @@ export const RegisterPage: FC = (): JSX.Element => {
 	//Как можно заменить данную проверку?(
 	if (name.length > 0 && email.length > 0) {
 		return (
-			<Redirect to={{
-				pathname: '/'
-			}}
+			<Redirect
+				to={{
+					pathname: "/",
+				}}
 			/>
 		);
 	}
@@ -35,17 +44,48 @@ export const RegisterPage: FC = (): JSX.Element => {
 			<h2 className="text text_type_main-medium">Регистрация</h2>
 			<form className={styles.form} onSubmit={userRegister}>
 				<div className="pt-6">
-					<Input type={'text'} placeholder={'Имя'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.name} name={'name'} />
+					<Input
+						type={"text"}
+						placeholder={"Имя"}
+						errorText={"Ошибка"}
+						size={"default"}
+						onChange={handleChange}
+						value={values.name}
+						name={"name"}
+					/>
 				</div>
 				<div className="pt-6">
-					<Input type={'email'} placeholder={'E-mail'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.email} name={'email'} />
+					<Input
+						type={"email"}
+						placeholder={"E-mail"}
+						errorText={"Ошибка"}
+						size={"default"}
+						onChange={handleChange}
+						value={values.email}
+						name={"email"}
+					/>
 				</div>
 				<div className="pt-6 pb-6">
-					<PasswordInput onChange={handleChange} value={values.password} name={'password'} />
+					<PasswordInput
+						onChange={handleChange}
+						value={values.password}
+						name={"password"}
+					/>
 				</div>
-				<Button disabled={!(values.name && values.email && values.password)} type="primary" size="large">Зарегистрироваться</Button>
+				<Button
+					disabled={!(values.name && values.email && values.password)}
+					type="primary"
+					size="large"
+				>
+					Зарегистрироваться
+				</Button>
 			</form>
-			<p className="pt-20 text text_type_main-default text_color_inactive">Уже зарегистрированы?<Link className={styles.link} to={{ pathname: '/login' }}>Войти</Link></p>
+			<p className="pt-20 text text_type_main-default text_color_inactive">
+				Уже зарегистрированы?
+				<Link className={styles.link} to={{ pathname: "/login" }}>
+					Войти
+				</Link>
+			</p>
 		</div>
-	)
-}
+	);
+};
