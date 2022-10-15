@@ -10,7 +10,8 @@ import Modal from "../modal/modal.jsx";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { useSelector, useDispatch } from "react-redux";
+//import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types/detailsTypes";
 import { RESET_ITEM } from "../../services/action-types";
 import {
@@ -36,16 +37,15 @@ function App() {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
     const [isOrderInfoOpened, setIsOrderInfoOpened] = useState(false);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
-    const { orderRequest } = useSelector((store) => store.orderNumberData);
-    const { user } = useSelector((state) => state.userData); 
-    const dispatch = useDispatch();
+    const { orderRequest } = useAppSelector((store) => store.orderNumberData);
+    const dispatch = useAppDispatch();
     const token = getCookie("token");
     const refreshToken = localStorage.getItem("refreshToken"); // token - для обновления токена, если он умер
     const location = useLocation();
     const history = useHistory();
 
     const openOrderDetailsModal = () =>
-        user ? setIsOrderDetailsOpened(true) : history.replace("/login");
+    token ? setIsOrderDetailsOpened(true) : history.replace("/login");
 
     const openIngredientsModal = () => {
         setIsIngredientsOpened(true);

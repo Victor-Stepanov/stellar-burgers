@@ -5,6 +5,7 @@ import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burg
 import { sendLoginData } from '../../services/actions/auth';
 import { useAppSelector, useAppDispatch} from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
+import { getCookie } from "../../utils/utils";
 
 interface LocationState {
 	from: {
@@ -15,7 +16,7 @@ interface LocationState {
 export const LoginPage = () => {
 	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({email: '', password: '' });
-	const user = useAppSelector(store => store.userData.user);
+	const token  = getCookie('token')
 	const location = useLocation<LocationState>();
 
 	const userLogin = useCallback(
@@ -27,7 +28,7 @@ export const LoginPage = () => {
 	);
 
 	//После авторизации перенаправление на главную старницу
-	if (user) {
+	if (token) {
 		return (
 			<Redirect to={location?.state?.from || '/'}
 			/>
