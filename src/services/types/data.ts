@@ -33,8 +33,8 @@ export type TOrderRespnoce = {
 export type TFormValues = {
     readonly name: string;
     readonly email: string;
-    readonly password: string;
-    readonly code?:string;
+    readonly password?: string;
+    readonly token?:string;
 }
 
 export type TUser = {

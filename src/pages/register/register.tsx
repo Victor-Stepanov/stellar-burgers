@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from '../../hooks/useForm';
 
 export const RegisterPage:FC = ():JSX.Element => {
-	const { user } = useAppSelector(store => store.userData);
+	const { name, email } = useAppSelector(store => store.userData.user);
 	const { values, handleChange } = useForm({ name: '', email: '', password: '' });
 
 	const dispatch = useAppDispatch();
@@ -20,7 +20,8 @@ export const RegisterPage:FC = ():JSX.Element => {
 		[values, dispatch]
 	);
 	//После регистрации перенаправление на главную старницу
-	if (user) {
+	//Как можно заменить данную проверку?(
+	if (name.length > 0 && email.length > 0) {
 		return (
 			<Redirect to={{
 				pathname: '/'

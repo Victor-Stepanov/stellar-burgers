@@ -12,8 +12,8 @@ export const ResetPasswordPage:FC = ():JSX.Element => {
 	const dispatch = useAppDispatch();
 	const { resetSuccess, forgoutSuccess } = useAppSelector(store => store.userData);
 
-	const { values, handleChange } = useForm({ email: '', code: '' });
-
+	const { values, handleChange } = useForm({ password: '', token: '' });
+	
 	const resetValue = useCallback(
 		(e:FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
@@ -43,9 +43,9 @@ export const ResetPasswordPage:FC = ():JSX.Element => {
 					<PasswordInput size={'default'} onChange={handleChange} value={values.password} name={'password'} />
 				</div>
 				<div className="pt-6 pb-6">
-					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.code} name={'name'} />
+					<Input type={'text'} placeholder={'Введите код из письма'} errorText={'Ошибка'} size={'default'} onChange={handleChange} value={values.token} name={'token'} />
 				</div>
-				<Button disabled={!(values.password, values.code)} type="primary" size="medium">Восстановить</Button>
+				<Button disabled={!(values.password, values.token)} type="primary" size="medium">Восстановить</Button>
 			</form>
 			<p className="pt-20 text text_type_main-default text_color_inactive">Вспомнили пароль?<Link className={styles.link} to={{ pathname: '/login' }}>Войти</Link></p>
 		</div>
