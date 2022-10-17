@@ -12,7 +12,6 @@ import {
   WS_AUTH_GET_ORDERS,
   WS_AUTH_SEND_ORDERS,
 } from "../services/action-types";
-import { TWsActions, TWsAuthActions } from "../services/actions";
 
 export type TConfig = {
   baseUrl: string;
@@ -34,11 +33,14 @@ type TFillings = {
   main: string;
 };
 
-export const obj: TFillings = {
+//Если TFillings, то ошибка
+
+export const obj: any = {
   bun: "Булки",
   sauce: "Соусы",
   main: "Начинки",
 };
+
 
 //Получение всех заказов
 const wsUrlAllOrders: string = "wss://norma.nomoreparties.space/orders/all";
@@ -77,11 +79,3 @@ export interface IWsActions {
 //export type TTypeGuardActions = TWsActions|TWsAuthActions;
 
 export { config, wsUrlAllOrders, wsUrlUserOrders, wsActions, wsActionsAuth };
-
-let onj = {
-  key: "ac3df4", // not with HashHistory!
-  pathname: "/somewhere",
-  search: "?some=search-string",
-  hash: "#howdy",
-  state: "",
-};

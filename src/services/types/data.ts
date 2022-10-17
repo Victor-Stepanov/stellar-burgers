@@ -7,9 +7,9 @@ export type TIngrediens = {
     readonly carbohydrates: number;
     readonly calories: number;
     readonly price: number;
-    readonly image: number;
-    readonly image_mobile: number;
-    readonly image_large: number;
+    readonly image: string;
+    readonly image_mobile: string;
+    readonly image_large: string;
     readonly __v: number;
     id?: string;
 };
@@ -46,7 +46,6 @@ export type TUserResponce = {
     readonly refreshToken: string;
 };
 
-//sendForgoutPasswordRequest, sendForgoutPasswordRequest
 export type TSameResponce = {
     readonly success: boolean;
     readonly message: string;
@@ -65,6 +64,7 @@ export type TFeed = {
     readonly number: number;
     readonly createdAt: string;
     readonly updatedAt: string;
+    readonly name?: string;
 };
 
 export type TFeedResponce = {
@@ -73,3 +73,4 @@ export type TFeedResponce = {
     readonly total: number;
     readonly totalToday: number;
 };
+
