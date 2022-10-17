@@ -1,5 +1,13 @@
 import { TIngrediens } from "../services/types/data";
 
+type TSetCookieProps = {
+  props: {
+    [name: string]: string | number | boolean | Date | undefined;
+    expires?: Date | number | string;
+  }
+
+};
+
 export const getCookie = (name: string): string | undefined => {
   const matches = document.cookie.match(
     new RegExp(
@@ -9,11 +17,8 @@ export const getCookie = (name: string): string | undefined => {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
 
-export const setCookie = (
-  name: string,
-  value: string,
-  props: { [key: string]: any } & { expires?: number | Date | string } = {}
-) => {
+
+export const setCookie = (name: string, value: string, props: TSetCookieProps['props'] = {}) => {
   props = props || {};
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
@@ -47,8 +52,9 @@ export const convertedDate = (date: string) => {
 export const checkedOrderStatus = (status: string) =>
   status === "done" ? "Выполнен" : status === "pending" ? "Готовится" : "";
 
+
 export const sumIngredients = (arr: Array<TIngrediens>) => {
-  let sum = 0;
+  let sum:number = 0;
   if (Array.isArray(arr)) {
     arr.forEach((item) => {
       if (item?.price) {
@@ -63,7 +69,7 @@ export const checkedArrayLength = (arr: Array<TIngrediens>) =>
   arr.length - 6 > 0 ? `${arr.length - 6}` : null;
 
 export const countIngredients = (arr: Array<TIngrediens>, value: string) => {
-  let result: any = {}; //Не могу победить в этой игре
+  let result: { [key: string]: number } = {};
   let name: string = "";
   arr.forEach((item) => {
     name = item.name;

@@ -5,15 +5,16 @@ import styles from './order-item.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients} from "../../../utils/utils";
 import { IOrderItem } from "./order-item.props";
 import { ImageContainer } from "./image-container/image-container";
+import { TIngrediens } from "../../../services/types/data";
 
 
 
-export const OrderItem:FC<IOrderItem> = ({ order }):JSX.Element => {
+export const OrderItem:FC<IOrderItem> = ({ order }) => {
 	const { ingredients } = useAppSelector(state => state.ingredientsData);
 	const all = order.ingredients; //массив ингредиентов заказа
 
 	//Не могу победить, если убрать any то ошибки есть
-	const filterArr:any = useMemo(() =>
+	const filterArr = useMemo(() =>
 		all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)),
 		[ingredients, all])
 
@@ -28,9 +29,9 @@ export const OrderItem:FC<IOrderItem> = ({ order }):JSX.Element => {
 				<p className={`text text_type_main-small ${styles.status}`}>{checkedOrderStatus(order.status)}</p>
 			</div>
 			<div className={styles.boxImagePrice}>
-				<ImageContainer filterArr={filterArr} />
+				<ImageContainer filterArr={filterArr as Array<TIngrediens>} />
 				<div className={`${styles.price}`}>
-					<p className={`text text_type_digits-default pr-2`}>{sumIngredients(filterArr)}</p>
+					<p className={`text text_type_digits-default pr-2`}>{sumIngredients(filterArr as Array<TIngrediens>)}</p>
 					<CurrencyIcon type="primary" />
 				</div>
 			</div>

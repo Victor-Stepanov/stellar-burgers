@@ -8,7 +8,7 @@ const TabsMenu: FC<ITabsMenu> = ({
     inViewBuns,
     inViewSauces,
     inViewFilling,
-}): JSX.Element => {
+}) => {
     const [current, setCurrent] = useState<string>("bun");
 
     useEffect(() => {

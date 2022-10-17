@@ -5,19 +5,12 @@ import { useParams } from "react-router";
 import { FC } from "react";
 import { IIngredientDetails } from "./ingredient-details.props";
 
-const IngredientDetails: FC<IIngredientDetails> = ({ title }): JSX.Element => {
+
+const IngredientDetails: FC<IIngredientDetails> = ({ title }) => {
     const { ingredients } = useAppSelector((store) => store.ingredientsData);
     const { id } = useParams<{ id: string }>();
 
-    const ingredient: any = ingredients.find((item) => item._id === id);
-    const categories = ["calories", "proteins", "fat", "carbohydrates"];
-
-    const obj: any = {
-        calories: "Калории,ккал",
-        proteins: "Белки, г",
-        fat: "Жиры, г",
-        carbohydrates: "Углеводы, г",
-    };
+    const ingredient = ingredients.find((item) => item._id === id);
 
     return (
         <div className={`mt-30 ${IngredientDetailsStyle.container}`}>
@@ -35,23 +28,38 @@ const IngredientDetails: FC<IIngredientDetails> = ({ title }): JSX.Element => {
                         {ingredient.name}
                     </h3>
                     <ul className={`${IngredientDetailsStyle.items} mb-15`}>
-                        {categories.map((item, index) => {
-                            if (item in ingredient) {
-                                return (
-                                    <li
-                                        className={`${IngredientDetailsStyle.item} pr-5`}
-                                        key={index}
-                                    >
-                                        <p className="text text_type_main-default text_color_inactive">
-                                            {obj[item]}
-                                        </p>
-                                        <p className="text text_type_main-default text_color_inactive">
-                                            {ingredient[item]}
-                                        </p>
-                                    </li>
-                                );
-                            }
-                        })}
+                        <li className={`${IngredientDetailsStyle.item} pr-5`}>
+                            <p className="text text_type_main-default text_color_inactive">
+                                Калории,ккал
+                            </p>
+                            <p className="text text_type_main-default text_color_inactive">
+                                {ingredient.calories}
+                            </p>
+                        </li>
+                        <li className={`${IngredientDetailsStyle.item} pr-5`}>
+                            <p className="text text_type_main-default text_color_inactive">
+                                Белки, г
+                            </p>
+                            <p className="text text_type_main-default text_color_inactive">
+                                {ingredient.proteins}
+                            </p>
+                        </li>
+                        <li className={`${IngredientDetailsStyle.item} pr-5`}>
+                            <p className="text text_type_main-default text_color_inactive">
+                                Жиры, г
+                            </p>
+                            <p className="text text_type_main-default text_color_inactive">
+                                {ingredient.fat}
+                            </p>
+                        </li>
+                        <li className={`${IngredientDetailsStyle.item} pr-5`}>
+                            <p className="text text_type_main-default text_color_inactive">
+                                Углеводы, г
+                            </p>
+                            <p className="text text_type_main-default text_color_inactive">
+                                {ingredient.carbohydrates}
+                            </p>
+                        </li>
                     </ul>
                 </div>
             )}

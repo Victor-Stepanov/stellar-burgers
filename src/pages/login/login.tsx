@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback } from "react";
+import React, { FC, FormEvent, useCallback } from "react";
 import styles from "./login.module.css";
 import { Redirect, Link, useLocation } from "react-router-dom";
 import {
@@ -12,7 +12,7 @@ import useForm from "../../hooks/useForm";
 import { Location } from "history";
 
 
-export const LoginPage = () => {
+export const LoginPage:FC = () => {
 	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({ email: "", password: "" });
 	const { name, email } = useAppSelector((store) => store.userData.user);

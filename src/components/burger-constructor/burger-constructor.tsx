@@ -15,7 +15,7 @@ import { TIngrediens } from "../../services/types/data";
 
 const BurgerConstructor: FC<IBurgerConstructor> = ({
     openOrderModal,
-}): JSX.Element => {
+}) => {
     const dispatch = useAppDispatch();
     const { element, bun } = useAppSelector((state) => state.constructorData); // получаем элементы из хранилища
 

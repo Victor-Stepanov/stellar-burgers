@@ -5,7 +5,7 @@ import styles from "./profile-menu.module.css";
 import { sendLogoutData } from "../../../services/actions/auth";
 import {Location} from 'history';
 
-const ProfileMenu: FC = (): JSX.Element => {
+const ProfileMenu: FC = () => {
 	const dispatch = useAppDispatch();
 	const history = useHistory<Location>();
 

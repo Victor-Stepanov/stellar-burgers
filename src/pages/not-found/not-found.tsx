@@ -4,7 +4,7 @@ import styles from "./not-found.module.css";
 import notf from "../../images/notf.svg";
 import { useAppSelector } from "../../hooks/hooks";
 
-export const NotFound404: FC = (): JSX.Element => {
+export const NotFound404: FC = () => {
   const { name } = useAppSelector((store) => store.userData?.user);
   let title: string = !name ? "Boddy" : name;
 

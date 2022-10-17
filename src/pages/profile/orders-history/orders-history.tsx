@@ -12,7 +12,7 @@ import ProfileMenu from "../profile-menu/profile-menu";
 import Loader from "../../../components/loader/loader";
 import {Location} from 'history';
 
-const OrdersHistory: FC = (): JSX.Element => {
+const OrdersHistory: FC = () => {
 	const orders = useAppSelector((store) => store.ws.userOrders);
 	const dispatch = useAppDispatch();
 	const location = useLocation<Location>();

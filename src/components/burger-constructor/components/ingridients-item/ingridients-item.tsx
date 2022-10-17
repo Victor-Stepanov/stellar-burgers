@@ -15,7 +15,7 @@ const IngridientsItem: FC<IIngridientsItem> = ({
     item,
     removeItem,
     index,
-}): JSX.Element => {
+}) => {
     console.log("item:", item);
     console.log("remitem:", removeItem);
     console.log("index:", index);
