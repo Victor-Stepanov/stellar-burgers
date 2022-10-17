@@ -52,13 +52,8 @@ export const convertedDate = (date: string) => {
 export const checkedOrderStatus = (status: string) =>
   status === "done" ? "Выполнен" : status === "pending" ? "Готовится" : "";
 
-//
-export function isNotEmptyValue<T>(value:T|null|undefined):value is T{
-  return value !== null && value !== undefined;
-}
 
-export const sumIngredients = (arr: Array<TIngrediens> | undefined) => {
-  console.log(arr)
+export const sumIngredients = (arr: Array<TIngrediens>) => {
   let sum:number = 0;
   if (Array.isArray(arr)) {
     arr.forEach((item) => {
