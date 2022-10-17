@@ -3,8 +3,9 @@ import { useParams, useRouteMatch } from "react-router";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
-import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients } from "../../utils/utils";
+import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients, isNotEmptyValue } from "../../utils/utils";
 import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/actions";
+import { TFeed, TIngrediens } from "../../services/types/data";
 
 
 
@@ -23,10 +24,10 @@ const OrderInfo = () => {
 	const order = orders.find((item) => item._id === id); //Кликнутый
 
 	//any((
-	const filterArr:any = useMemo(
+	
+	let filterArr:any = useMemo(
 		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
-		), [ingredients, order?.ingredients])
-
+		), [ingredients, order?.ingredients]);
 
 	const uniqIngredients = [...new Set(filterArr)]; //массив уникальных ингредиентов
 

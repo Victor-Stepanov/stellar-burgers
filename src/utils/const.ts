@@ -27,15 +27,8 @@ const config: TConfig = {
   },
 };
 
-type TFillings = {
-  bun: string;
-  sauce: string;
-  main: string;
-};
 
-//Если TFillings, то ошибка
-
-export const obj: any = {
+export const obj: { [key: string]: string } = {
   bun: "Булки",
   sauce: "Соусы",
   main: "Начинки",

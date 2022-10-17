@@ -4,20 +4,24 @@ import { useAppSelector } from "../../hooks/hooks";
 import { useParams } from "react-router";
 import { FC } from "react";
 import { IIngredientDetails } from "./ingredient-details.props";
+import { isNotEmptyValue } from "../../utils/utils";
 
-const IngredientDetails: FC<IIngredientDetails> = ({ title }): JSX.Element => {
+
+const IngredientDetails: FC<IIngredientDetails> = ({ title }) => {
     const { ingredients } = useAppSelector((store) => store.ingredientsData);
     const { id } = useParams<{ id: string }>();
 
-    const ingredient: any = ingredients.find((item) => item._id === id);
-    const categories = ["calories", "proteins", "fat", "carbohydrates"];
+  
+    const ingredient:any = ingredients.find((item) => item._id === id);
+    const categories:Array<string> = ["calories", "proteins", "fat", "carbohydrates"];
 
-    const obj: any = {
+    const obj: { [key: string]: string } = {
         calories: "Калории,ккал",
         proteins: "Белки, г",
         fat: "Жиры, г",
         carbohydrates: "Углеводы, г",
     };
+
 
     return (
         <div className={`mt-30 ${IngredientDetailsStyle.container}`}>
