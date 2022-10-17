@@ -33,6 +33,8 @@ type TFillings = {
   main: string;
 };
 
+//Если TFillings, то ошибка
+
 export const obj: any = {
   bun: "Булки",
   sauce: "Соусы",

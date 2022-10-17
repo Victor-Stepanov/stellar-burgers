@@ -9,7 +9,7 @@ import appHeaderStyles from "./app-header.module.css";
 import { NavLink, Link, useHistory } from "react-router-dom";
 
 const AppHeader: FC = (): JSX.Element => {
-    const history = useHistory();
+    const history = useHistory<Location>();
     let path = history.location.pathname;
     return (
         <header className={`${appHeaderStyles.header} `}>

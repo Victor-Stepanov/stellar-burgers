@@ -46,7 +46,6 @@ export type TUserResponce = {
     readonly refreshToken: string;
 };
 
-//sendForgoutPasswordRequest, sendForgoutPasswordRequest
 export type TSameResponce = {
     readonly success: boolean;
     readonly message: string;

@@ -22,12 +22,13 @@ const OrderInfo = () => {
 	const orders = path.includes('feed') ? allOrders : userOrders; //в зависимости от пути, присваиваем нужный стор
 	const order = orders.find((item) => item._id === id); //Кликнутый
 
+	//any((
 	const filterArr:any = useMemo(
 		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
 		), [ingredients, order?.ingredients])
 
 
-	const uniqIngredients:any = [...new Set(filterArr)]; //массив уникальных ингредиентов
+	const uniqIngredients = [...new Set(filterArr)]; //массив уникальных ингредиентов
 
 	useEffect(() => {
 		if (!order) {

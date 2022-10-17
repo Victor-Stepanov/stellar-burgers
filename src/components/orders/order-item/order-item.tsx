@@ -7,11 +7,12 @@ import { IOrderItem } from "./order-item.props";
 import { ImageContainer } from "./image-container/image-container";
 
 
+
 export const OrderItem:FC<IOrderItem> = ({ order }):JSX.Element => {
 	const { ingredients } = useAppSelector(state => state.ingredientsData);
-	const all = order?.ingredients; //массив ингредиентов заказа
+	const all = order.ingredients; //массив ингредиентов заказа
 
-
+	//Не могу победить, если убрать any то ошибки есть
 	const filterArr:any = useMemo(() =>
 		all.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)),
 		[ingredients, all])

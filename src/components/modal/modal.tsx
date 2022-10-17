@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { EventHandler, FC } from "react";
 import ReactDOM from "react-dom";
 import ModalStyles from "./modal.module.css";
 import ModalOverlay from "../modal-overlay/modal-overlay";

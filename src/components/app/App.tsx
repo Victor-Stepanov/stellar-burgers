@@ -30,7 +30,7 @@ import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
 import OrderInfo from "../order-info/order-info";
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
 
-function App() {
+function App():JSX.Element {
     const [isIngredientsOpened, setIsIngredientsOpened] = useState<boolean>(false);
     const [isOrderInfoOpened, setIsOrderInfoOpened] = useState<boolean>(false);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState<boolean>(false);

@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import styles from "./ingridients-item.module.css";
-import PropTypes from "prop-types";
 import DraggableItem from "./draggable-item/draggable-item";
 import { obj } from "../../../../utils/const";
 import { IIngridientsItem } from "./ingridients-item.props";
