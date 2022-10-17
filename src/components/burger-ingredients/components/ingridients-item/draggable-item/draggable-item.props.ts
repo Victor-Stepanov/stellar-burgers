@@ -1,7 +1,6 @@
 import { TIngrediens } from "../../../../../services/types/data";
 
-
 export interface IDraggableItem {
-    ingredient:TIngrediens;
-    onClick:() => void;
+    ingredient: TIngrediens;
+    onClick: () => void;
 }

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface IModal {
-    title?:string;
-    onClose:() => void;
-    children:ReactNode;
+    title?: string;
+    onClose: () => void;
+    children: ReactNode;
 }

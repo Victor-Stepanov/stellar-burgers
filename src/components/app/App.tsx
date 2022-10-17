@@ -27,37 +27,37 @@ import { ProtectedRoute } from "../protected-route/protected-route";
 import { getCookie } from "../../utils/utils";
 import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
-import OrderInfo from '../order-info/order-info';
+import OrderInfo from "../order-info/order-info";
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
 
-
-
 function App() {
-    const [isIngredientsOpened, setIsIngredientsOpened] = useState<boolean>(false); //state для  Ingredients modal
+    const [isIngredientsOpened, setIsIngredientsOpened] = useState<boolean>(false);
     const [isOrderInfoOpened, setIsOrderInfoOpened] = useState<boolean>(false);
-    const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState<boolean>(false); //state для OrderDetails modal
+    const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState<boolean>(false);
     const { orderRequest } = useAppSelector((store) => store.orderNumberData);
     const dispatch = useAppDispatch();
-    const {name, email} = useAppSelector(store => store.userData.user)
+    const { name, email } = useAppSelector((store) => store.userData.user);
     const token = getCookie("token");
     const refreshToken = localStorage.getItem("refreshToken"); // token - для обновления токена, если он умер
-    const location = useLocation<{background: Location}>();
+    const location = useLocation<{ background: Location }>();
     const history = useHistory();
 
-    const openOrderDetailsModal = ():void =>
-    name.length > 0 && email.length > 0 ? setIsOrderDetailsOpened(true) : history.replace("/login");
+    const openOrderDetailsModal = (): void =>
+        name.length > 0 && email.length > 0
+            ? setIsOrderDetailsOpened(true)
+            : history.replace("/login");
 
-    const openIngredientsModal = ():void => {
+    const openIngredientsModal = (): void => {
         setIsIngredientsOpened(true);
     };
 
     //Закрыли все модальные окна
-    const closeAllModals = ():void => {
+    const closeAllModals = (): void => {
         dispatch({ type: RESET_DETAILS_INGRIDIENT });
         dispatch({ type: RESET_ITEM });
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
-        setIsOrderInfoOpened(false)
+        setIsOrderInfoOpened(false);
         history.goBack();
     };
 
@@ -113,7 +113,7 @@ function App() {
                     <Route exact={true} path="/feed">
                         <FeedPage />
                     </Route>
-                    <Route exact={true} path='/feed/:id'>
+                    <Route exact={true} path="/feed/:id">
                         <OrderInfo />
                     </Route>
                     <Route>
@@ -126,27 +126,27 @@ function App() {
                         <OrderDetails />
                     </Modal>
                 )}
-                {background  && (
+                {background && (
                     <Route exact={true} path="/ingredients/:id">
                         <Modal title="Детали ингредиента" onClose={closeAllModals}>
                             <IngredientDetails />
                         </Modal>
                     </Route>
                 )}
-                {background &&
+                {background && (
                     <Route exact={true} path="/feed/:id">
                         <Modal title="" onClose={closeAllModals}>
                             <OrderInfo />
                         </Modal>
                     </Route>
-                }
-                {background &&
+                )}
+                {background && (
                     <ProtectedRoute exact={true} path="/profile/orders/:id">
                         <Modal title="" onClose={closeAllModals}>
                             <OrderInfo />
                         </Modal>
                     </ProtectedRoute>
-                }
+                )}
             </div>
         </>
     );

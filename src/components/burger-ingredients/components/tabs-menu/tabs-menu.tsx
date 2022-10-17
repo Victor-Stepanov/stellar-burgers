@@ -1,12 +1,15 @@
-import React, {FC} from 'react';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './tabs-menu.module.css';
-import { useState, useEffect } from 'react';
-import { ITabsMenu } from './tabs-menu.props';
+import React, { FC } from "react";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "./tabs-menu.module.css";
+import { useState, useEffect } from "react";
+import { ITabsMenu } from "./tabs-menu.props";
 
-const TabsMenu:FC<ITabsMenu> = ({ inViewBuns, inViewSauces, inViewFilling }):JSX.Element => {
-   
-    const [current, setCurrent] = useState<string>('bun');
+const TabsMenu: FC<ITabsMenu> = ({
+    inViewBuns,
+    inViewSauces,
+    inViewFilling,
+}): JSX.Element => {
+    const [current, setCurrent] = useState<string>("bun");
 
     useEffect(() => {
         if (inViewBuns) {
@@ -18,8 +21,7 @@ const TabsMenu:FC<ITabsMenu> = ({ inViewBuns, inViewSauces, inViewFilling }):JSX
         }
     }, [inViewBuns, inViewFilling, inViewSauces]);
 
-
-    const onTabClick = (current:string) => {
+    const onTabClick = (current: string) => {
         setCurrent(current);
         const element = document.getElementById(current);
         if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -27,18 +29,35 @@ const TabsMenu:FC<ITabsMenu> = ({ inViewBuns, inViewSauces, inViewFilling }):JSX
 
     return (
         <nav className={styles.nav}>
-            <Tab value="bun" active={current === 'bun'} onClick={() => { onTabClick('bun') }}>
+            <Tab
+                value="bun"
+                active={current === "bun"}
+                onClick={() => {
+                    onTabClick("bun");
+                }}
+            >
                 Булки
             </Tab>
-            <Tab value="sauce" active={current === 'sauce'} onClick={() => { onTabClick('sauce') }}>
+            <Tab
+                value="sauce"
+                active={current === "sauce"}
+                onClick={() => {
+                    onTabClick("sauce");
+                }}
+            >
                 Соусы
             </Tab>
-            <Tab value="main" active={current === 'main'} onClick={() => { onTabClick('main') }}>
+            <Tab
+                value="main"
+                active={current === "main"}
+                onClick={() => {
+                    onTabClick("main");
+                }}
+            >
                 Начинки
             </Tab>
         </nav>
-    )
-}
-
+    );
+};
 
 export default TabsMenu;

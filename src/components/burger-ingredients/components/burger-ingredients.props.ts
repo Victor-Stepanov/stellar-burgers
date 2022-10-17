@@ -1,4 +1,3 @@
-
 export interface IBurgerIngredients {
-    onClick:() => void;
+    onClick: () => void;
 }

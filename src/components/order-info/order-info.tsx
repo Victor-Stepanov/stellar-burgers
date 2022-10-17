@@ -12,7 +12,7 @@ import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsCon
 
 const OrderInfo = () => {
 	const { id } = useParams<{id: string}>(); //id заказа
-	const { path } = useRouteMatch(); //получаем текущий путь
+	const { path } = useRouteMatch<{path:string}>(); //получаем текущий путь
 	const dispatch = useAppDispatch();
 
 	const allOrders = useAppSelector(store => store.ws.orders); // Все заказы

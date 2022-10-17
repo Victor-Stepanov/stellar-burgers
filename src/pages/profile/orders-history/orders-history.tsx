@@ -10,11 +10,12 @@ import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";
 import ProfileMenu from "../profile-menu/profile-menu";
 import Loader from "../../../components/loader/loader";
+import {Location} from 'history';
 
 const OrdersHistory: FC = (): JSX.Element => {
 	const orders = useAppSelector((store) => store.ws.userOrders);
 	const dispatch = useAppDispatch();
-	const location = useLocation();
+	const location = useLocation<Location>();
 
 	useEffect(() => {
 		dispatch(wsAuthConnectionOpen());
@@ -31,7 +32,7 @@ const OrdersHistory: FC = (): JSX.Element => {
 				<ul className={styles.listOrders}>
 					<div className={styles.scroll}>
 						{orders &&
-							orders.map((order, index) => (
+							orders.map((order) => (
 								<Link
 									key={order._id}
 									className={styles.orderLink}

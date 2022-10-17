@@ -1,4 +1,3 @@
-
 export interface IIngredientDetails {
-    title?:string;
+    title?: string;
 }
