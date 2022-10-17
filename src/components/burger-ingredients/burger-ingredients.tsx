@@ -1,13 +1,13 @@
-import React, {useMemo } from 'react';
+import React, {useMemo,FC } from 'react';
 import burgerIngredientsStyles from './burger-ingredients.module.css'
-import TabsMenu from '../burger-ingredients/components/tabs-menu/tabs-menu.jsx';
-import IngridientsItem from '../burger-ingredients/components/ingridients-item/ingridients-item.jsx';
+import TabsMenu from './components/tabs-menu/tabs-menu';
+import IngridientsItem from './components/ingridients-item/ingridients-item';
 import { useAppSelector} from "../../hooks/hooks";
-import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
+import { IBurgerIngredients } from './components/burger-ingredients.props';
 
 
-const BurgerIngredients = ({ onClick }) => {
+const BurgerIngredients:FC<IBurgerIngredients> = ({ onClick }) => {
     const { ingredients, ingredientsRequest } = useAppSelector(state => state.ingredientsData)
 
 
@@ -38,10 +38,6 @@ const BurgerIngredients = ({ onClick }) => {
 
 }
 
-
-BurgerIngredients.propTypes = {
-    onClick: PropTypes.func.isRequired
-}
 
 
 export default BurgerIngredients;

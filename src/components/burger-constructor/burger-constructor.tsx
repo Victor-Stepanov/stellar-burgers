@@ -1,50 +1,70 @@
 import burgerConstructorStyles from './burger-constructor.module.css'
 import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import IngridientsItem from '../burger-constructor/components/ingridients-item/ingridients-item.jsx';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import IngridientsItem from './components/ingridients-item/ingridients-item';
+import React,{FC, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { useDrop } from "react-dnd";
 import { addItem, removeItem } from '../../services/actions/constructor';
 import { getOrder } from '../../services/actions/order';
+import { IBurgerConstructor } from './burger-constructor.props';
+import { TIngrediens } from '../../services/types/data';
 
 
 
-const BurgerConstructor = ({ openOrderModal }) => {
+const BurgerConstructor:FC<IBurgerConstructor> = ({ openOrderModal }):JSX.Element => {
     const dispatch = useAppDispatch()
     const { element, bun } = useAppSelector((state) => state.constructorData) // получаем элементы из хранилища
-    
+   
+    //Стремное решение, но старое решение с использованием Array.reduce выдавало ошибку
     const [total, setTotal] = useState(0);
+    
+    const totalSumIngredients = (bun:TIngrediens,arr: Array<TIngrediens>) => {
+        let sum = 0;
+        if (Array.isArray(arr)) {
+          arr.forEach((item) => {
+            if (item?.price) {
+              sum += item.price;
+            }
+          });
+        }
+        return sum + bun.price;
+      };
+
     useEffect(() => {
-        const price = element.reduce((sum, item) => sum + item.price, bun.price)
-        setTotal(price)
-    }, [element, bun])
+        if(bun !== null){
+            setTotal(totalSumIngredients(bun, element))
+        }
+    }, [bun, element])
+
+
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
-        drop: (item) => {
+        drop: (item:TIngrediens) => {
             dispatch(addItem(item));
         }
 
     });
 
-    const handlerDeleteItem = (id) => {
+   
+    const handlerDeleteItem = (id:string|undefined) => {
         dispatch(removeItem(id))
     }
 
 
     const handlerSendOrder = () => {
         openOrderModal();
-        const id = [bun._id, ...element.map((item) => item._id)];
-        dispatch(getOrder(id))
+        if(bun !== null){
+            const id = [bun._id, ...element.map((item) => item._id)];
+            dispatch(getOrder(id))
+        }
 
     }
 
     return (
         <section className={`${burgerConstructorStyles.section} mt-25 `}>
             <div className={`${burgerConstructorStyles.box} ml-4`} ref={dropTarget}>
-                {Object.keys(bun).length > 0 ? (<div>
+                {bun !== null? (<div>
                     <ConstructorElement
                         type="top"
                         isLocked={true}
@@ -60,7 +80,7 @@ const BurgerConstructor = ({ openOrderModal }) => {
 
                 )}
                 {/*Блок массив-элементов*/}
-                {bun.length !== 0 && element.length !== 0 ? (
+                {bun !== null  && element.length !== 0 ? (
                     element.map((item, index) => <IngridientsItem item={item} key={item.id} index={index}
                         removeItem={() => handlerDeleteItem(item.id)} />)
                 ) : (
@@ -69,7 +89,7 @@ const BurgerConstructor = ({ openOrderModal }) => {
                     </div>
                 )}
 
-                {Object.keys(bun).length > 0 ? (<div>
+                {bun !== null ? (<div>
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
@@ -85,7 +105,7 @@ const BurgerConstructor = ({ openOrderModal }) => {
 
                 )}
             </div>
-            {bun.length !== 0 && element.length !== 0 && <div className={`${burgerConstructorStyles.order} pt-10`}>
+            {bun !== null && element.length !== 0 && <div className={`${burgerConstructorStyles.order} pt-10`}>
                 <div className={`${burgerConstructorStyles.order} `}>
                     <p><span className="text text_type_digits-medium pr-2">{total}</span></p>
                     <CurrencyIcon type="primary" />
@@ -95,10 +115,6 @@ const BurgerConstructor = ({ openOrderModal }) => {
         </section>
 
     )
-}
-
-BurgerConstructor.propTypes = {
-    openOrderModal: PropTypes.func.isRequired
 }
 
 

@@ -1,13 +1,12 @@
 import { useAppSelector} from "../../../../../hooks/hooks";
-import React, { useMemo } from "react";
+import React, { useMemo, FC } from "react";
 import styles from "../ingridients-item.module.css";
-import { ingredientPropType } from '../../../../../utils/prop-types.js';
-import PropTypes from 'prop-types';
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
+import { IDraggableItem } from "./draggable-item.props";
 
-const DraggableItem = ({ ingredient, onClick }) => {
+const DraggableItem:FC<IDraggableItem> = ({ ingredient, onClick }):JSX.Element => {
     const location = useLocation();
     const { element, bun } = useAppSelector((state) => state.constructorData)
     const [{ isDrag }, dragRef] = useDrag({
@@ -45,7 +44,7 @@ const DraggableItem = ({ ingredient, onClick }) => {
                         <p className="text text_type_digits-default mr-2">
                             {ingredient.price}
                         </p>
-                        <CurrencyIcon />
+                        <CurrencyIcon type="primary" />
                     </div>
                     <p className="text text_type_main-default">{ingredient.name}</p>
                 </>
@@ -55,10 +54,5 @@ const DraggableItem = ({ ingredient, onClick }) => {
     );
 };
 
-DraggableItem.propTypes = {
-    ingredient:ingredientPropType.isRequired,
-    onClick: PropTypes.func.isRequired,
-
-}
 
 export default DraggableItem;

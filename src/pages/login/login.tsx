@@ -9,18 +9,14 @@ import {
 import { sendLoginData } from "../../services/actions/auth";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from "../../hooks/useForm";
+import { Location } from "history";
 
-interface LocationState {
-	from: {
-		pathname: string;
-	};
-}
 
 export const LoginPage = () => {
 	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({ email: "", password: "" });
 	const { name, email } = useAppSelector((store) => store.userData.user);
-	const location = useLocation<LocationState>();
+	const location = useLocation<{from:Location}>();
 
 	const userLogin = useCallback(
 		(e: FormEvent<HTMLFormElement>) => {

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { useAppSelector} from "../../hooks/hooks";
 import { Link, useLocation } from "react-router-dom";
 import styles from './orders.module.css';
 import { OrderItem } from "./order-item/order-item";
+import { Location } from "history";
 
-export const Orders = () => {
-	const location = useLocation();
-	const orders = useAppSelector(store => store.ws.orders);
+export const Orders:FC = ():JSX.Element => {
+	const location = useLocation<Location>();
+	const {orders} = useAppSelector(store => store.ws);
 
 	return (
 		<ul className={styles.listOrders}>

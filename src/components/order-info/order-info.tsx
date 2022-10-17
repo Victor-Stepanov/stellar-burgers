@@ -11,7 +11,7 @@ import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsCon
 
 
 const OrderInfo = () => {
-	const { id } = useParams(); //id заказа
+	const { id } = useParams<{id: string}>(); //id заказа
 	const { path } = useRouteMatch(); //получаем текущий путь
 	const dispatch = useAppDispatch();
 
@@ -22,12 +22,12 @@ const OrderInfo = () => {
 	const orders = path.includes('feed') ? allOrders : userOrders; //в зависимости от пути, присваиваем нужный стор
 	const order = orders.find((item) => item._id === id); //Кликнутый
 
-	const filterArr = useMemo(
+	const filterArr:any = useMemo(
 		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
 		), [ingredients, order?.ingredients])
 
 
-	const uniqIngredients = [...new Set(filterArr)]; //массив уникальных ингредиентов
+	const uniqIngredients:any = [...new Set(filterArr)]; //массив уникальных ингредиентов
 
 	useEffect(() => {
 		if (!order) {
@@ -60,7 +60,7 @@ const OrderInfo = () => {
 					<ul className={styles.list}>
 						<p className={`text text_type_main-medium pb-6`}>Состав:</p>
 						<div className={styles.scroll}>
-							{uniqIngredients.map((item, index) =>
+							{uniqIngredients.map((item:any, index:number) =>
 								<li className={styles.item} key={index} >
 									<div className={styles.fix}>
 										<div className={styles.itemIamge}>

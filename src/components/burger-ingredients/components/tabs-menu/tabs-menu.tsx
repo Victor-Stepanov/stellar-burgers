@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './tabs-menu.module.css';
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { ITabsMenu } from './tabs-menu.props';
 
-const TabsMenu = ({ inViewBuns, inViewSauces, inViewFilling }) => {
+const TabsMenu:FC<ITabsMenu> = ({ inViewBuns, inViewSauces, inViewFilling }):JSX.Element => {
    
-    const [current, setCurrent] = useState('bun');
+    const [current, setCurrent] = useState<string>('bun');
 
     useEffect(() => {
         if (inViewBuns) {
@@ -19,7 +19,7 @@ const TabsMenu = ({ inViewBuns, inViewSauces, inViewFilling }) => {
     }, [inViewBuns, inViewFilling, inViewSauces]);
 
 
-    const onTabClick = (current) => {
+    const onTabClick = (current:string) => {
         setCurrent(current);
         const element = document.getElementById(current);
         if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -40,10 +40,5 @@ const TabsMenu = ({ inViewBuns, inViewSauces, inViewFilling }) => {
     )
 }
 
-TabsMenu.propTypes = {
-    inViewBuns: PropTypes.bool.isRequired,
-    inViewSauces: PropTypes.bool.isRequired,
-    inViewFilling: PropTypes.bool.isRequired
-  };
 
 export default TabsMenu;

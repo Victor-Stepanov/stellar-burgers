@@ -4,11 +4,11 @@ import { TIngrediens } from "../types/data";
 import update from "immutability-helper";
 
 type TInitialState = {
-    bun: TIngrediens | [];
+    bun: TIngrediens | null;
     element: Array<TIngrediens> | [];
 };
 const initialConstructorState: TInitialState = {
-    bun: [],
+    bun: null,
     element: [],
 };
 
@@ -19,12 +19,10 @@ export const constructorReducer = (
     switch (action.type) {
         case ADD_ITEM: {
             if (action.payload.type === "bun") {
-                if (state.bun) {
-                    return {
-                        ...state,
-                        bun: action.payload,
-                    };
-                }
+                return {
+                    ...state,
+                    bun: action.payload,
+                };
             }
             return {
                 ...state,
@@ -51,7 +49,7 @@ export const constructorReducer = (
         case RESET_ITEM: {
             return {
                 ...state,
-                bun: [],
+                bun: null,
                 element: [],
             };
         }

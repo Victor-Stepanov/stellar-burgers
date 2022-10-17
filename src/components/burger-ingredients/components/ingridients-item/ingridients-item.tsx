@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react';
 import styles from './ingridients-item.module.css';
 import PropTypes from 'prop-types';
-import DraggableItem from './draggable-item/draggable-item.jsx'
+import DraggableItem from './draggable-item/draggable-item'
 import { obj } from '../../../../utils/const';
+import { IIngridientsItem } from './ingridients-item.props';
 
 
-const IngridientsItem = forwardRef(({ element, type, onClick }, ref) => {
+const IngridientsItem = forwardRef<HTMLDivElement, IIngridientsItem>(({ element, type, onClick }, ref) => {
 
     return (
         <article className={`${styles.box}`} ref={ref}>
@@ -17,11 +18,5 @@ const IngridientsItem = forwardRef(({ element, type, onClick }, ref) => {
     )
 })
 
-IngridientsItem.propTypes = {
-    element:PropTypes.array.isRequired,
-    type: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-
-}
 
 export default IngridientsItem;

@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import ReactDOM from 'react-dom';
 import ModalStyles from './modal.module.css';
-import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
+import ModalOverlay from '../modal-overlay/modal-overlay';
 import {useEffect} from 'react';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import { IModal } from './modal.props';
 
 
-const modalRoot = document.querySelector('#modals');
+const modalRoot = document.querySelector('#modals') as HTMLElement;
 
-const Modal = ({title, onClose, children}) => {
+const Modal:FC<IModal> = ({title, onClose, children}):JSX.Element => {
 
     //Закрыть модальных окон на Esc
-    const handleEscKeydown = (evt) => {
+    const handleEscKeydown = (evt:{key: string}) => {
         evt.key === "Escape" && onClose();
     }
-    //Закрыли модальное окно на крестик
-    const closeModalWithTheButton = (evt) => {
+    //Закрыли модальное окно на крестик //any??
+    const closeModalWithTheButton = (evt:any) => {
         evt.target && onClose();
     }
 
@@ -42,10 +42,5 @@ const Modal = ({title, onClose, children}) => {
 
 };
 
-Modal.propTypes = {
-    title: PropTypes.string.isRequired,
-    onClose:PropTypes.func.isRequired,
-    children: PropTypes.any.isRequired
-}
 
 export default Modal;

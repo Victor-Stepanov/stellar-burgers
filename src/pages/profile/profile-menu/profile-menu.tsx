@@ -3,10 +3,11 @@ import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { NavLink, useHistory } from "react-router-dom";
 import styles from "./profile-menu.module.css";
 import { sendLogoutData } from "../../../services/actions/auth";
+import {Location} from 'history';
 
 const ProfileMenu: FC = (): JSX.Element => {
 	const dispatch = useAppDispatch();
-	const history = useHistory();
+	const history = useHistory<Location>();
 
 	const { logoutSuccess } = useAppSelector((store) => store.userData);
 

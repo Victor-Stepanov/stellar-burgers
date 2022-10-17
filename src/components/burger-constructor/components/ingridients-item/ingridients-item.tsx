@@ -5,12 +5,18 @@ import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd'
 import {moveItem} from '../../../../services/actions/constructor';
 import {useAppDispatch} from "../../../../hooks/hooks";
+import { FC } from 'react';
+import { IIngridientsItem } from './ingridients-item.props';
 
 
-const IngridientsItem = ({ item, removeItem, index }) => {
+
+const IngridientsItem:FC<IIngridientsItem> = ({ item, removeItem, index }):JSX.Element => {
+    console.log('item:',item)
+    console.log('remitem:',removeItem)
+    console.log('index:',index)
     const { id } = item;
     const dispatch = useAppDispatch();
-    const ref = useRef(null)
+    const ref = useRef<HTMLLIElement>(null)
 
     const [{ isDragging }, dragRef] = useDrag({
         type: 'element',
@@ -22,14 +28,15 @@ const IngridientsItem = ({ item, removeItem, index }) => {
 
     const [, drop] = useDrop({
         accept: 'element',
-        hover: (item, monitor) => {
+        hover: (item:{index:number}, monitor) => {
             if(!ref.current) return;
             const dragIndex = item.index
             const hoverIndex = index
             if (dragIndex === hoverIndex) return;
-            const hoverBoundingRect = ref.current?.getBoundingClientRect()
+            const hoverBoundingRect = ref.current.getBoundingClientRect()
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-            const hoverActualY = monitor.getClientOffset().y - hoverBoundingRect.top
+            const clientOffset = monitor.getClientOffset();
+            const hoverActualY = clientOffset !== null && clientOffset.y - hoverBoundingRect.top;
 
             // if dragging down, continue only when hover is smaller than middle Y
             if (dragIndex < hoverIndex && hoverActualY < hoverMiddleY) return
@@ -42,11 +49,11 @@ const IngridientsItem = ({ item, removeItem, index }) => {
     })
     const opacity = isDragging ? 0 : 1
 
-    const dragDropRef = dragRef(drop(ref))
+    dragRef(drop(ref))
     return (
         <ul className={IngridientsItemStyles.list}>
-            <li className={IngridientsItemStyles.item} ref={dragDropRef} style={{opacity}}>
-                <DragIcon/>
+            <li className={IngridientsItemStyles.item} ref={ref} style={{opacity}}>
+                <DragIcon type='primary'/>
                 <ConstructorElement
                     text={item.name}
                     price={item.price}
@@ -59,11 +66,5 @@ const IngridientsItem = ({ item, removeItem, index }) => {
 
 }
 
-IngridientsItem.propTypes = {
-    item: PropTypes.object.isRequired,
-    index: PropTypes.number.isRequired,
-    removeItem:PropTypes.func.isRequired
-
-}
 
 export default IngridientsItem;

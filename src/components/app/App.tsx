@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import styles from "./app.module.css";
-import AppHeader from "../app-header/app-header.jsx";
-import BurgerConstructor from "../burger-constructor/burger-constructor.jsx";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients.jsx";
+import { Location } from "history";
+import AppHeader from "../app-header/app-header";
+import BurgerConstructor from "../burger-constructor/burger-constructor";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import { useState } from "react";
-import OrderDetails from "../order-details/order-details.jsx";
-import IngredientDetails from "../ingredient-details/ingredient-details.jsx";
-import Modal from "../modal/modal.jsx";
+import OrderDetails from "../order-details/order-details";
+import IngredientDetails from "../ingredient-details/ingredient-details";
+import Modal from "../modal/modal";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-//import { useSelector, useDispatch } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types/detailsTypes";
 import { RESET_ITEM } from "../../services/action-types";
@@ -23,7 +23,7 @@ import {
     FeedPage,
     NotFound404,
 } from "../../pages/index";
-import { ProtectedRoute } from "../../components/protected-route/protected-route";
+import { ProtectedRoute } from "../protected-route/protected-route";
 import { getCookie } from "../../utils/utils";
 import { getIngredients } from "../../services/actions/ingredients";
 import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
@@ -32,31 +32,27 @@ import OrdersHistory from "../../pages/profile/orders-history/orders-history";
 
 
 
-
 function App() {
-    const [isIngredientsOpened, setIsIngredientsOpened] = useState(false); //state для  Ingredients modal
-    const [isOrderInfoOpened, setIsOrderInfoOpened] = useState(false);
-    const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); //state для OrderDetails modal
+    const [isIngredientsOpened, setIsIngredientsOpened] = useState<boolean>(false); //state для  Ingredients modal
+    const [isOrderInfoOpened, setIsOrderInfoOpened] = useState<boolean>(false);
+    const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState<boolean>(false); //state для OrderDetails modal
     const { orderRequest } = useAppSelector((store) => store.orderNumberData);
     const dispatch = useAppDispatch();
     const {name, email} = useAppSelector(store => store.userData.user)
     const token = getCookie("token");
     const refreshToken = localStorage.getItem("refreshToken"); // token - для обновления токена, если он умер
-    const location = useLocation();
+    const location = useLocation<{background: Location}>();
     const history = useHistory();
 
-    const openOrderDetailsModal = () =>
+    const openOrderDetailsModal = ():void =>
     name.length > 0 && email.length > 0 ? setIsOrderDetailsOpened(true) : history.replace("/login");
 
-    const openIngredientsModal = () => {
+    const openIngredientsModal = ():void => {
         setIsIngredientsOpened(true);
     };
 
-    const openOrderInfoModal = () => {
-        setIsOrderInfoOpened(true);
-    }
     //Закрыли все модальные окна
-    const closeAllModals = () => {
+    const closeAllModals = ():void => {
         dispatch({ type: RESET_DETAILS_INGRIDIENT });
         dispatch({ type: RESET_ITEM });
         setIsIngredientsOpened(false);
