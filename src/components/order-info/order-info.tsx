@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { FC, useEffect, useMemo } from "react";
 import { useParams, useRouteMatch } from "react-router";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -11,7 +11,7 @@ import { TIngrediens } from "../../services/types/data";
 
 
 
-const OrderInfo = () => {
+const OrderInfo:FC = () => {
 	const { id } = useParams<{id: string}>(); //id заказа
 	const { path } = useRouteMatch<{path:string}>(); //получаем текущий путь
 	const dispatch = useAppDispatch();

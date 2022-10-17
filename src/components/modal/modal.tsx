@@ -8,7 +8,7 @@ import { IModal } from "./modal.props";
 
 const modalRoot = document.querySelector("#modals") as HTMLElement;
 
-const Modal: FC<IModal> = ({ title, onClose, children }): JSX.Element => {
+const Modal: FC<IModal> = ({ title, onClose, children }) => {
     //Закрыть модальных окон на Esc
     const handleEscKeydown = (evt: { key: string }) => {
         evt.key === "Escape" && onClose();

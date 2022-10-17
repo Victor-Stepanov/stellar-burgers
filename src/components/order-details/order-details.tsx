@@ -4,7 +4,7 @@ import done from '../../images/done.png';
 import { useAppSelector} from "../../hooks/hooks";
 import Loader from '../loader/loader';
 
-const OrderDetails:FC = ():JSX.Element => {
+const OrderDetails:FC = () => {
     const { number } = useAppSelector(store => store.orderNumberData.order)
 
     return (

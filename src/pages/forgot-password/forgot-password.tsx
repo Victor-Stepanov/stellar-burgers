@@ -9,7 +9,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { sendEmailResetValue } from "../../services/actions/auth";
 import useForm from "../../hooks/useForm";
 
-export const ForgotPasswordPage: FC = (): JSX.Element => {
+export const ForgotPasswordPage: FC = () => {
 	const { forgoutSuccess } = useAppSelector((store) => store.userData);
 	const dispatch = useAppDispatch();
 	const { values, handleChange } = useForm({ email: "" });

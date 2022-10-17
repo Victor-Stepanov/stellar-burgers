@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useAppSelector } from "../../hooks/hooks";
 import styles from "./orders-stats.module.css";
 
-export const OrdersStats: FC = (): JSX.Element => {
+export const OrdersStats: FC = () => {
 	//Все заказы
 	const { orders } = useAppSelector((store) => store.ws);
 	//Готовые:

@@ -9,7 +9,7 @@ import { TIngrediens } from "../../../services/types/data";
 
 
 
-export const OrderItem:FC<IOrderItem> = ({ order }):JSX.Element => {
+export const OrderItem:FC<IOrderItem> = ({ order }) => {
 	const { ingredients } = useAppSelector(state => state.ingredientsData);
 	const all = order.ingredients; //массив ингредиентов заказа
 

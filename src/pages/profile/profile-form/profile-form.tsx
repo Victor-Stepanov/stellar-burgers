@@ -9,7 +9,7 @@ import {
 import useForm from "../../../hooks/useForm";
 import styles from "./profile-form.module.css";
 
-export const ProfileForm: FC = (): JSX.Element => {
+export const ProfileForm: FC = () => {
 	const dispatch = useAppDispatch();
 	const { user } = useAppSelector((store) => store.userData);
 	const { values, handleChange, setValues } = useForm({

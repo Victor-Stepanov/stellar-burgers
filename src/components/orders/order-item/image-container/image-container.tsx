@@ -3,7 +3,7 @@ import { checkedArrayLength } from "../../../../utils/utils";
 import styles from '../order-item.module.css';
 import { IImageContainer } from "./image-container.props";
 
-export const ImageContainer:FC<IImageContainer> = ({ filterArr }):JSX.Element => {
+export const ImageContainer:FC<IImageContainer> = ({ filterArr }) => {
 
 	const uniqIngredients = [...new Set(filterArr)];
 

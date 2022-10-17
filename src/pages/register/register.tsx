@@ -10,7 +10,7 @@ import { sendUserData } from "../../services/actions/auth";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from "../../hooks/useForm";
 
-export const RegisterPage: FC = (): JSX.Element => {
+export const RegisterPage: FC = () => {
 	const { name, email } = useAppSelector((store) => store.userData.user);
 	const { values, handleChange } = useForm({
 		name: "",

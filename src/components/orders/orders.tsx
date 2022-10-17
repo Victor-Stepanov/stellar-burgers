@@ -5,7 +5,7 @@ import styles from "./orders.module.css";
 import { OrderItem } from "./order-item/order-item";
 import { Location } from "history";
 
-export const Orders: FC = (): JSX.Element => {
+export const Orders: FC = () => {
 	const location = useLocation<Location>();
 	const { orders } = useAppSelector((store) => store.ws);
 

@@ -10,7 +10,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { sendNewPassword } from "../../services/actions/auth";
 import useForm from "../../hooks/useForm";
 
-export const ResetPasswordPage: FC = (): JSX.Element => {
+export const ResetPasswordPage: FC = () => {
 	const dispatch = useAppDispatch();
 	const { resetSuccess, forgoutSuccess } = useAppSelector((store) => store.userData);
 
