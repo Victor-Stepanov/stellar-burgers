@@ -52,6 +52,7 @@ export const convertedDate = (date: string) => {
 export const checkedOrderStatus = (status: string) =>
   status === "done" ? "Выполнен" : status === "pending" ? "Готовится" : "";
 
+//
 export function isNotEmptyValue<T>(value:T|null|undefined):value is T{
   return value !== null && value !== undefined;
 }

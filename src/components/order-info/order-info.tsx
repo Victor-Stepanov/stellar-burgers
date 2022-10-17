@@ -25,7 +25,7 @@ const OrderInfo = () => {
 
 	//any((
 	
-	let filterArr:any = useMemo(
+	let filterArr = useMemo(
 		() => order?.ingredients.map((orderIngredient) => ingredients.find((item) => item._id === orderIngredient)
 		), [ingredients, order?.ingredients]);
 

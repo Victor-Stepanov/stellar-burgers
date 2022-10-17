@@ -12,7 +12,7 @@ const IngredientDetails: FC<IIngredientDetails> = ({ title }) => {
     const { id } = useParams<{ id: string }>();
 
   
-    const ingredient:any = ingredients.find((item) => item._id === id);
+    const ingredient = ingredients.find((item) => item._id === id);
     const categories:Array<string> = ["calories", "proteins", "fat", "carbohydrates"];
 
     const obj: { [key: string]: string } = {
@@ -39,7 +39,7 @@ const IngredientDetails: FC<IIngredientDetails> = ({ title }) => {
                         {ingredient.name}
                     </h3>
                     <ul className={`${IngredientDetailsStyle.items} mb-15`}>
-                        {categories.map((item, index) => {
+                        {categories.map((item:string, index:number) => {
                             if (item in ingredient) {
                                 return (
                                     <li
