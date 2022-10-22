@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareAPI } from "redux";
+import { Middleware} from "redux";
 import { IWsActions } from "../../utils/const";
 import { getCookie } from "../../utils/utils";
 import { AppDispatch, RootState } from "../types";

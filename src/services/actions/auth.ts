@@ -28,7 +28,6 @@ import {
 } from "../action-types";
 import {
 	TFormValues,
-	TUser,
 	TSameResponce,
 	TUserResponce,
 } from "../types/data";
