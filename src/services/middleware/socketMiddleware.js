@@ -19,11 +19,11 @@ export const socketMiddleware = (wsUrl, wsActions) => {
 
 			if (socket) {
 				socket.onopen = event => {
-					dispatch(onOpen(event));
+					dispatch({ type: onOpen, payload: event });
 				};
 
 				socket.onerror = event => {
-					dispatch(onError(event));
+					dispatch({ type: onError, payload: event });
 				};
 
 				socket.onmessage = event => {
@@ -31,8 +31,7 @@ export const socketMiddleware = (wsUrl, wsActions) => {
 					const parsedData = JSON.parse(data);
 					const { success, ...restParsedData } = parsedData;
 
-					dispatch({ type: onMessage, payload: restParsedData }); //было вот так
-					dispatch(onMessage(restParsedData)) // вот так появился путь
+					dispatch({ type: onMessage, payload: restParsedData });
 				};
 
 				socket.onclose = event => {

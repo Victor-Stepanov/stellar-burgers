@@ -34,21 +34,21 @@ const wsUrlAllOrders = "wss://norma.nomoreparties.space/orders/all";
 const wsUrlUserOrders = "wss://norma.nomoreparties.space/orders";
 
 const wsActions = {
-  wsInit: wsConnectionOpen,
-  wsSendMessage: wsSendOrders,
-  onOpen: wsConnectionSuccess,
-  onClose: wsConnectionClosed,
-  onError: wsConnectionError,
-  onMessage: wsGetOrders,
+  wsInit: "ws/wsConnectionOpen",
+  wsSendMessage: "ws/wsSendOrders",
+  onOpen: "ws/wsConnectionSuccess",
+  onClose: "ws/wsConnectionClosed",
+  onError: "ws/wsConnectionError",
+  onMessage: "ws/wsGetOrders",
 };
 
 const wsActionsAuth = {
-  wsInitWithToken: wsAuthConnectionOpen,
-  wsSendMessage: wsAuthSendOrders,
-  onOpen: wsAuthConnectionSuccess,
-  onClose: wsAuthConnectionClosed,
-  onError: wsAuthConnectionError,
-  onMessage: wsAuthGetOrders,
+  wsInitWithToken: "ws/wsAuthConnectionOpen",
+  wsSendMessage: "ws/wsAuthSendOrders",
+  onOpen: "ws/wsAuthConnectionSuccess",
+  onClose: "ws/wsAuthConnectionClosed",
+  onError: "ws/wsAuthConnectionError",
+  onMessage: "ws/wsAuthGetOrders",
 };
 
 export { config, wsUrlAllOrders, wsUrlUserOrders, wsActions, wsActionsAuth };
