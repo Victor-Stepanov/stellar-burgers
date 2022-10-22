@@ -1,57 +1,35 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCookie } from "../../utils/utils";
-import { config } from "../../utils/const";
+import api from "../../utils/api";
 
 export const getOrder = createAsyncThunk(
 	'order/getOrder',
-	async function (id, { rejectWithValue }) {
-		try {
-			const responce = await fetch(`${config.baseUrl}/orders`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + getCookie("token"),
-				},
-				body: JSON.stringify({
-					ingredients: id,
-				}),
-			})
-			if (!responce.ok) {
-				throw new Error('An error occurred while receiving the order number');
-			}
-			const data = await responce.json();
-			return data;
-
-		} catch (error) {
-			return rejectWithValue(error.message);
-
-		}
-	}
+	(id) => api.getOrderDataFromServer(id)
 )
 const initialState = {
 	order: {
 		number: null,
 	},
 	orderRequest: false,
-	orderError: null,
+	orderError: false,
 }
 const orderNumberSlice = createSlice({
 	name: 'order',
 	initialState,
-	extraReducers: {
-		[getOrder.pending]: (state) => {
-			state.orderRequest = true;
-		},
-		[getOrder.fulfilled]: (state, action) => {
-			const { order } = action.payload;
-			state.orderRequest = false;
-			state.order = order;
-			state.orderError = null;
-		},
-		[getOrder.rejected]: (state, action) => {
-			state.orderRequest = false;
-			state.orderError = action.payload;
-		}
+	extraReducers: (builder) => {
+		builder
+			.addCase(getOrder.pending, state => {
+				state.orderRequest = true;
+			})
+			.addCase(getOrder.fulfilled, (state, action) => {
+				const { order } = action.payload;
+				state.orderRequest = false;
+				state.order = order;
+				state.orderError = false;
+			})
+			.addCase(getOrder.rejected, state => {
+				state.orderRequest = false;
+				state.orderError = true;
+			})
 	}
 })
 
