@@ -1,7 +1,7 @@
-import { compose, createStore, applyMiddleware } from "redux";
-import { socketMiddleware } from "./middleware";
-import { rootReducer } from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
+import { socketMiddleware } from "./middleware";
+import { rootReducer } from "./slice";
 import {
     wsUrlAllOrders,
     wsUrlUserOrders,
@@ -9,16 +9,10 @@ import {
     wsActionsAuth,
 } from "../utils/const";
 
-const composeEnhancers =
-    typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-        : compose;
 
-const enhancer = composeEnhancers(
-    applyMiddleware(
-        thunk,
+export const store = configureStore({
+    reducer: rootReducer,
+    middleware: [thunk,
         socketMiddleware(wsUrlAllOrders, wsActions),
-        socketMiddleware(wsUrlUserOrders, wsActionsAuth)
-    )
-);
-export const store = createStore(rootReducer, enhancer);
+        socketMiddleware(wsUrlUserOrders, wsActionsAuth)]
+})

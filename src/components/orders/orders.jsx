@@ -6,7 +6,7 @@ import { OrderItem } from "./order-item/order-item";
 
 export const Orders = () => {
 	const location = useLocation();
-	const orders = useSelector(store => store.ws.orders);
+	const {orders} = useSelector(store => store.ws);
 
 	return (
 		<ul className={styles.listOrders}>
