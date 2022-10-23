@@ -6,7 +6,7 @@ import {
 	PasswordInput,
 	Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { sendUserData } from "../../services/actions/auth";
+import { sendUserData } from "../../services/slice/userSlice";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import useForm from "../../hooks/useForm";
 

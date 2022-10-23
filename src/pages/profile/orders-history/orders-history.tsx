@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import {
 	wsAuthConnectionOpen,
 	wsAuthConnectionClosed,
-} from "../../../services/actions";
+} from "../../../services/slice/wsSlice";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { OrderItem } from "../../../components/orders/order-item/order-item";

@@ -6,7 +6,7 @@ import {
 	Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-import { sendEmailResetValue } from "../../services/actions/auth";
+import { sendEmailResetValue } from "../../services/slice/userSlice";
 import useForm from "../../hooks/useForm";
 
 export const ForgotPasswordPage: FC = () => {

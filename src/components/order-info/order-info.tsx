@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-info.module.css';
 import { convertedDate, checkedOrderStatus, sumIngredients, countIngredients} from "../../utils/utils";
-import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/actions";
+import { wsAuthConnectionClosed, wsAuthConnectionOpen, wsConnectionClosed, wsConnectionOpen } from "../../services/slice/wsSlice";
 import { TIngrediens } from "../../services/types/data";
 
 

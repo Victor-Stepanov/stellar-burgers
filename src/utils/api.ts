@@ -28,7 +28,7 @@ class Api {
 		return this.checkStatus<TIngrediensResponce>(responce);
 	}
 	//Получаем номер заказа
-	async getOrderDataFromServer(id: string) {
+	async getOrderDataFromServer(id: Array<string>|string) {
 		const responce = await fetch(`${this.url}/orders`, {
 			method: "POST",
 			headers: {

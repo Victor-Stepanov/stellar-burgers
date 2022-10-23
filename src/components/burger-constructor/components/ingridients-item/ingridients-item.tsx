@@ -4,9 +4,8 @@ import {
     DragIcon,
     ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { useDrag, useDrop } from "react-dnd";
-import { moveItem } from "../../../../services/actions/constructor";
+import { moveItem } from "../../../../services/slice/constructorSlice";
 import { useAppDispatch } from "../../../../hooks/hooks";
 import { FC } from "react";
 import { IIngridientsItem } from "./ingridients-item.props";
@@ -16,9 +15,6 @@ const IngridientsItem: FC<IIngridientsItem> = ({
     removeItem,
     index,
 }) => {
-    console.log("item:", item);
-    console.log("remitem:", removeItem);
-    console.log("index:", index);
     const { id } = item;
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLLIElement>(null);
@@ -50,7 +46,7 @@ const IngridientsItem: FC<IIngridientsItem> = ({
             // if dragging up, continue only when hover is bigger than middle Y
             if (dragIndex > hoverIndex && hoverActualY > hoverMiddleY) return;
 
-            dispatch(moveItem(dragIndex, hoverIndex));
+            dispatch(moveItem({dragIndex, hoverIndex}));
             item.index = hoverIndex;
         },
     });

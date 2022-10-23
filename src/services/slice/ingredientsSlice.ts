@@ -15,7 +15,7 @@ const initialState: TInitialState = {
 
 export const getIngredients = createAsyncThunk(
     'ingredients/getIngredients',
-    api.getIngredientsDataFromServer
+    () => api.getIngredientsDataFromServer()
 
 )
 
@@ -42,3 +42,5 @@ const ingredientsSlice = createSlice({
 
     }
 })
+
+export default ingredientsSlice.reducer;

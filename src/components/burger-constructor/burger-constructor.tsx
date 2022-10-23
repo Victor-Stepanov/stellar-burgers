@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import burgerConstructorStyles from "./burger-constructor.module.css";
 import {
     ConstructorElement,
@@ -8,8 +9,8 @@ import IngridientsItem from "./components/ingridients-item/ingridients-item";
 import React, { FC, useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { useDrop } from "react-dnd";
-import { addItem, removeItem } from "../../services/actions/constructor";
-import { getOrder } from "../../services/actions/order";
+import { addItem, removeItem } from "../../services/slice/constructorSlice";
+import { getOrder } from "../../services/slice/export";
 import { IBurgerConstructor } from "./burger-constructor.props";
 import { TIngrediens } from "../../services/types/data";
 
@@ -43,7 +44,7 @@ const BurgerConstructor: FC<IBurgerConstructor> = ({
     const [, dropTarget] = useDrop({
         accept: "ingredient",
         drop: (item: TIngrediens) => {
-            dispatch(addItem(item));
+            dispatch(addItem({...item, id: uuidv4()}));
         },
     });
 

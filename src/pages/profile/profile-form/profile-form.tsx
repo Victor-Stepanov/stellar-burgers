@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useCallback, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
-import { sendUpdateUserData } from "../../../services/actions/auth";
+import { sendUpdateUserData } from "../../../services/slice/userSlice";
 import {
 	Button,
 	Input,

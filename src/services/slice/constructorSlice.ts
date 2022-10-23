@@ -15,13 +15,41 @@ const initialState: TInitialState = {
 const constructorSlice = createSlice({
     name:'constructor',
     initialState,
-    reducers:{
-        addItem(state, action){},
-        removeItem(state, action){},
-        moveItem(state, action){},
-        resetItem(state){}
-
-    }
+	reducers: {
+		addItem(state, action) {
+			if (action.payload.type === "bun") {
+				return {
+					...state,
+					bun: action.payload,
+				};
+			}
+			return {
+				...state,
+				element: [...state.element, action.payload],
+			};
+		},
+		removeItem(state, action) {
+			state.element = state.element.filter(
+				(item) => item.id !== action.payload
+			);
+		},
+		moveItem(state, action) {
+			state.element = update(state.element, {
+				$splice: [
+					[action.payload.dragIndex, 1],
+					[
+						action.payload.hoverIndex,
+						0,
+						state.element[action.payload.dragIndex],
+					],
+				],
+			});
+		},
+		resetItem(state) {
+			state.bun = null;
+			state.element = [];
+		},
+	},
 })
 
 export const { addItem, removeItem, moveItem, resetItem } =

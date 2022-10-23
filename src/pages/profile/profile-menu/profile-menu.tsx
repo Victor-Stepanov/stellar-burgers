@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useAppSelector, useAppDispatch } from "../../../hooks/hooks";
 import { NavLink, useHistory } from "react-router-dom";
 import styles from "./profile-menu.module.css";
-import { sendLogoutData } from "../../../services/actions/auth";
+import { sendLogoutData } from "../../../services/slice/userSlice";
 import {Location} from 'history';
 
 const ProfileMenu: FC = () => {

@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link, Redirect } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-import { sendNewPassword } from "../../services/actions/auth";
+import { sendNewPassword } from "../../services/slice/userSlice";
 import useForm from "../../hooks/useForm";
 
 export const ResetPasswordPage: FC = () => {

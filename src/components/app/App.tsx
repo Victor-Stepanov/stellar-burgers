@@ -12,8 +12,8 @@ import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types/detailsTypes";
-import { RESET_ITEM } from "../../services/action-types";
+//import { RESET_DETAILS_INGRIDIENT } from "../../services/action-types";
+//import { RESET_ITEM } from "../../services/action-types";
 import {
     LoginPage,
     ProfilePage,
@@ -22,11 +22,11 @@ import {
     ResetPasswordPage,
     FeedPage,
     NotFound404,
-} from "../../pages/index";
+} from "../../pages";
 import { ProtectedRoute } from "../protected-route/protected-route";
 import { getCookie } from "../../utils/utils";
-import { getIngredients } from "../../services/actions/ingredients";
-import { sendUpdateToken, getUserInfo } from "../../services/actions/auth";
+import { getIngredients } from "../../services/slice/ingredientsSlice";
+import { sendUpdateToken, getUserInfo } from "../../services/slice/export";
 import OrderInfo from "../order-info/order-info";
 import OrdersHistory from "../../pages/profile/orders-history/orders-history";
 
@@ -53,8 +53,8 @@ function App():JSX.Element {
 
     //Закрыли все модальные окна
     const closeAllModals = (): void => {
-        dispatch({ type: RESET_DETAILS_INGRIDIENT });
-        dispatch({ type: RESET_ITEM });
+        //dispatch({ type: RESET_DETAILS_INGRIDIENT });
+        //dispatch({ type: RESET_ITEM });
         setIsIngredientsOpened(false);
         setIsOrderDetailsOpened(false);
         setIsOrderInfoOpened(false);
